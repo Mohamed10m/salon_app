@@ -10,16 +10,12 @@ import 'onboarding_widget.dart';
 class BoardingModel {
   final Container container;
   final String title;
-  final String subTitle1;
-  final String subTitle2;
-  final String subTitle3;
+  final String subTitle;
 
   BoardingModel({
     required this.container,
     required this.title,
-    required this.subTitle1,
-    required this.subTitle2,
-    required this.subTitle3,
+    required this.subTitle,
   });
 }
 
@@ -37,7 +33,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorManager.scaffoldBackgroundColor,
-
       body: Stack(
         children: [
           Column(
@@ -50,18 +45,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   width: 67.w,
                   child: OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                          primary: Colors.red,
                           side:
-                          BorderSide(color: HexColor('#8281F8'), width: 1),
+                              BorderSide(color: HexColor('#8281F8'), width: 1),
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(16)))),
+                                  BorderRadius.all(Radius.circular(16)))),
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
-                            context, MaterialPageRoute(builder: (context) => const LoginScreen()),
-                                (route) {
-                              return false;
-                            });
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
+                            (route) {
+                          return false;
+                        });
                       },
                       child: Text(
                         AppStrings.skip,
@@ -85,7 +81,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     if (index == boarding.length - 1) {
                       setState(() {
                         isLast = true;
-
                       });
                     } else {
                       setState(() {
@@ -101,10 +96,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () {
                     if (isLast) {
                       Navigator.pushAndRemoveUntil(
-                          context, MaterialPageRoute(builder: (context) => const LoginScreen()),
-                              (route) {
-                            return false;
-                          });
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()),
+                          (route) {
+                        return false;
+                      });
                     } else {
                       boardController.nextPage(
                           duration: const Duration(
@@ -141,5 +138,4 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       ),
     );
   }
-
 }
