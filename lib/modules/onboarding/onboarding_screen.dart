@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../shared/componants/app_strings.dart';
+import '../../shared/componants/assets_manager.dart';
 import '../../shared/componants/color_manager.dart';
 import '../auth/auth__screens/login_screen.dart';
 import 'onboarding_widget.dart';
@@ -35,7 +36,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       backgroundColor: ColorManager.scaffoldBackgroundColor,
       body: Stack(
         children: [
-          Column(
+      Container(
+      decoration:  const BoxDecoration(
+      image: DecorationImage(
+          image: AssetImage(ImageAssets.background),
+        fit: BoxFit.cover)),
+    child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Padding(
@@ -117,7 +123,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 height: 57.h,
               ),
             ],
-          ),
+    )  ),
           Padding(
             padding: const EdgeInsets.only(top: 80.0),
             child: Align(
@@ -135,7 +141,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
           ),
         ],
-      ),
+    )
+
     );
   }
 }

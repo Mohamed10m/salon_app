@@ -32,6 +32,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
         backgroundColor: ColorManager.scaffoldBackgroundColor,
         body: SingleChildScrollView(
             child: Container(
+              height: double.infinity,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(ImageAssets.background),

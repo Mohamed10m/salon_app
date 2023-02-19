@@ -19,6 +19,7 @@ class _BookingScreenState extends State<BookingScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Container(
+        height: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.background), fit: BoxFit.cover)),

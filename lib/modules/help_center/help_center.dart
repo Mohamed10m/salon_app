@@ -14,6 +14,7 @@ class HelpCenterScreen extends StatelessWidget {
         backgroundColor: ColorManager.scaffoldBackgroundColor,
         body: SingleChildScrollView(
           child: Container(
+            width: double.infinity,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(ImageAssets.background),

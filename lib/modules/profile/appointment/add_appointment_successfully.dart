@@ -15,6 +15,7 @@ class AppointmentResultScreen extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: Scaffold(
             body: Container(
+              height: double.infinity,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(ImageAssets.background),

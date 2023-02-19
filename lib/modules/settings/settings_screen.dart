@@ -21,208 +21,202 @@ class _SettingsPageState extends State<SettingsPage> {
     return Directionality(
         textDirection: TextDirection.rtl,
         child: SingleChildScrollView(
-          child: Container(
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(ImageAssets.background),
-                    fit: BoxFit.cover)),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 81.h,
-                ),
-                const Image(image: AssetImage(ImageAssets.userImage)),
-                SizedBox(
-                  height: 16.h,
-                ),
-                const Text('امنية نهاد'),
-                SizedBox(
-                  height: 11.h,
-                ),
-                const Text('example@gmail.com'),
-                SizedBox(
-                  height: 32.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                  child: Container(
-                    height: 64.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: HexColor("#8281F8").withOpacity(0.20)),
-                    child: Center(
-                      child: ListTile(
-                        leading: Container(
-                          height: 43,
-                          width: 43,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(ImageAssets.backgroundIcon))),
-                          child: Icon(
-                            Icons.person,
-                            color: HexColor('#8281F8'),
-                          ),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 81.h,
+              ),
+              const Image(image: AssetImage(ImageAssets.userImage)),
+              SizedBox(
+                height: 16.h,
+              ),
+              const Text('امنية نهاد'),
+              SizedBox(
+                height: 11.h,
+              ),
+              const Text('example@gmail.com'),
+              SizedBox(
+                height: 32.h,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Container(
+                  height: 64.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: HexColor("#8281F8").withOpacity(0.20)),
+                  child: Center(
+                    child: ListTile(
+                      leading: Container(
+                        height: 43,
+                        width: 43,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(ImageAssets.backgroundIcon))),
+                        child: Icon(
+                          Icons.person,
+                          color: HexColor('#8281F8'),
                         ),
-                        title: Text('المعلومات الشخصية',
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        trailing: const Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Icon(Icons.arrow_back)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const ProfileScreen()));
-                        },
                       ),
+                      title: Text('المعلومات الشخصية',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      trailing: const Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Icon(Icons.arrow_back)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ProfileScreen()));
+                      },
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 35.0, vertical: 24),
-                  child: Container(
-                    height: 64.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: HexColor("#8281F8").withOpacity(0.20)),
-                    child: Center(
-                      child: ListTile(
-                        leading: Container(
-                          height: 43,
-                          width: 43,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(ImageAssets.backgroundIcon))),
-                          child: Icon(
-                            Icons.person,
-                            color: HexColor('#8281F8'),
-                          ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 35.0, vertical: 24),
+                child: Container(
+                  height: 64.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: HexColor("#8281F8").withOpacity(0.20)),
+                  child: Center(
+                    child: ListTile(
+                      leading: Container(
+                        height: 43,
+                        width: 43,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(ImageAssets.backgroundIcon))),
+                        child: Icon(
+                          Icons.person,
+                          color: HexColor('#8281F8'),
                         ),
-                        title: Text('الاعدادات',
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        trailing: const Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Icon(Icons.arrow_back)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const EditSettings()));
-                        },
                       ),
+                      title: Text('الاعدادات',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      trailing: const Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Icon(Icons.arrow_back)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EditSettings()));
+                      },
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                  child: Container(
-                    height: 64.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: HexColor("#8281F8").withOpacity(0.20)),
-                    child: Center(
-                      child: ListTile(
-                        leading: Container(
-                          height: 43,
-                          width: 43,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(ImageAssets.backgroundIcon))),
-                          child: Icon(
-                            Icons.person,
-                            color: HexColor('#8281F8'),
-                          ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Container(
+                  height: 64.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: HexColor("#8281F8").withOpacity(0.20)),
+                  child: Center(
+                    child: ListTile(
+                      leading: Container(
+                        height: 43,
+                        width: 43,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(ImageAssets.backgroundIcon))),
+                        child: Icon(
+                          Icons.person,
+                          color: HexColor('#8281F8'),
                         ),
-                        title: Text('مواعيدى',
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        trailing: const Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Icon(Icons.arrow_back)),
-                        onTap: () {},
                       ),
+                      title: Text('مواعيدى',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      trailing: const Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Icon(Icons.arrow_back)),
+                      onTap: () {},
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 35.0, vertical: 24),
-                  child: Container(
-                    height: 64.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: HexColor("#8281F8").withOpacity(0.20)),
-                    child: Center(
-                      child: ListTile(
-                        leading: Container(
-                          height: 43,
-                          width: 43,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(ImageAssets.backgroundIcon))),
-                          child: Icon(
-                            Icons.person,
-                            color: HexColor('#8281F8'),
-                          ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 35.0, vertical: 24),
+                child: Container(
+                  height: 64.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: HexColor("#8281F8").withOpacity(0.20)),
+                  child: Center(
+                    child: ListTile(
+                      leading: Container(
+                        height: 43,
+                        width: 43,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(ImageAssets.backgroundIcon))),
+                        child: Icon(
+                          Icons.person,
+                          color: HexColor('#8281F8'),
                         ),
-                        title: Text('طرق الدفع',
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        trailing: const Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Icon(Icons.arrow_back)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const PaymentScreen()));
-                        },
                       ),
+                      title: Text('طرق الدفع',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      trailing: const Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Icon(Icons.arrow_back)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const PaymentScreen()));
+                      },
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                  child: Container(
-                    height: 64.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: HexColor("#8281F8").withOpacity(0.20)),
-                    child: Center(
-                      child: ListTile(
-                        leading: Container(
-                          height: 43,
-                          width: 43,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage(ImageAssets.backgroundIcon))),
-                          child: Icon(
-                            Icons.person,
-                            color: HexColor('#8281F8'),
-                          ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Container(
+                  height: 64.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: HexColor("#8281F8").withOpacity(0.20)),
+                  child: Center(
+                    child: ListTile(
+                      leading: Container(
+                        height: 43,
+                        width: 43,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage(ImageAssets.backgroundIcon))),
+                        child: Icon(
+                          Icons.person,
+                          color: HexColor('#8281F8'),
                         ),
-                        title: Text('مركز المساعدة',
-                            style: Theme.of(context).textTheme.bodyLarge),
-                        trailing: const Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Icon(Icons.arrow_back)),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const HelpCenterScreen()));
-                        },
                       ),
+                      title: Text('مركز المساعدة',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      trailing: const Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Icon(Icons.arrow_back)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const HelpCenterScreen()));
+                      },
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ));
   }

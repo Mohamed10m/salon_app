@@ -40,11 +40,16 @@ class _LoginScreenState extends State<LoginScreen> {
             listener: (context, state) {},
             builder: (context, state) {
               return Scaffold(
-                backgroundColor: ColorManager.scaffoldBackgroundColor,
                 body: Directionality(
                     textDirection: TextDirection.rtl,
                     child: SingleChildScrollView(
-                      child: Padding(
+                      child: Container(
+                        width: double.infinity,
+                  decoration: const BoxDecoration(
+                  image: DecorationImage(
+                  image: AssetImage(ImageAssets.background),
+              fit: BoxFit.cover)),
+              child: Padding(
                         padding: EdgeInsets.only(top: 73.h),
                         child: Column(
                           children: [
@@ -267,7 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
-                      ),
+              )  ),
                     )),
               );
             }));

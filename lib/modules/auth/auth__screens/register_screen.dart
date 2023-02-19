@@ -45,7 +45,12 @@ class _LoginScreenState extends State<RegisterScreen> {
                 backgroundColor: ColorManager.scaffoldBackgroundColor,
                 body: Directionality(
                     textDirection: TextDirection.rtl,
-                    child: SingleChildScrollView(
+                    child: Container(
+                  decoration: const BoxDecoration(
+                  image: DecorationImage(
+                  image: AssetImage(ImageAssets.background),
+              fit: BoxFit.cover)),
+              child: SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: 73.h,
@@ -252,7 +257,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                           ],
                         ),
                       ),
-                    )),
+              ) )),
               );
             }));
   }

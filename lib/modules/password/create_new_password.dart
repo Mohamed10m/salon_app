@@ -31,6 +31,7 @@ class _LoginScreenState extends State<CreateNewPassword> {
     return Scaffold(
         backgroundColor: ColorManager.scaffoldBackgroundColor,
         body: Container(
+          height:double.infinity,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(ImageAssets.background),

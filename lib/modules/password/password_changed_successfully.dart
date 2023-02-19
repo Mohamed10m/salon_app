@@ -14,6 +14,7 @@ class PasswordChangedSuccessfully extends StatelessWidget {
       backgroundColor: ColorManager.scaffoldBackgroundColor,
       body: Center(
           child: Container(
+        height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(

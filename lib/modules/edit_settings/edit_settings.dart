@@ -22,6 +22,7 @@ class _EditSettingsState extends State<EditSettings> {
     return Scaffold(
       backgroundColor: ColorManager.scaffoldBackgroundColor,
       body: Container(
+        width: double.infinity,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.background), fit: BoxFit.cover)),
