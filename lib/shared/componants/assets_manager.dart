@@ -25,4 +25,21 @@ class ImageAssets {
   static const String backgroundText = "$imagePath/Rectangle 214 (1).png";
   static const String backgroundIcon = "$imagePath/background_icon.png";
   static const String cardImage = "$imagePath/card_image.png";
+  static const String bookingIcon = "$imagePath/booking_icon.png";
+  static const String lineIcon = "$imagePath/Line_icon.png";
+  static const String backIcon = "$imagePath/back_icon.png";
+  static const String personIcon = "$imagePath/person_icon.png";
+  static const String appointmentIcon = "$imagePath/appointment_icon.png";
+  static const String settingsIcon = "$imagePath/settings_icon.png";
+  static const String helpIcon = "$imagePath/help_icon.png";
+  static const String logoutIcon = "$imagePath/logout_icon.png";
+  static const String homeIcon = "$imagePath/home_icon.png";
+  static const String appointNavIcon = "$imagePath/appointment_nav_icon.png";
+  static const String backNavBar = "$imagePath/back_navbar.png";
+  static const String barberName = "$imagePath/barber_name.png";
+  static const String hairImage = "$imagePath/hair.png";
+  static const String clockIcon = "$imagePath/clock_icon.png";
+  static const String changeLanguageIcon = "$imagePath/change_language_icon.png";
+  static const String lockIcon = "$imagePath/lock_icon.png";
+  static const String typeIcon = "$imagePath/type_icon.png";
 }

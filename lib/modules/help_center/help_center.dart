@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:salon_app/shared/componants/color_manager.dart';
-
-import '../../../shared/componants/assets_manager.dart';
+import '../../shared/componants/componants.dart';
 
 class HelpCenterScreen extends StatelessWidget {
   const HelpCenterScreen({Key? key}) : super(key: key);
@@ -11,15 +9,7 @@ class HelpCenterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorManager.scaffoldBackgroundColor,
-        body: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(ImageAssets.background),
-                      fit: BoxFit.cover)),
-              child: Directionality(
+        body: background(child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 53, right: 36, left: 36),
@@ -77,7 +67,8 @@ class HelpCenterScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              )),
-        ));
+              )
+        )
+    );
   }
 }

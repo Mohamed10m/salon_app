@@ -1,7 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'assets_manager.dart';
 import 'color_manager.dart';
+import 'fonts_manager.dart';
+
+void navigateTo(context, widget) =>
+    Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(builder: (context) => widget), (route) {
+      return false;
+    });
+
+Widget background({required child}) => Directionality(
+    textDirection: TextDirection.rtl,
+    child: Container(
+      height: double.infinity,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(ImageAssets.background), fit: BoxFit.cover)),
+      child: SingleChildScrollView(
+        child: child,
+      ),
+    ));
 
 Widget customFormField({
   required TextEditingController controller,
@@ -46,7 +69,8 @@ Widget elevatedButton({required String text, required Function onPress}) =>
       },
       child: Text(
         text,
-        style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w700),
+        style: TextStyle(fontSize: 18.sp,  fontWeight: FontWeightManager.bold,
+            fontFamily: FontConstants.cairoFontFamily),
       ),
       style: ElevatedButton.styleFrom(
           backgroundColor: ColorManager.buttonColor,

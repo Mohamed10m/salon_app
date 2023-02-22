@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
 
+import '../../shared/componants/componants.dart';
+
 class ChosePlace extends StatelessWidget {
   const ChosePlace({Key? key}) : super(key: key);
 
@@ -33,16 +35,7 @@ class ChosePlace extends StatelessWidget {
       ImageAssets.placeImage,
     ];
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Container(
-            width: double.infinity,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(ImageAssets.background),
-                      fit: BoxFit.cover)),
-              child: Column(children: [
+        body: background(child: Column(children: [
                 Padding(
                   padding: EdgeInsets.only(top: 76.h),
                   child: const Text(
@@ -50,8 +43,7 @@ class ChosePlace extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 20,
-                        fontFamily:
-                            'assets/fonts/Cairo-VariableFont_slnt,wght.ttf'),
+                        ),
                   ),
                 ),
                 SizedBox(
@@ -88,7 +80,6 @@ class ChosePlace extends StatelessWidget {
                                     ],
                                   ))),
                     )),
-              ]))),
-    ));
+              ])));
   }
 }

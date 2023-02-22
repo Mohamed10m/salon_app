@@ -1,11 +1,12 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import '../../../layout/home_layout/home_layout.dart';
 import '../../../shared/componants/assets_manager.dart';
-import '../../../shared/componants/color_manager.dart';
 import '../../../shared/componants/componants.dart';
+import '../../../shared/componants/fonts_manager.dart';
 import '../../password/forget_password.dart';
 import '../auth_cubit/auth_cubit.dart';
 import '../auth_cubit/auth_states.dart';
@@ -40,17 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
             listener: (context, state) {},
             builder: (context, state) {
               return Scaffold(
-                body: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: SingleChildScrollView(
-                      child: Container(
-                        width: double.infinity,
-                  decoration: const BoxDecoration(
-                  image: DecorationImage(
-                  image: AssetImage(ImageAssets.background),
-              fit: BoxFit.cover)),
-              child: Padding(
-                        padding: EdgeInsets.only(top: 73.h),
+                body: background(child: Padding(
+                        padding: EdgeInsets.only(top: 68.h),
                         child: Column(
                           children: [
                             CircleAvatar(
@@ -63,8 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 image: AssetImage(ImageAssets.onBoardingLogo1),
                               ),
                             ),
-                            const SizedBox(
-                              height: 24,
+                             SizedBox(
+                              height: 19.h,
                             ),
                             Container(
                               width: double.infinity,
@@ -75,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 border: Border.all(
                                     color:
                                         HexColor('#FCC885').withOpacity(0.30),
-                                    width: 1),
+                                    width: 2),
                                 color: HexColor('#FFFFFF'),
                               ),
                               child: Padding(
@@ -88,7 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                       'البريد الالكتروني',
                                       style: TextStyle(
                                           fontSize: 16,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeightManager.regular,
+                                          fontFamily: FontConstants.cairoFontFamily
+                                         ),
                                     ),
                                     const SizedBox(
                                       height: 8,
@@ -101,6 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                           children: [
                                             customFormField(
                                               text: "Example@gmail.com",
+                                              hintStyle: const TextStyle( fontSize: 16,
+                                                  fontWeight: FontWeightManager.medium,
+                                                  fontFamily: FontConstants.cairoFontFamily
+
+                                              ),
                                               validate: (String? value) {
                                                 if (value!.isEmpty) {
                                                   return "Email must not be empty";
@@ -117,14 +116,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                             const Text(
                                               'كلمة المرور',
                                               style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500),
+                                                  fontWeight: FontWeightManager.regular,
+                                                  fontFamily: FontConstants.cairoFontFamily
+                                              ),
                                             ),
                                             const SizedBox(
                                               height: 8,
                                             ),
                                             customFormField(
-                                              text: "Password",
+                                              text: "*********",
+                                              hintStyle: const TextStyle( fontSize: 16,
+                                                fontWeight: FontWeightManager.medium,
+                                                fontFamily: FontConstants.cairoFontFamily),
                                               validate: (String? value) {
                                                 if (value!.isEmpty) {
                                                   return "Password must not be empty";
@@ -135,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               suffix:
                                                   AuthCubit.get(context).suffix,
                                               suffixPressed: () {
+
                                                 AuthCubit.get(context)
                                                     .changePasswordVisibility();
                                               },
@@ -150,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       height: 11.h,
                                     ),
                                     Align(
-                                        alignment: Alignment.bottomRight,
+                                        alignment: Alignment.bottomLeft,
                                         child: TextButton(
                                             onPressed: () {
                                               Navigator.push(
@@ -162,8 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             child: Text(
                                               "هل نسيت كلمة المرور؟",
                                               style: TextStyle(
+                                                color: HexColor('#8281F8'),
                                                   fontSize: 14.sp,
-                                                  fontWeight: FontWeight.w500),
+                                                  fontWeight: FontWeightManager.semiBold,
+                                                  fontFamily: FontConstants.cairoFontFamily),
                                             ))),
                                     SizedBox(
                                       height: 39.h,
@@ -188,7 +194,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           'تسجيل الدخول',
                                           style: TextStyle(
                                               fontSize: 18,
-                                              fontWeight: FontWeight.w700),
+                                              fontWeight: FontWeightManager.bold,
+                                              fontFamily: FontConstants.cairoFontFamily),
                                         ),
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor:
@@ -206,7 +213,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       'او سجل الدخول من خلال',
                                       style: TextStyle(
                                           fontSize: 13,
-                                          fontWeight: FontWeight.w500),
+                                          fontWeight: FontWeightManager.medium,
+                                          fontFamily: FontConstants.cairoFontFamily),
                                     )),
                                     SizedBox(
                                       height: 24.h,
@@ -220,7 +228,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         children: [
                                           IconButton(
                                             icon: Image.asset(
-                                                'assets/images/google.png'),
+                                                'assets/images/facebook_icon.png'),
                                             onPressed: () {},
                                           ),
                                           SizedBox(
@@ -236,9 +244,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                           ),
                                           IconButton(
                                             icon: Image.asset(
-                                                'assets/images/facebook_icon.png'),
+                                                'assets/images/google.png'),
                                             onPressed: () {},
-                                          )
+                                          ),
+
                                         ],
                                       ),
                                     ),
@@ -249,7 +258,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        const Text('Don\'t have an account?'),
+                                        const Text('ليس لديك حساب؟',style: TextStyle( fontWeight: FontWeightManager.medium,
+                                            fontFamily: FontConstants.cairoFontFamily,fontSize: 16),),
                                         TextButton(
                                             onPressed: () {
                                               Navigator.push(
@@ -259,10 +269,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                                           const RegisterScreen()));
                                             },
                                             child: Text(
-                                              "Sign Up",
+                                              "انشئ حساب",
                                               style: TextStyle(
+                                                color: HexColor('#8281F8'),
                                                   fontSize: 16.sp,
-                                                  fontWeight: FontWeight.w600),
+                                                  decoration: TextDecoration.underline,
+                                                  fontWeight: FontWeightManager.medium,
+                                                  fontFamily: FontConstants.cairoFontFamily),
                                             ))
                                       ],
                                     ),
@@ -273,7 +286,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
               )  ),
-                    )),
               );
             }));
   }

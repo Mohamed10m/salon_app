@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/modules/auth/auth__screens/login_screen.dart';
+import 'package:salon_app/modules/help_center/help_center.dart';
+import 'package:salon_app/modules/payment/payment_screen.dart';
+import 'package:salon_app/modules/settings/widgets.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
-
+import '../../shared/componants/fonts_manager.dart';
+import '../appointment/my_appointment.dart';
 import '../edit_settings/edit_settings.dart';
-import '../help_center/help_center.dart';
-import '../payment/payment_screen.dart';
 import '../profile/profile_screen.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -18,9 +22,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-        textDirection: TextDirection.rtl,
-        child: SingleChildScrollView(
+    return   Padding(
+          padding: EdgeInsets.only(right: 36.0.w, left: 35.w),
           child: Column(
             children: [
               SizedBox(
@@ -30,194 +33,87 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(
                 height: 16.h,
               ),
-              const Text('امنية نهاد'),
+              const Text(
+                'امنية نهاد',
+                style: TextStyle(
+                  fontWeight: FontWeightManager.bold,
+                  fontFamily: FontConstants.cairoFontFamily,
+                  fontSize: 20,
+                ),
+              ),
               SizedBox(
                 height: 11.h,
               ),
-              const Text('example@gmail.com'),
+              Text(
+                'Example@gmail.com',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: HexColor('#212121').withOpacity(0.5),
+                    fontFamily: 'Poppins'),
+              ),
               SizedBox(
                 height: 32.h,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                child: Container(
-                  height: 64.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: HexColor("#8281F8").withOpacity(0.20)),
-                  child: Center(
-                    child: ListTile(
-                      leading: Container(
-                        height: 43,
-                        width: 43,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(ImageAssets.backgroundIcon))),
-                        child: Icon(
-                          Icons.person,
-                          color: HexColor('#8281F8'),
-                        ),
-                      ),
-                      title: Text('المعلومات الشخصية',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                      trailing: const Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Icon(Icons.arrow_back)),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ProfileScreen()));
-                      },
-                    ),
-                  ),
-                ),
+              buildSettingsCardItem(
+                color: HexColor("#8281F8").withOpacity(0.04),
+                text: 'المعلومات الشخصية',
+                image: ImageAssets.personIcon,
+                context: context,
+                widget: const ProfileScreen(),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 35.0, vertical: 24),
-                child: Container(
-                  height: 64.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: HexColor("#8281F8").withOpacity(0.20)),
-                  child: Center(
-                    child: ListTile(
-                      leading: Container(
-                        height: 43,
-                        width: 43,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(ImageAssets.backgroundIcon))),
-                        child: Icon(
-                          Icons.person,
-                          color: HexColor('#8281F8'),
-                        ),
-                      ),
-                      title: Text('الاعدادات',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                      trailing: const Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Icon(Icons.arrow_back)),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const EditSettings()));
-                      },
-                    ),
-                  ),
-                ),
+              SizedBox(
+                height: 24.h,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                child: Container(
-                  height: 64.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: HexColor("#8281F8").withOpacity(0.20)),
-                  child: Center(
-                    child: ListTile(
-                      leading: Container(
-                        height: 43,
-                        width: 43,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(ImageAssets.backgroundIcon))),
-                        child: Icon(
-                          Icons.person,
-                          color: HexColor('#8281F8'),
-                        ),
-                      ),
-                      title: Text('مواعيدى',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                      trailing: const Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Icon(Icons.arrow_back)),
-                      onTap: () {},
-                    ),
-                  ),
-                ),
+              buildSettingsCardItem(
+                color: HexColor("#8281F8").withOpacity(0.04),
+                text: 'الاعدادات',
+                image: ImageAssets.settingsIcon,
+                context: context,
+                widget: const EditSettings(),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 35.0, vertical: 24),
-                child: Container(
-                  height: 64.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: HexColor("#8281F8").withOpacity(0.20)),
-                  child: Center(
-                    child: ListTile(
-                      leading: Container(
-                        height: 43,
-                        width: 43,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(ImageAssets.backgroundIcon))),
-                        child: Icon(
-                          Icons.person,
-                          color: HexColor('#8281F8'),
-                        ),
-                      ),
-                      title: Text('طرق الدفع',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                      trailing: const Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Icon(Icons.arrow_back)),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PaymentScreen()));
-                      },
-                    ),
-                  ),
-                ),
+              SizedBox(
+                height: 24.h,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                child: Container(
-                  height: 64.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: HexColor("#8281F8").withOpacity(0.20)),
-                  child: Center(
-                    child: ListTile(
-                      leading: Container(
-                        height: 43,
-                        width: 43,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(ImageAssets.backgroundIcon))),
-                        child: Icon(
-                          Icons.person,
-                          color: HexColor('#8281F8'),
-                        ),
-                      ),
-                      title: Text('مركز المساعدة',
-                          style: Theme.of(context).textTheme.bodyLarge),
-                      trailing: const Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Icon(Icons.arrow_back)),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const HelpCenterScreen()));
-                      },
-                    ),
-                  ),
-                ),
+              buildSettingsCardItem(
+                color: HexColor("#8281F8").withOpacity(0.04),
+                text: 'مواعيدى',
+                image: ImageAssets.appointmentIcon,
+                context: context,
+                widget: const MyAppointment(),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              buildSettingsCardItem(
+                color: HexColor("#8281F8").withOpacity(0.04),
+                text: 'طرق الدفع',
+                image: ImageAssets.bookingIcon,
+                context: context,
+                widget: const PaymentScreen(),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              buildSettingsCardItem(
+                color: HexColor("#8281F8").withOpacity(0.04),
+                text: 'مركز المساعدة',
+                image: ImageAssets.helpIcon,
+                context: context,
+                widget: const HelpCenterScreen(),
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              buildSettingsCardItem(
+                color: HexColor("#FF725E").withOpacity(0.06),
+                text: 'تسجيل الخروج',
+                image: ImageAssets.logoutIcon,
+                context: context,
+                widget: const LoginScreen(),
               ),
             ],
-          ),
-        ));
+          )
+        );
   }
 }

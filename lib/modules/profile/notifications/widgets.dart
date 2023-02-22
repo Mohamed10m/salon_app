@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../shared/componants/assets_manager.dart';
+import '../../../shared/componants/fonts_manager.dart';
 
 Widget buildUserDataItem({
   required Color color,
   required Color sColor,
+  required Color nColor,
   required String title,
   required String subtitle,
   required String trailing,
@@ -23,7 +25,7 @@ Widget buildUserDataItem({
                 width: 29.w,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: HexColor('#8281F8').withOpacity(0.2),
+                    color: nColor,
                     image: DecorationImage(
                       scale: 1.sp,
                       image: const AssetImage(ImageAssets.notificationImage),
@@ -51,20 +53,20 @@ Widget buildUserDataItem({
                 children: [
                   Text(title,
                       style: const TextStyle(
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeightManager.bold,
+                          fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 18,
-                          fontFamily:
-                              'assets/fonts/Cairo-VariableFont_slnt,wght.ttf')),
+                         )),
                   SizedBox(
                     width: 8.w,
                   ),
                   Text(subtitle,
                       style: TextStyle(
                           color: HexColor('#212121').withOpacity(0.5),
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeightManager.light,
+                          fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 11,
-                          fontFamily:
-                              'assets/fonts/Cairo-VariableFont_slnt,wght.ttf')),
+                         )),
                 ],
               ),
               SizedBox(
@@ -75,10 +77,10 @@ Widget buildUserDataItem({
                   child: Text(trailing,
                       style: TextStyle(
                           color: HexColor('#212121').withOpacity(0.5),
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeightManager.medium,
+                          fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 14,
-                          fontFamily:
-                              'assets/fonts/Cairo-VariableFont_slnt,wght.ttf'))),
+                         ))),
             ],
           ),
         ],
@@ -126,20 +128,18 @@ Widget buildNotificationsItem({
                         children: [
                           Text(title,
                               style: const TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  fontFamily:
-                                      'assets/fonts/Cairo-VariableFont_slnt,wght.ttf')),
+                                  fontWeight: FontWeightManager.semiBold,
+                                  fontFamily: FontConstants.cairoFontFamily,                                  fontSize: 16,
+                                 )),
                           const SizedBox(
                             width: 8,
                           ),
                           Text(subtitle,
                               style: TextStyle(
                                   color: HexColor('#212121').withOpacity(0.5),
-                                  fontWeight: FontWeight.w500,
                                   fontSize: 10,
-                                  fontFamily:
-                                      'assets/fonts/Cairo-VariableFont_slnt,wght.ttf')),
+                                fontWeight: FontWeightManager.medium,
+                                fontFamily: FontConstants.cairoFontFamily,)),
                         ],
                       ),
                       Padding(
@@ -153,10 +153,9 @@ Widget buildNotificationsItem({
                           child: const Center(
                               child: Text('مقبول',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                      fontFamily:
-                                          'assets/fonts/Cairo-VariableFont_slnt,wght.ttf'))),
+                                      fontWeight: FontWeightManager.semiBold,
+                                      fontFamily: FontConstants.cairoFontFamily,                                      fontSize: 13,
+                                     ))),
                         ),
                       ),
                     ],
