@@ -4,6 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/shared/componants/componants.dart';
 import 'package:salon_app/shared/componants/fonts_manager.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../../shared/componants/app_strings.dart';
 import '../../shared/componants/assets_manager.dart';
 import '../auth/auth__screens/login_screen.dart';
@@ -14,13 +15,10 @@ class BoardingModel {
   final String title;
   final String subTitle;
 
-
   BoardingModel({
     required this.container,
     required this.title,
     required this.subTitle,
-
-
   });
 }
 
@@ -37,9 +35,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Container(
+        body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(ImageAssets.background),
@@ -48,7 +44,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0, left: 35),
+                  padding:
+                      const EdgeInsets.only(top: 50.0, right: 35, left: 35),
                   child: SizedBox(
                     height: 35.h,
                     width: 67.w,
@@ -59,31 +56,28 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16)))),
-                        onPressed: () {
-                        navigateAndFinish(context, const LoginScreen());
-                        },
+                        onPressed: () =>
+                            navigateAndFinish(context, const LoginScreen()),
                         child: Center(
                           child: Text(
                             AppStrings.skip,
                             style: TextStyle(
-
                                 color: HexColor('#8281F8'),
                                 fontWeight: FontWeightManager.medium,
-                                fontFamily: FontConstants.poppinsFontFamily,
+                                // fontFamily: FontConstants.poppinsFontFamily,
                                 fontSize: 16),
                           ),
                         )),
                   ),
                 ),
-                const SizedBox(
-                  height: 40,
-                ),
+                const SizedBox(height: 40),
                 Expanded(
-                  child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: PageView.builder(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      PageView.builder(
                         itemBuilder: (context, index) =>
-                            buildBoardingItem(boarding[index]),
+                            buildBoardingImage(boarding[index]),
                         itemCount: boarding.length,
                         controller: boardController,
                         onPageChanged: (int index) {
@@ -97,15 +91,30 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             });
                           }
                         },
-                      )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 30),
+                        child: SmoothPageIndicator(
+                            controller: boardController,
+                            effect: ExpandingDotsEffect(
+                                dotColor: HexColor('#D9D9D9'),
+                                activeDotColor: HexColor('#FCC885'),
+                                dotHeight: 8,
+                                expansionFactor: 4,
+                                dotWidth: 8,
+                                spacing: 5.0),
+                            count: boarding.length),
+                      ),
+                    ],
+                  ),
                 ),
                 Center(
                   child: FloatingActionButton(
                     backgroundColor: HexColor('#FCC885'),
+                    elevation: 0.0,
                     onPressed: () {
                       if (isLast) {
                         navigateAndFinish(context, const LoginScreen());
-
                       } else {
                         boardController.nextPage(
                             duration: const Duration(
@@ -114,33 +123,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             curve: Curves.fastLinearToSlowEaseIn);
                       }
                     },
-                    child: const Icon(Icons.arrow_back),
+                    child: const Icon(Icons.arrow_forward),
                   ),
                 ),
-                SizedBox(
-                  height: 57.h,
-                ),
+                SizedBox(height: 57.h),
               ],
-            )),
-        Padding(
-          padding: const EdgeInsets.only(top: 80.0),
-          child: Align(
-              alignment: Alignment.center,
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: SmoothPageIndicator(
-                    controller: boardController,
-                    effect: ExpandingDotsEffect(
-                        dotColor: HexColor('#D9D9D9'),
-                        activeDotColor: HexColor('#FCC885'),
-                        dotHeight: 8,
-                        expansionFactor: 4,
-                        dotWidth: 8,
-                        spacing: 5.0),
-                    count: boarding.length),
-              )),
-        ),
-      ],
-    ));
+            )));
   }
 }

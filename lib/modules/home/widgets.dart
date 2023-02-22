@@ -14,7 +14,7 @@ Widget buildCardItem({
   required String trailing,
 }) =>
     Container(
-        height: 132.h,
+        height: 120.h,
         width: 320.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
@@ -22,7 +22,7 @@ Widget buildCardItem({
         ),
         child: Padding(
           padding:
-              EdgeInsets.only(top: 16.h, right: 17.w, left: 16.w, bottom: 16.h),
+              EdgeInsets.only(top: 10.h, right: 17.w, left: 16.w, bottom: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,14 +44,14 @@ Widget buildCardItem({
                     children: [
                       Text(title,
                           style: const TextStyle(
-                          fontWeight: FontWeightManager.semiBold,
-                          fontFamily: FontConstants.cairoFontFamily,
+                            fontWeight: FontWeightManager.semiBold,
+                            fontFamily: FontConstants.cairoFontFamily,
                             fontSize: 14,
                           )),
                       Text(subtitle,
                           style: TextStyle(
-                          fontWeight: FontWeightManager.regular,
-                          fontFamily: FontConstants.cairoFontFamily,
+                            fontWeight: FontWeightManager.regular,
+                            fontFamily: FontConstants.cairoFontFamily,
                             color: HexColor('#212121').withOpacity(0.60),
                             fontSize: 11,
                           )),
@@ -61,19 +61,16 @@ Widget buildCardItem({
                   Text(
                     trailing,
                     style: TextStyle(
-                    fontWeight: FontWeightManager.bold,
-                    fontFamily: FontConstants.cairoFontFamily,
-                      color:tColor,
+                      fontWeight: FontWeightManager.bold,
+                      fontFamily: FontConstants.cairoFontFamily,
+                      color: tColor,
                       fontSize: 13,
                     ),
                   ),
-                  const SizedBox(
-                    height: 18,
-                  )
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(right: 64.w, top: 16.h),
+                padding: EdgeInsets.only(right: 64.w, top: 10.h),
                 child: Container(
                   height: 32,
                   width: 98,
@@ -84,7 +81,7 @@ Widget buildCardItem({
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeightManager.medium,
-                        fontFamily: FontConstants.cairoFontFamily,
+                          fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 12,
                         )),
                   ),

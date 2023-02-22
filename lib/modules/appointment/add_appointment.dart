@@ -1,23 +1,33 @@
+import 'dart:developer';
+
+import 'package:clean_nepali_calendar/clean_nepali_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 import 'add_appointment_successfully.dart';
 
-class AddAppointmentScreen extends StatelessWidget {
+class AddAppointmentScreen extends StatefulWidget {
   const AddAppointmentScreen({Key? key}) : super(key: key);
 
   @override
+  State<AddAppointmentScreen> createState() => _AddAppointmentScreenState();
+}
+
+class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
+  final NepaliCalendarController _calendarController =
+      NepaliCalendarController();
+
+  var formKey = GlobalKey<FormState>();
+
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+
+  var phoneController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    var formKey = GlobalKey<FormState>();
-
-    var nameController = TextEditingController();
-    var emailController = TextEditingController();
-
-    var phoneController = TextEditingController();
     return Scaffold(
       body: background(
         child: Padding(
@@ -62,31 +72,12 @@ class AddAppointmentScreen extends StatelessWidget {
                   height: 306.h,
                   child: Directionality(
                       textDirection: TextDirection.ltr,
-                      child: SfDateRangePicker(
-                          viewSpacing: 40,
-                          todayHighlightColor: HexColor('#9C9D9F'),
-                          startRangeSelectionColor: HexColor('#8281F8'),
-                          backgroundColor:
-                              HexColor('#FFFFFF').withOpacity(0.40),
-                          showNavigationArrow: true,
-                          headerStyle: const DateRangePickerHeaderStyle(
-                              textAlign: TextAlign.center,
-                              textStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)),
-                          selectionColor: HexColor('#8281F8'),
-                          monthViewSettings: DateRangePickerMonthViewSettings(
-                            showTrailingAndLeadingDates: true,
-                            dayFormat: 'EEE',
-                            firstDayOfWeek: 1,
-                            viewHeaderHeight: 25,
-                            viewHeaderStyle: DateRangePickerViewHeaderStyle(
-                                textStyle: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 15,
-                                    color: HexColor('#9C9D9F'))),
-                          )))),
+                      child: CleanNepaliCalendar(
+                        controller: _calendarController,
+                        onDaySelected: (day) {
+                          log(day.toString());
+                        },
+                      ))),
               SizedBox(
                 height: 32.h,
               ),

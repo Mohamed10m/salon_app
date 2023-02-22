@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           return Column(children: [
             Padding(
               padding: EdgeInsets.only(
-                  top: 69.h, right: 34.w, left: 36.w, bottom: 40.h),
+                  top: 55.h, right: 20.w, left: 20.w, bottom: 18.h),
               child: Row(
                 children: [
                   SizedBox(
@@ -41,7 +40,8 @@ class HomeScreen extends StatelessWidget {
                     'امنية نهاد',
                     style: TextStyle(
                       fontWeight: FontWeightManager.bold,
-                      fontFamily: FontConstants.cairoFontFamily,                      fontSize: 16,
+                      fontFamily: FontConstants.cairoFontFamily,
+                      fontSize: 16,
                     ),
                   ),
                   const Spacer(),
@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 36.w, left: 35.w),
+              padding: EdgeInsets.only(right: 20.w, left: 20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -95,11 +95,11 @@ class HomeScreen extends StatelessWidget {
                             ),
                             Text('اضافة موعد',
                                 style: TextStyle(
-                                    color: HexColor('#8281F8'),
+                                  color: HexColor('#8281F8'),
                                   fontWeight: FontWeightManager.semiBold,
                                   fontFamily: FontConstants.cairoFontFamily,
-                                    fontSize: 12,
-                                    ))
+                                  fontSize: 12,
+                                ))
                           ],
                         ),
                         onTap: () {
@@ -116,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                       width: 320.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        color: HexColor('#EC8E6C').withOpacity(0.02),
+                        color: Colors.white38,
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -145,22 +145,33 @@ class HomeScreen extends StatelessWidget {
                                   children: [
                                     const Text(
                                       'اسم الحلاق',
-                                      style: TextStyle(  fontWeight: FontWeightManager.bold,
-                                        fontFamily: FontConstants.cairoFontFamily,),
+                                      style: TextStyle(
+                                        fontWeight: FontWeightManager.bold,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily,
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 5.h,
                                     ),
                                     const Text(
                                       'التاريخ: 2023 ,oct 9',
-                                      style: TextStyle(fontWeight: FontWeightManager.semiBold,
-                                        fontFamily: FontConstants.cairoFontFamily,),
+                                      style: TextStyle(
+                                        fontWeight: FontWeightManager.semiBold,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily,
+                                      ),
                                     ),
                                   ],
                                 ),
                                 const Spacer(),
-                                const Text('11:00 AM',style: TextStyle(fontWeight: FontWeightManager.bold,
-                                  fontFamily: FontConstants.cairoFontFamily,),),
+                                const Text(
+                                  '11:00 AM',
+                                  style: TextStyle(
+                                    fontWeight: FontWeightManager.bold,
+                                    fontFamily: FontConstants.cairoFontFamily,
+                                  ),
+                                ),
                               ],
                             ),
                             SizedBox(
@@ -177,8 +188,11 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8)),
                                   child: const Text(
                                     'مكياج',
-                                    style: TextStyle(color: Colors.white,fontWeight: FontWeightManager.medium,
-                                      fontFamily: FontConstants.cairoFontFamily,),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeightManager.medium,
+                                      fontFamily: FontConstants.cairoFontFamily,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(width: 19.w),
@@ -191,8 +205,11 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8)),
                                   child: const Text(
                                     'قص شعر',
-                                    style: TextStyle(color: Colors.white,fontWeight: FontWeightManager.medium,
-                                      fontFamily: FontConstants.cairoFontFamily,),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeightManager.medium,
+                                      fontFamily: FontConstants.cairoFontFamily,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(width: 19.w),
@@ -205,8 +222,11 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(8)),
                                   child: const Text(
                                     'حلاقة',
-                                    style: TextStyle(color: Colors.white,fontWeight: FontWeightManager.medium,
-                                      fontFamily: FontConstants.cairoFontFamily,),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeightManager.medium,
+                                      fontFamily: FontConstants.cairoFontFamily,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -214,8 +234,13 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       )),
-                  const Text('احجز خدمة',style: TextStyle(fontWeight: FontWeightManager.bold,
-                  fontFamily: FontConstants.cairoFontFamily,fontSize: 16),),
+                  const Text(
+                    'احجز خدمة',
+                    style: TextStyle(
+                        fontWeight: FontWeightManager.bold,
+                        fontFamily: FontConstants.cairoFontFamily,
+                        fontSize: 16),
+                  ),
                   SizedBox(
                     height: 16.h,
                   ),
