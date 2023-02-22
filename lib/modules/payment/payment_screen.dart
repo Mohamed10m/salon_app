@@ -1,8 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/modules/payment/add_card.dart';
+import 'package:salon_app/modules/payment/payment_widget.dart';
 import '../../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
+import '../../shared/componants/fonts_manager.dart';
+import '../appointment/add_appointment.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -27,16 +32,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: const BoxDecoration(
-        image: DecorationImage(
-        image: AssetImage(ImageAssets.background), fit: BoxFit.cover)),
-    child:  SingleChildScrollView(
-      child: Padding(
+      body: background(child: Padding(
                 padding: const EdgeInsets.only(top: 53, right: 36, left: 36),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,13 +50,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           const Text(
                             'طرق الدفع و السداد',
                             style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 16,
-                                fontFamily:
-                                    'assets/fonts/Cairo-VariableFont_slnt,wght.ttf'),
+                              fontWeight: FontWeightManager.bold,
+                              fontFamily: FontConstants.cairoFontFamily,
+                              fontSize: 16,
+                               ),
                           ),
                         ],
                       ),
+
+
                       const SizedBox(height: 44),
                       const Align(
                           alignment: Alignment.topRight, child: Text('اختر البطاقة',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),)),
@@ -91,241 +89,89 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           ),
                         ),
                       ),
-                      Align(
-                          alignment: Alignment.topRight,
-                          child: isButtonPressed
-                              ? Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              const Text('اضف بطاقة جديدة',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600)),
-                               SizedBox(
-                                height: 20.h,
-                              ),
-                              Form(
-                                key: formKey,
-                                child: Container(
-                                    padding:   EdgeInsets.symmetric(
-                                        horizontal: 16.w, vertical: 25.h),
-                                    height: 350.h,
-                                    width: 320.w,
-                                    decoration: BoxDecoration(
-                                        color: HexColor('#FFFFFF')
-                                            .withOpacity(0.24)),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          'اسم صاحب البطاقة',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        customFormField(
-                                          fill: false,
-                                          text: "omnia nihad",
-                                          hintStyle: const TextStyle(
-                                              color: Colors.grey),
-                                          validate: (String? value) {
-                                            if (value!.isEmpty) {
-                                              return "name must not be empty";
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          controller: namedController,
-                                          type: TextInputType.name,
-                                        ),
-                                        const SizedBox(
-                                          height: 36,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  const Text(
-                                                    'تاريخ الانتهاء',
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight.w500),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  customFormField(
-                                                    fill: false,
-                                                    text: "omnia nihad",
-                                                    hintStyle:
-                                                    const TextStyle(
-                                                        color:
-                                                        Colors.grey),
-                                                    validate:
-                                                        (String? value) {
-                                                      if (value!.isEmpty) {
-                                                        return "Password must not be empty";
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                    controller:
-                                                    namedController,
-                                                    type: TextInputType.name,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              width: 10,
-                                            ),
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  const Text(
-                                                    'cvv',
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                        FontWeight.w500),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  customFormField(
-                                                    fill: false,
-                                                    text: "cvv",
-                                                    hintStyle:
-                                                    const TextStyle(
-                                                        color:
-                                                        Colors.grey),
-                                                    validate:
-                                                        (String? value) {
-                                                      if (value!.isEmpty) {
-                                                        return "Password must not be empty";
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    },
-                                                    controller:
-                                                    namedController,
-                                                    type: TextInputType.name,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(height: 24.h,),
-                                        SizedBox(
-                                          height: 64.h,
-                                          width: 320.w,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                              HexColor('#8281F8'),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                      10)),
-                                            ),
-                                            onPressed: () {
-                                              setState(() {
-                                                buttonPressed();
-                                              });
-                                            },
-                                            child: isButtonPressed
-                                                ? Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .center,
-                                              children: const [
-
-                                                Text(
-                                                  'اضف البطاقة',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .w700),
-                                                ),
-                                              ],
-                                            )
-                                                : null
-                                          )
-                                        ),
-                                      ],
-                                    )),
-
-                              ),
-                            ],
-                          )
-                              : null),
-
-                      SizedBox(
-                        height: 350.h,
+                      SizedBox(height: 16.h,),
+                      InkWell(
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 13,
+                              width: 13,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(ImageAssets.vector),
+                                  )),
+                            ),
+                             SizedBox(
+                              width: 8.w,
+                            ),
+                            Text('اضف بطاقة اخري',
+                                style: TextStyle(
+                                  color: HexColor('#8281F8'),
+                                  fontWeight: FontWeightManager.semiBold,
+                                  fontFamily: FontConstants.cairoFontFamily,
+                                  fontSize: 14,
+                                ))
+                          ],
+                        ),
+                        onTap: () {
+                          navigateTo(context, const AddCard());
+                        },
                       ),
-                      SizedBox(
-                          child: isButtonPressed
-                              ? null
-                              : Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 64.h,
-                                      width: 320.w,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: HexColor('#8281F8'),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                        ),
-                                        onPressed: () {
-                                          setState(() {
-                                            buttonPressed();
-                                          });
-                                        },
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
+                      SizedBox(height: 24.h,),
+                      
+const Align(alignment: Alignment.topRight,
+  child:   Text('الفاتورة',style: TextStyle( fontWeight: FontWeightManager.medium,
 
-                                            Image(width: 17.w,
-                                                height: 17.h,
-                                                image:
-                                                    const AssetImage(ImageAssets.addIcon)),
-                                            SizedBox(
-                                              width: 8.w,
-                                            ),
-                                            const Text(
-                                              'اضف بطاقة جديدة',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 34.h,
-                                    ),
-                                  ],
-                                )),
+    fontFamily: FontConstants.cairoFontFamily,
+
+  fontSize: 16),),
+),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(right: 25.w,left: 24.w,top: 21.h,bottom: 21.h),
+                        height: 186.h,
+                        width: 320.w,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),  color: HexColor('#FFFFFF').withOpacity(0.24),),
+                        child:Column(children: [
+                          rowItem(title: 'المجموع الفرعي', subtitle: '125 ر.س'),
+                          const SizedBox(height: 16,), rowItem(title: 'الضريبة:', subtitle: '12 %'),
+                          const SizedBox(height: 16,), rowItem(title: 'المجموع الفرعي', subtitle: 'الاجمالى:'),
+                          const SizedBox(height: 16,),
+                        ],)
+                      ),
+                      SizedBox(height: 32.h,),
+                      SizedBox(
+                        height: 64.h,
+                        width: 320.w,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: HexColor('#8281F8'),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(10)),
+                          ),
+                          onPressed: () {
+
+                          },
+                          child:
+                               const Text(
+                                'ادفع الان',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight:FontWeightManager.bold,
+                                fontFamily: FontConstants.cairoFontFamily
+                                ),
+                              ),
+                        )
+                      ),
+
                     ],
 
               ),
                 ),
-    ),
-    ),
-    ))
-      ;
+    )
+    );
   }
 }

@@ -38,8 +38,9 @@ class AddAppointmentScreen extends StatelessWidget {
                   const Text(
                     'اضف موعد',
                     style: TextStyle(
-                    fontWeight: FontWeightManager.medium,
-                    fontFamily: FontConstants.cairoFontFamily,                      fontSize: 16,
+                      fontWeight: FontWeightManager.medium,
+                      fontFamily: FontConstants.cairoFontFamily,
+                      fontSize: 16,
                     ),
                   ),
                 ],
@@ -48,9 +49,10 @@ class AddAppointmentScreen extends StatelessWidget {
               const Text(
                 'اختر اليوم',
                 style: TextStyle(
-                fontWeight: FontWeightManager.semiBold,
-                fontFamily: FontConstants.cairoFontFamily,                    fontSize: 18,
-                   ),
+                  fontWeight: FontWeightManager.semiBold,
+                  fontFamily: FontConstants.cairoFontFamily,
+                  fontSize: 18,
+                ),
               ),
               SizedBox(height: 5.h),
               Container(
@@ -88,11 +90,12 @@ class AddAppointmentScreen extends StatelessWidget {
               SizedBox(
                 height: 32.h,
               ),
-              const Text(
-                'الاسم بالكامل',
-                style: TextStyle(fontSize: 18,fontWeight: FontWeightManager.medium,
-                    fontFamily: FontConstants.cairoFontFamily,)
-              ),
+              const Text('الاسم بالكامل',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeightManager.medium,
+                    fontFamily: FontConstants.cairoFontFamily,
+                  )),
               SizedBox(
                 height: 24.h,
               ),
@@ -119,8 +122,10 @@ class AddAppointmentScreen extends StatelessWidget {
                       ),
                       const Text('البريد الالكتروني',
                           style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeightManager.medium,
-                          fontFamily: FontConstants.cairoFontFamily,)),
+                            fontSize: 18,
+                            fontWeight: FontWeightManager.medium,
+                            fontFamily: FontConstants.cairoFontFamily,
+                          )),
                       SizedBox(
                         height: 24.h,
                       ),
@@ -143,8 +148,9 @@ class AddAppointmentScreen extends StatelessWidget {
                       const Text(
                         'رقم الهاتف',
                         style: TextStyle(
-                            fontSize: 18,fontWeight: FontWeightManager.medium,
-                          fontFamily: FontConstants.cairoFontFamily),
+                            fontSize: 18,
+                            fontWeight: FontWeightManager.medium,
+                            fontFamily: FontConstants.cairoFontFamily),
                       ),
                       SizedBox(
                         height: 24.h,
@@ -182,8 +188,10 @@ class AddAppointmentScreen extends StatelessWidget {
                           child: const Text(
                             'حفظ',
                             style: TextStyle(
-                                fontSize: 18,fontWeight: FontWeightManager.bold,
-                            fontFamily: FontConstants.cairoFontFamily,),
+                              fontSize: 18,
+                              fontWeight: FontWeightManager.bold,
+                              fontFamily: FontConstants.cairoFontFamily,
+                            ),
                           ),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: HexColor('#8281F8'),
