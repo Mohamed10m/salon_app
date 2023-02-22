@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:salon_app/modules/forget_password/forget_password/password_changed_successfuly.dart';
 
 import '../../../shared/componants/assets_manager.dart';
 import '../../../shared/componants/color_manager.dart';
 import '../../../shared/componants/componants.dart';
+import 'password_changed_successfully.dart';
 
 class CreateNewPassword extends StatefulWidget {
   const CreateNewPassword({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class CreateNewPassword extends StatefulWidget {
 
 class _LoginScreenState extends State<CreateNewPassword> {
   var newPasswordController = TextEditingController();
+  var verifyNewPasswordController = TextEditingController();
 
 
   var formKey = GlobalKey<FormState>();
@@ -69,7 +70,7 @@ class _LoginScreenState extends State<CreateNewPassword> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0),
                         child: customFormField(
-                          text: "Example@gmail.com",
+                          text: "كلمة المرور الجديده",
                           valueKey: 'Email',
                           validate: (String? value) {
                             if (value!.isEmpty) {
@@ -85,6 +86,30 @@ class _LoginScreenState extends State<CreateNewPassword> {
                       ),
                       SizedBox(
                         height: 32.h,
+                      ),   const Text('تاكيد كلمة المرور الجديدة'),
+                      SizedBox(
+                        height: 11.h,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25.0),
+                        child: customFormField(
+                          text: "تاكيد كلمة المرور الجديدة",
+                          valueKey: 'Email',
+                          validate: (String? value) {
+                            if (value!.isEmpty) {
+                              //
+                            } else {
+                              return null;
+                            }
+                            return null;
+                          },
+
+                          controller: verifyNewPasswordController,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 32.h,
                       ),
                       SizedBox(
                         height: 64,
@@ -92,7 +117,7 @@ class _LoginScreenState extends State<CreateNewPassword> {
                         child: elevatedButton(
                             text: 'التالى',
                             onPress: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const PasswordChangedSuccessfully()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> const PasswordChangedSuccessfully()));
                             }
                         ),
                       ),

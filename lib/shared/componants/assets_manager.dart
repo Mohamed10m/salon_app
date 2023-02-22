@@ -14,4 +14,3 @@ class ImageAssets {
   static const String changePasswordSuccessfully = "$imagePath/changePasswordSuccessfully.png";
   static const String passwordImage = "$imagePath/My project (3) 1 (4).png";
 }
-

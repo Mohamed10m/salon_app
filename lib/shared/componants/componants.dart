@@ -10,7 +10,7 @@ Widget customFormField({
   bool obSecureText = false,
   IconData? suffix,
   Function? suffixPressed,
-   TextInputType ?type,
+  TextInputType ?type,
   FormFieldValidator<String>? validate,
 }) =>
     TextFormField(
@@ -20,14 +20,14 @@ Widget customFormField({
         decoration: InputDecoration(
           suffixIcon: suffix != null
               ? IconButton(
-                  onPressed: () {
-                    suffixPressed!();
-                  },
-                  icon: Icon(
-                    suffix,
-                    color: Colors.grey,
-                    size: 28,
-                  ))
+              onPressed: () {
+                suffixPressed!();
+              },
+              icon: Icon(
+                suffix,
+                color: Colors.grey,
+                size: 28,
+              ))
               : null,
           border: InputBorder.none,
           hintText: text,
@@ -35,19 +35,19 @@ Widget customFormField({
     );
 
 Widget elevatedButton(
-{
-  required String text,
-  required Function onPress
-}
+    {
+      required String text,
+      required Function onPress
+    }
     )=>ElevatedButton(
-onPressed:(){onPress();},
-child:  Text(
-  text,
-  style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.w700),
-),
-style: ElevatedButton.styleFrom(
-primary:ColorManager.buttonColor,
-shape: RoundedRectangleBorder(
-borderRadius:
-BorderRadius.circular(10))),
+  onPressed:(){onPress();},
+  child:  Text(
+    text,
+    style: TextStyle(fontSize: 18.sp,fontWeight: FontWeight.w700),
+  ),
+  style: ElevatedButton.styleFrom(
+      primary:ColorManager.buttonColor,
+      shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(10))),
 );
