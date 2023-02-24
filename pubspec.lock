@@ -29,13 +29,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
-  clean_nepali_calendar:
-    dependency: "direct main"
-    description:
-      name: clean_nepali_calendar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   clock:
     dependency: transitive
     description:
@@ -157,7 +150,7 @@ packages:
     source: hosted
     version: "1.0.1+1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -198,13 +191,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
-  nepali_utils:
-    dependency: transitive
-    description:
-      name: nepali_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.3"
   nested:
     dependency: transitive
     description:

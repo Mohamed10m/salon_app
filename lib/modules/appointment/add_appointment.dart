@@ -1,9 +1,9 @@
-import 'dart:developer';
-
-import 'package:clean_nepali_calendar/clean_nepali_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/shared/componants/color_manager.dart';
+
+// import 'package:nepali_date_picker/nepali_date_picker.dart';
 
 import '../../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
@@ -17,9 +17,6 @@ class AddAppointmentScreen extends StatefulWidget {
 }
 
 class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
-  final NepaliCalendarController _calendarController =
-      NepaliCalendarController();
-
   var formKey = GlobalKey<FormState>();
 
   var nameController = TextEditingController();
@@ -31,7 +28,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
     return Scaffold(
       body: background(
         child: Padding(
-          padding: EdgeInsets.only(top: 53.h, right: 38.w, left: 36.w),
+          padding: EdgeInsets.only(top: 53.h, right: 20.w, left: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,15 +39,14 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         Navigator.pop(context);
                       },
                       child: const Icon(Icons.arrow_back)),
-                  SizedBox(
-                    width: 84.w,
-                  ),
-                  const Text(
-                    'اضف موعد',
-                    style: TextStyle(
-                      fontWeight: FontWeightManager.medium,
-                      fontFamily: FontConstants.cairoFontFamily,
-                      fontSize: 16,
+                  const Expanded(
+                    child: Text(
+                      'اضف موعد',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],
@@ -70,14 +66,27 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       BoxDecoration(borderRadius: BorderRadius.circular(16)),
                   width: 319.w,
                   height: 306.h,
-                  child: Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: CleanNepaliCalendar(
-                        controller: _calendarController,
-                        onDaySelected: (day) {
-                          log(day.toString());
-                        },
-                      ))),
+                  child: Theme(
+                    data: ThemeData(
+                        colorScheme: ColorScheme(
+                            brightness: Brightness.light,
+                            primary: ColorManager.buttonColor,
+                            onPrimary: Colors.white,
+                            secondary: Colors.transparent,
+                            onSecondary: Colors.transparent,
+                            error: Colors.transparent,
+                            onError: Colors.transparent,
+                            background: Colors.transparent,
+                            onBackground: Colors.blue,
+                            surface: Colors.blue,
+                            onSurface: Colors.black)),
+                    child: CalendarDatePicker(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2090),
+                      onDateChanged: (date) {},
+                    ),
+                  )),
               SizedBox(
                 height: 32.h,
               ),
