@@ -57,7 +57,7 @@ Widget buildUserDataItem({
                     children: [
                       Text(title,
                           style: const TextStyle(
-                            fontWeight: FontWeightManager.bold,
+                            fontWeight: FontWeight.bold,
                             fontFamily: FontConstants.cairoFontFamily,
                             fontSize: 18,
                           )),

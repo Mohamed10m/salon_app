@@ -27,7 +27,7 @@ class NotificationsScreen extends StatelessWidget {
                   'الاشعارات',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontWeight: FontWeightManager.bold,
+                    fontWeight: FontWeight.bold,
                     fontFamily: FontConstants.cairoFontFamily,
                     fontSize: 18,
                   ),
@@ -43,7 +43,7 @@ class NotificationsScreen extends StatelessWidget {
                       children: [
                         Text(index == 0 ? 'اليوم' : 'الاسبوع الماضي',
                             style: const TextStyle(
-                              fontWeight: FontWeightManager.bold,
+                              fontWeight: FontWeight.bold,
                               fontFamily: FontConstants.cairoFontFamily,
                               fontSize: 20,
                             )),

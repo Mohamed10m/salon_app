@@ -7,9 +7,10 @@ import 'package:salon_app/modules/help_center/help_center.dart';
 import 'package:salon_app/modules/payment/payment_screen.dart';
 import 'package:salon_app/modules/settings/widgets.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
+import 'package:salon_app/shared/componants/componants.dart';
 
 import '../../shared/componants/fonts_manager.dart';
-import '../appointment/my_appointment.dart';
+import '../appointment/booking.dart';
 import '../edit_settings/edit_settings.dart';
 import '../profile/profile_screen.dart';
 
@@ -37,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
             const Text(
               'امنية نهاد',
               style: TextStyle(
-                fontWeight: FontWeightManager.bold,
+                fontWeight: FontWeight.bold,
                 fontFamily: FontConstants.cairoFontFamily,
                 fontSize: 20,
               ),
@@ -81,7 +82,7 @@ class _SettingsPageState extends State<SettingsPage> {
               text: 'مواعيدى',
               image: ImageAssets.appointmentIcon,
               context: context,
-              widget: const MyAppointment(),
+              widget: const BookingViewScreen(),
             ),
             SizedBox(
               height: 24.h,
@@ -115,5 +116,44 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ));
+  }
+}
+
+class BookingViewScreen extends StatelessWidget {
+  const BookingViewScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: background(
+          child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50, right: 20),
+            child: Row(
+              children: [
+                InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Icon(Icons.arrow_back)),
+                SizedBox(
+                  width: 84.w,
+                ),
+                const Text(
+                  'المعلومات الشخصية',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: FontConstants.cairoFontFamily,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const BookingScreen(topPadding: 20),
+        ],
+      )),
+    );
   }
 }

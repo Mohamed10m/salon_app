@@ -189,7 +189,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                             'حفظ',
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeightManager.bold,
+                              fontWeight: FontWeight.bold,
                               fontFamily: FontConstants.cairoFontFamily,
                             ),
                           ),

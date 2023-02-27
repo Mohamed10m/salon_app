@@ -43,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const Text(
                   'المعلومات الشخصية',
                   style: TextStyle(
-                    fontWeight: FontWeightManager.bold,
+                    fontWeight: FontWeight.bold,
                     fontFamily: FontConstants.cairoFontFamily,
                     fontSize: 16,
                   ),
@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 const Text(
                   'امنية نهاد',
                   style: TextStyle(
-                      fontWeight: FontWeightManager.bold,
+                      fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,
                       fontSize: 20),
                 ),

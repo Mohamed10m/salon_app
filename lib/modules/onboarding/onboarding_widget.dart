@@ -70,7 +70,7 @@ Widget buildBoardingImage(BoardingModel model) => Column(
           model.title,
           style: TextStyle(
               color: HexColor('#212121'),
-              fontWeight: FontWeightManager.bold,
+              fontWeight: FontWeight.bold,
               fontFamily: FontConstants.cairoFontFamily,
               fontSize: 25.sp),
         ),

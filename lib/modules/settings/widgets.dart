@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+
 import '../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 
 Widget buildSettingsCardItem(
-        {required text, required image, required widget, context,required Color color}) =>
+        {required text,
+        required image,
+        required widget,
+        context,
+        required Color color}) =>
     InkWell(
       child: Container(
         padding:
@@ -14,8 +19,7 @@ Widget buildSettingsCardItem(
         height: 64.h,
         width: 320.w,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: color),
+            borderRadius: BorderRadius.circular(16), color: color),
         child: Row(
           children: [
             Container(
@@ -28,9 +32,14 @@ Widget buildSettingsCardItem(
             SizedBox(
               width: 16.w,
             ),
-            Text(text,style: const TextStyle(fontWeight: FontWeightManager.bold,
-              fontFamily: FontConstants.cairoFontFamily,fontSize: 16,
-            ),),
+            Text(
+              text,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: FontConstants.cairoFontFamily,
+                fontSize: 16,
+              ),
+            ),
             const Spacer(),
             Directionality(
                 textDirection: TextDirection.ltr,

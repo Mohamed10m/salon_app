@@ -41,7 +41,7 @@ class _EditSettingsState extends State<EditSettings> {
                   const Text(
                     'المعلومات الشخصية',
                     style: TextStyle(
-                      fontWeight: FontWeightManager.bold,
+                      fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,
                       fontSize: 16,
                     ),

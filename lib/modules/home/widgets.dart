@@ -61,7 +61,7 @@ Widget buildCardItem({
                   Text(
                     trailing,
                     style: TextStyle(
-                      fontWeight: FontWeightManager.bold,
+                      fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,
                       color: tColor,
                       fontSize: 13,

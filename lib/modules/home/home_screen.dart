@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     'امنية نهاد',
                     style: TextStyle(
-                      fontWeight: FontWeightManager.bold,
+                      fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,
                       fontSize: 16,
                     ),
@@ -150,7 +150,7 @@ class HomeScreen extends StatelessWidget {
                                     const Text(
                                       'اسم الحلاق',
                                       style: TextStyle(
-                                        fontWeight: FontWeightManager.bold,
+                                        fontWeight: FontWeight.bold,
                                         fontFamily:
                                             FontConstants.cairoFontFamily,
                                       ),
@@ -172,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                                 const Text(
                                   '11:00 AM',
                                   style: TextStyle(
-                                    fontWeight: FontWeightManager.bold,
+                                    fontWeight: FontWeight.bold,
                                     fontFamily: FontConstants.cairoFontFamily,
                                   ),
                                 ),
@@ -241,7 +241,7 @@ class HomeScreen extends StatelessWidget {
                   const Text(
                     'احجز خدمة',
                     style: TextStyle(
-                        fontWeight: FontWeightManager.bold,
+                        fontWeight: FontWeight.bold,
                         fontFamily: FontConstants.cairoFontFamily,
                         fontSize: 16),
                   ),

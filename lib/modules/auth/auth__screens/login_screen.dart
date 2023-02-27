@@ -193,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     'تسجيل الدخول',
                                     style: TextStyle(
                                         fontSize: 18,
-                                        fontWeight: FontWeightManager.bold,
+                                        fontWeight: FontWeight.bold,
                                         fontFamily:
                                             FontConstants.cairoFontFamily),
                                   ),

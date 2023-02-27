@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
@@ -17,7 +15,7 @@ class AppointmentResultScreen extends StatelessWidget {
         textDirection: TextDirection.rtl,
         child: Scaffold(
             body: Container(
-              height: double.infinity,
+          height: double.infinity,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(ImageAssets.background),
@@ -47,8 +45,13 @@ class AppointmentResultScreen extends StatelessWidget {
               SizedBox(
                 height: 24.h,
               ),
-              const Text('تم حجز موعدك بنجاح',style: TextStyle(fontWeight: FontWeightManager.medium,
-              fontFamily: FontConstants.cairoFontFamily,),),
+              const Text(
+                'تم حجز موعدك بنجاح',
+                style: TextStyle(
+                  fontWeight: FontWeightManager.medium,
+                  fontFamily: FontConstants.cairoFontFamily,
+                ),
+              ),
               SizedBox(height: 24.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 36.0),
@@ -66,9 +69,15 @@ class AppointmentResultScreen extends StatelessWidget {
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: const [
-                                Text('امنية نهاد',style: TextStyle(fontWeight: FontWeightManager.semiBold,
-                                  fontFamily: FontConstants.cairoFontFamily,)),
-                                Text('12 Feb 2:00 PM',style: TextStyle(color: Colors.grey),),
+                                Text('امنية نهاد',
+                                    style: TextStyle(
+                                      fontWeight: FontWeightManager.semiBold,
+                                      fontFamily: FontConstants.cairoFontFamily,
+                                    )),
+                                Text(
+                                  '12 Feb 2:00 PM',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
                               ]),
                           const Spacer(),
                           Container(
@@ -81,7 +90,9 @@ class AppointmentResultScreen extends StatelessWidget {
                                   top: 8.0, bottom: 8.0, right: 18, left: 18),
                               child: Text(
                                 'قيد الانتظار',
-                                style: TextStyle(color: Colors.white,fontWeight: FontWeightManager.semiBold,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeightManager.semiBold,
                                     fontFamily: FontConstants.cairoFontFamily),
                               ),
                             ),
@@ -92,18 +103,19 @@ class AppointmentResultScreen extends StatelessWidget {
                         height: 15.0,
                       ),
                       const Text(
-                          'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك ',style: TextStyle(fontWeight: FontWeightManager.semiBold,
-                          fontFamily: FontConstants.cairoFontFamily),),
+                        'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك ',
+                        style: TextStyle(
+                            fontWeight: FontWeightManager.semiBold,
+                            fontFamily: FontConstants.cairoFontFamily),
+                      ),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           '125 ر.س ',
-
                           style: TextStyle(
-                            color: HexColor('#8281F8'),
-                              fontWeight: FontWeightManager.bold,
-                              fontFamily: FontConstants.cairoFontFamily
-                          ),
+                              color: HexColor('#8281F8'),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: FontConstants.cairoFontFamily),
                         ),
                       )
                     ],
@@ -127,7 +139,9 @@ class AppointmentResultScreen extends StatelessWidget {
                   },
                   child: const Text(
                     'العودة للرئيسية',
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeightManager.bold,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                         fontFamily: FontConstants.cairoFontFamily),
                   ),
                   style: ElevatedButton.styleFrom(

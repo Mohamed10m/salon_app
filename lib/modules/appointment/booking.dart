@@ -8,7 +8,9 @@ import 'package:salon_app/shared/componants/color_manager.dart';
 import 'add_appointment.dart';
 
 class BookingScreen extends StatefulWidget {
-  const BookingScreen({Key? key}) : super(key: key);
+  const BookingScreen({Key? key, required this.topPadding}) : super(key: key);
+  final double topPadding;
+
   @override
   State<BookingScreen> createState() => _BookingScreenState();
 }
@@ -40,7 +42,7 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 71.0, right: 20, left: 20),
+        padding: EdgeInsets.only(top: widget.topPadding, right: 20, left: 20),
         child: Column(
           children: [
             Row(

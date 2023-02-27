@@ -14,7 +14,7 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
 
   List<Widget> bottomScreens = [
     const HomeScreen(),
-    const BookingScreen(),
+    const BookingScreen(topPadding: 71),
     const SettingsPage(),
   ];
 
