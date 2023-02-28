@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+
 import 'assets_manager.dart';
 import 'color_manager.dart';
 import 'fonts_manager.dart';
@@ -44,6 +45,9 @@ Widget customFormField({
         obscureText: obSecureText,
         enabled: enabled,
         decoration: InputDecoration(
+            enabledBorder: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(color: Colors.white)),
             contentPadding: const EdgeInsets.symmetric(horizontal: 24),
             filled: fill,
             fillColor: HexColor('#FFFFFF').withOpacity(0.2),
@@ -69,7 +73,9 @@ Widget elevatedButton({required String text, required Function onPress}) =>
       },
       child: Text(
         text,
-        style: TextStyle(fontSize: 18.sp,  fontWeight: FontWeightManager.bold,
+        style: TextStyle(
+            fontSize: 18.sp,
+            fontWeight: FontWeight.bold,
             fontFamily: FontConstants.cairoFontFamily),
       ),
       style: ElevatedButton.styleFrom(

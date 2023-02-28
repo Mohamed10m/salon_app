@@ -11,145 +11,78 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( body:background(child: Padding(
-              padding: EdgeInsets.only(top: 50.0.h, right: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 90.0),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: (const Icon(Icons.arrow_back))),
-                      ),
-                      const Text('الاشعارات',
-                          style: TextStyle(
-                              fontWeight: FontWeightManager.bold,
+    return Scaffold(
+      body: background(
+          child: Padding(
+        padding: EdgeInsets.only(top: 50.0.h, right: 20.w, left: 20.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: (const Icon(Icons.arrow_back))),
+                const Text(
+                  'الاشعارات',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: FontConstants.cairoFontFamily,
+                    fontSize: 18,
+                  ),
+                )
+              ],
+            ),
+            ListView.separated(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (_, int index) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(index == 0 ? 'اليوم' : 'الاسبوع الماضي',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
                               fontFamily: FontConstants.cairoFontFamily,
-                              fontSize: 18,
-                            ),
-                      )],
-                  ),
-                  const SizedBox(height: 32),
-                  const Text('اليوم',
-                      style: TextStyle(
-                        fontWeight: FontWeightManager.bold,
-                        fontFamily: FontConstants.cairoFontFamily,
-                        fontSize: 20,
-                         )),
-                  const SizedBox(height: 32),
-                  buildUserDataItem(
-                      nColor: HexColor('#8281F8').withOpacity(0.2),
-
-                      title: 'امنية نهاد',
-                      trailing: '7 :00 PM',
-                      color: HexColor('#EC8E6C').withOpacity(0.06),
-                      sColor: HexColor('#EC8E6C'),
-                      subtitle: 'example@gmail.com'),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: 1.5,
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                  color: HexColor('#000000').withOpacity(0.2)),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 6.w,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              width: 1.5,
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                  color: HexColor('#000000').withOpacity(0.2)),
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        buildNotificationsItem(
-                          color: HexColor('#EC8E6C').withOpacity(0.02),
-                          sColor: HexColor('#EC8E6C').withOpacity(0.02),
-                          title: 'مكياج',
-                          subtitle: ' هذا النص مثال ',
-                        ),
+                              fontSize: 20,
+                            )),
+                        const SizedBox(height: 8),
+                        ListView.separated(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (_, int index) => Column(
+                                  children: [
+                                    buildUserDataItem(
+                                        nColor: HexColor('#8281F8')
+                                            .withOpacity(0.2),
+                                        title: 'امنية نهاد',
+                                        trailing: '7:00PM',
+                                        color: HexColor('#EC8E6C')
+                                            .withOpacity(0.06),
+                                        sColor: HexColor('#EC8E6C'),
+                                        subtitle: 'example@gmail.com'),
+                                    buildNotificationsItem(
+                                      color:
+                                          HexColor('#EC8E6C').withOpacity(0.02),
+                                      sColor:
+                                          HexColor('#EC8E6C').withOpacity(0.02),
+                                      title: 'مكياج',
+                                      subtitle:
+                                          ' هذا النص مثال هذا النص مثال هذا النص مثال هذا النص مثال هذا النص مثال  ',
+                                    )
+                                  ],
+                                ),
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(height: 12),
+                            itemCount: 2)
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 32),
-                  buildUserDataItem(
-                      title: 'امنية نهاد',
-                      trailing: '7 :00 PM',
-                      nColor: HexColor('#EC8E6C').withOpacity(0.20),
-                      color: HexColor('#EC8E6C').withOpacity(0.06),
-                      sColor: HexColor('#EC8E6C'),
-                      subtitle: 'example@gmail.com'),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: 1.5,
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                  color: HexColor('#000000').withOpacity(0.2)),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 6.w,
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              width: 1.5,
-                              height: 60.h,
-                              decoration: BoxDecoration(
-                                  color: HexColor('#000000').withOpacity(0.2)),
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        buildNotificationsItem(
-                          color: HexColor('#EC8E6C').withOpacity(0.02),
-                          sColor: HexColor('#EC8E6C').withOpacity(0.02),
-                          title: 'مكياج',
-                          subtitle: ' هذا النص مثال ',
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-    )),
-
+                separatorBuilder: (_, __) => const SizedBox(height: 12),
+                itemCount: 2)
+          ],
+        ),
+      )),
     );
   }
 }

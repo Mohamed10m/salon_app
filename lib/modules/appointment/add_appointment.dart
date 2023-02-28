@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:salon_app/shared/componants/color_manager.dart';
+
+// import 'package:nepali_date_picker/nepali_date_picker.dart';
 
 import '../../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 import 'add_appointment_successfully.dart';
 
-class AddAppointmentScreen extends StatelessWidget {
+class AddAppointmentScreen extends StatefulWidget {
   const AddAppointmentScreen({Key? key}) : super(key: key);
 
   @override
+  State<AddAppointmentScreen> createState() => _AddAppointmentScreenState();
+}
+
+class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
+  var formKey = GlobalKey<FormState>();
+
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+
+  var phoneController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    var formKey = GlobalKey<FormState>();
-
-    var nameController = TextEditingController();
-    var emailController = TextEditingController();
-
-    var phoneController = TextEditingController();
     return Scaffold(
       body: background(
         child: Padding(
-          padding: EdgeInsets.only(top: 53.h, right: 38.w, left: 36.w),
+          padding: EdgeInsets.only(top: 53.h, right: 20.w, left: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,15 +39,14 @@ class AddAppointmentScreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: const Icon(Icons.arrow_back)),
-                  SizedBox(
-                    width: 84.w,
-                  ),
-                  const Text(
-                    'اضف موعد',
-                    style: TextStyle(
-                      fontWeight: FontWeightManager.medium,
-                      fontFamily: FontConstants.cairoFontFamily,
-                      fontSize: 16,
+                  const Expanded(
+                    child: Text(
+                      'اضف موعد',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],
@@ -60,33 +66,27 @@ class AddAppointmentScreen extends StatelessWidget {
                       BoxDecoration(borderRadius: BorderRadius.circular(16)),
                   width: 319.w,
                   height: 306.h,
-                  child: Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: SfDateRangePicker(
-                          viewSpacing: 40,
-                          todayHighlightColor: HexColor('#9C9D9F'),
-                          startRangeSelectionColor: HexColor('#8281F8'),
-                          backgroundColor:
-                              HexColor('#FFFFFF').withOpacity(0.40),
-                          showNavigationArrow: true,
-                          headerStyle: const DateRangePickerHeaderStyle(
-                              textAlign: TextAlign.center,
-                              textStyle: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black)),
-                          selectionColor: HexColor('#8281F8'),
-                          monthViewSettings: DateRangePickerMonthViewSettings(
-                            showTrailingAndLeadingDates: true,
-                            dayFormat: 'EEE',
-                            firstDayOfWeek: 1,
-                            viewHeaderHeight: 25,
-                            viewHeaderStyle: DateRangePickerViewHeaderStyle(
-                                textStyle: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 15,
-                                    color: HexColor('#9C9D9F'))),
-                          )))),
+                  child: Theme(
+                    data: ThemeData(
+                        colorScheme: ColorScheme(
+                            brightness: Brightness.light,
+                            primary: ColorManager.buttonColor,
+                            onPrimary: Colors.white,
+                            secondary: Colors.transparent,
+                            onSecondary: Colors.transparent,
+                            error: Colors.transparent,
+                            onError: Colors.transparent,
+                            background: Colors.transparent,
+                            onBackground: Colors.blue,
+                            surface: Colors.blue,
+                            onSurface: Colors.black)),
+                    child: CalendarDatePicker(
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2090),
+                      onDateChanged: (date) {},
+                    ),
+                  )),
               SizedBox(
                 height: 32.h,
               ),
@@ -189,7 +189,7 @@ class AddAppointmentScreen extends StatelessWidget {
                             'حفظ',
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeightManager.bold,
+                              fontWeight: FontWeight.bold,
                               fontFamily: FontConstants.cairoFontFamily,
                             ),
                           ),

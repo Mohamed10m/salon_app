@@ -10,12 +10,12 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
   HomeLayoutCubit() : super(ShopAppInitialStates());
 
   static HomeLayoutCubit get(context) => BlocProvider.of(context);
-  int currentIndex = 2;
+  int currentIndex = 0;
 
   List<Widget> bottomScreens = [
-    const SettingsPage(),
-    const BookingScreen(),
     const HomeScreen(),
+    const BookingScreen(topPadding: 71),
+    const SettingsPage(),
   ];
 
   void changeBottom(int index) {

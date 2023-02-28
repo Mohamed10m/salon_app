@@ -61,37 +61,30 @@ List<BoardingModel> boarding = [
       subTitle: AppStrings.onBoardingSubTitle)
 ];
 
-Widget buildBoardingItem(BoardingModel model) => Column(
+Widget buildBoardingImage(BoardingModel model) => Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         model.container,
-        const SizedBox(
-          height: 80,
-        ),
+        const SizedBox(height: 30),
         Text(
           model.title,
           style: TextStyle(
               color: HexColor('#212121'),
-              fontWeight: FontWeightManager.bold,
+              fontWeight: FontWeight.bold,
               fontFamily: FontConstants.cairoFontFamily,
               fontSize: 25.sp),
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 60.0.w),
-              child: Text(
-                model.subTitle,
-                style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeightManager.semiBold,
-                    fontFamily: FontConstants.cairoFontFamily),
-                softWrap: true,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 60.0.w),
+          child: Text(
+            model.subTitle,
+            style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeightManager.semiBold,
+                fontFamily: FontConstants.cairoFontFamily),
+            softWrap: true,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+
 import '../../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
@@ -23,7 +24,7 @@ class _EditSettingsState extends State<EditSettings> {
     return Scaffold(
       body: background(
         child: Padding(
-          padding: EdgeInsets.only(top: 53.h, right: 38.w, left: 36.w),
+          padding: EdgeInsets.only(top: 53.h, right: 20.w, left: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -40,7 +41,7 @@ class _EditSettingsState extends State<EditSettings> {
                   const Text(
                     'المعلومات الشخصية',
                     style: TextStyle(
-                      fontWeight: FontWeightManager.bold,
+                      fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,
                       fontSize: 16,
                     ),

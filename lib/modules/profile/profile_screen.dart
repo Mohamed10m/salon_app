@@ -6,21 +6,27 @@ import '../../../shared/componants/assets_manager.dart';
 import '../../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  var formKey = GlobalKey<FormState>();
+
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+
+  var phoneController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    var formKey = GlobalKey<FormState>();
-
-    var nameController = TextEditingController();
-    var emailController = TextEditingController();
-
-    var phoneController = TextEditingController();
     return Scaffold(
         body: background(
       child: Padding(
-        padding: EdgeInsets.only(top: 53.h, right: 38.w, left: 36.w),
+        padding: EdgeInsets.only(top: 53.h, right: 25.w, left: 25.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,8 +43,9 @@ class ProfileScreen extends StatelessWidget {
                 const Text(
                   'المعلومات الشخصية',
                   style: TextStyle(
-                    fontWeight: FontWeightManager.bold,
-                    fontFamily: FontConstants.cairoFontFamily,                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: FontConstants.cairoFontFamily,
+                    fontSize: 16,
                   ),
                 ),
               ],
@@ -47,18 +54,28 @@ class ProfileScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
                 const Image(image: AssetImage(ImageAssets.userImage)),
                 SizedBox(
                   height: 16.h,
                 ),
-                const Text('امنية نهاد',style: TextStyle(  fontWeight: FontWeightManager.bold,
-                    fontFamily: FontConstants.cairoFontFamily,fontSize: 20),),
+                const Text(
+                  'امنية نهاد',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: FontConstants.cairoFontFamily,
+                      fontSize: 20),
+                ),
                 SizedBox(
                   height: 11.h,
                 ),
-                 Text('example@gmail.com',style: TextStyle(fontSize: 12,  fontWeight: FontWeightManager.semiBold,
-    fontFamily: FontConstants.cairoFontFamily,color: HexColor('#212121').withOpacity(0.50)),),
+                Text(
+                  'example@gmail.com',
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeightManager.semiBold,
+                      fontFamily: FontConstants.cairoFontFamily,
+                      color: HexColor('#212121').withOpacity(0.50)),
+                ),
                 SizedBox(
                   height: 32.h,
                 ),
@@ -70,10 +87,12 @@ class ProfileScreen extends StatelessWidget {
                         const Text(
                           'الاسم',
                           style: TextStyle(
-                              fontSize: 16 , fontWeight: FontWeightManager.medium,
-                              fontFamily: FontConstants.cairoFontFamily,),
+                            fontSize: 16,
+                            fontWeight: FontWeightManager.medium,
+                            fontFamily: FontConstants.cairoFontFamily,
+                          ),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: 8.h,
                         ),
                         customFormField(
@@ -94,10 +113,12 @@ class ProfileScreen extends StatelessWidget {
                         const Text(
                           'البريد الالكتروني',
                           style: TextStyle(
-                              fontSize: 16,  fontWeight: FontWeightManager.medium,
-                            fontFamily: FontConstants.cairoFontFamily,),
+                            fontSize: 16,
+                            fontWeight: FontWeightManager.medium,
+                            fontFamily: FontConstants.cairoFontFamily,
+                          ),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: 8.h,
                         ),
                         customFormField(
@@ -118,10 +139,12 @@ class ProfileScreen extends StatelessWidget {
                         const Text(
                           'رقم الهاتف',
                           style: TextStyle(
-                              fontSize: 16,  fontWeight: FontWeightManager.medium,
-                            fontFamily: FontConstants.cairoFontFamily,),
+                            fontSize: 16,
+                            fontWeight: FontWeightManager.medium,
+                            fontFamily: FontConstants.cairoFontFamily,
+                          ),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: 8.h,
                         ),
                         customFormField(
