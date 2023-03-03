@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         body: background(
       child: Padding(
-        padding: EdgeInsets.only(top: 53.h, right: 25.w, left: 25.w),
+        padding: EdgeInsets.only(top: 54.h, right: 20.w, left: 30.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,9 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Navigator.pop(context);
                     },
                     child: const Icon(Icons.arrow_back)),
-                SizedBox(
-                  width: 84.w,
-                ),
+                SizedBox(width: 72.w,),
+
                 const Text(
                   'المعلومات الشخصية',
                   style: TextStyle(
@@ -50,118 +49,123 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 67.h),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Image(image: AssetImage(ImageAssets.userImage)),
-                SizedBox(
-                  height: 16.h,
-                ),
-                const Text(
-                  'امنية نهاد',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: FontConstants.cairoFontFamily,
-                      fontSize: 20),
-                ),
-                SizedBox(
-                  height: 11.h,
-                ),
-                Text(
-                  'example@gmail.com',
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeightManager.semiBold,
-                      fontFamily: FontConstants.cairoFontFamily,
-                      color: HexColor('#212121').withOpacity(0.50)),
-                ),
-                SizedBox(
-                  height: 32.h,
-                ),
-                Form(
-                    key: formKey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'الاسم',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeightManager.medium,
-                            fontFamily: FontConstants.cairoFontFamily,
+            Padding(
+              padding:  EdgeInsets.only(top: 67.0.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Image(image: AssetImage(ImageAssets.userImage)),
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  const Text(
+                    'امنية نهاد',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: FontConstants.cairoFontFamily,
+                        fontSize: 20),
+                  ),
+                  SizedBox(
+                    height: 11.h,
+                  ),
+                  Text(
+                    'example@gmail.com',
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeightManager.semiBold,
+                        fontFamily: FontConstants.cairoFontFamily,
+                        color: HexColor('#212121').withOpacity(0.50)),
+                  ),
+                  SizedBox(
+                    height: 32.h,
+                  ),
+                  Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'الاسم',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeightManager.medium,
+                              fontFamily: FontConstants.cairoFontFamily,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        customFormField(
-                          text: "Example",
-                          validate: (String? value) {
-                            if (value!.isEmpty) {
-                              return "Name must not be empty";
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: nameController,
-                          type: TextInputType.name,
-                        ),
-                        SizedBox(
-                          height: 32.h,
-                        ),
-                        const Text(
-                          'البريد الالكتروني',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeightManager.medium,
-                            fontFamily: FontConstants.cairoFontFamily,
+                          SizedBox(
+                            height: 8.h,
                           ),
-                        ),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        customFormField(
-                          text: "Example@gmail.com",
-                          validate: (String? value) {
-                            if (value!.isEmpty) {
-                              return "Email must not be empty";
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: emailController,
-                          type: TextInputType.emailAddress,
-                        ),
-                        SizedBox(
-                          height: 32.h,
-                        ),
-                        const Text(
-                          'رقم الهاتف',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeightManager.medium,
-                            fontFamily: FontConstants.cairoFontFamily,
+                          customFormField(
+                            text: "Example",
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return "Name must not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: nameController,
+                            type: TextInputType.name,
                           ),
-                        ),
-                        SizedBox(
-                          height: 8.h,
-                        ),
-                        customFormField(
-                          text: "+966 545 254 ",
-                          validate: (String? value) {
-                            if (value!.isEmpty) {
-                              return "Name must not be empty";
-                            } else {
-                              return null;
-                            }
-                          },
-                          controller: phoneController,
-                          type: TextInputType.number,
-                        ),
-                      ],
-                    )),
-              ],
+                          SizedBox(
+                            height: 32.h,
+                          ),
+                          const Text(
+                            'البريد الالكتروني',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeightManager.medium,
+                              fontFamily: FontConstants.cairoFontFamily,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          customFormField(
+                            text: "Example@gmail.com",
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return "Email must not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: emailController,
+                            type: TextInputType.emailAddress,
+                          ),
+                          SizedBox(
+                            height: 32.h,
+                          ),
+                          const Text(
+                            'رقم الهاتف',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeightManager.medium,
+                              fontFamily: FontConstants.cairoFontFamily,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          customFormField(
+                            text: "+05xxxxxxxx ",
+                            hintStyle: const TextStyle(
+                              fontFamily: FontConstants.cairoFontFamily,
+                            ),
+                            validate: (String? value) {
+                              if (value!.isEmpty) {
+                                return "Name must not be empty";
+                              } else {
+                                return null;
+                              }
+                            },
+                            controller: phoneController,
+                            type: TextInputType.number,
+                          ),
+                        ],
+                      )),
+                ],
+              ),
             )
           ],
         ),

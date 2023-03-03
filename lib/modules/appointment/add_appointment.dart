@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/shared/componants/color_manager.dart';
 
-// import 'package:nepali_date_picker/nepali_date_picker.dart';
 
 import '../../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
+import '../payment/payment_widget.dart';
 import 'add_appointment_successfully.dart';
 
 class AddAppointmentScreen extends StatefulWidget {
@@ -21,6 +21,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
 
   var nameController = TextEditingController();
   var emailController = TextEditingController();
+  var dateController = TextEditingController();
+  var timeController = TextEditingController();
 
   var phoneController = TextEditingController();
   @override
@@ -28,7 +30,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
     return Scaffold(
       body: background(
         child: Padding(
-          padding: EdgeInsets.only(top: 53.h, right: 20.w, left: 20.w),
+          padding: EdgeInsets.only(top: 53.h, right: 30.w, left: 30.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -39,14 +41,14 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         Navigator.pop(context);
                       },
                       child: const Icon(Icons.arrow_back)),
-                  const Expanded(
-                    child: Text(
-                      'اضف موعد',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                  SizedBox(
+                    width: 90.w,
+                  ),
+                  const Text(
+                    'اضف موعد',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ],
@@ -62,8 +64,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
               ),
               SizedBox(height: 5.h),
               Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: HexColor('#FFFFFF').withOpacity(0.40)),
                   width: 319.w,
                   height: 306.h,
                   child: Theme(
@@ -130,8 +133,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         height: 24.h,
                       ),
                       customFormField(
-                        text: "البريد الالكتروني",
-                        hintStyle: const TextStyle(color: Colors.black87),
+                        text: "Example@gmail.com",
+                        hintStyle: const TextStyle(color: Colors.black),
                         validate: (String? value) {
                           if (value!.isEmpty) {
                             return "email must not be empty";
@@ -156,7 +159,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         height: 24.h,
                       ),
                       customFormField(
-                        text: "رقم الهاتف",
+                        text: "996 447 558+",
                         hintStyle: const TextStyle(color: Colors.black87),
                         validate: (String? value) {
                           if (value!.isEmpty) {
@@ -170,6 +173,281 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       ),
                       SizedBox(
                         height: 24.h,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'التاريخ',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                customFormField(
+                                  fill: false,
+                                  text: "2/5/2023",
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black),
+                                  validate: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return "Password must not be empty";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  controller: dateController,
+                                  type: TextInputType.name,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'الوقت',
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                customFormField(
+                                  fill: false,
+                                  text: "568",
+                                  hintStyle:
+                                      const TextStyle(color: Colors.black),
+                                  validate: (String? value) {
+                                    if (value!.isEmpty) {
+                                      return "Password must not be empty";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  controller: timeController,
+                                  type: TextInputType.name,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('اختر الخدمة',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: FontConstants.cairoFontFamily,
+                                  fontWeight: FontWeight.w700)),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          Column(
+                            children: [
+                              FittedBox(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 40.h,
+                                      width: 90.w,
+                                      decoration: BoxDecoration(
+                                          color: HexColor('#EC8E6C')
+                                              .withOpacity(0.10),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Text(
+                                        'الخدمة',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                          fontFamily:
+                                              FontConstants.cairoFontFamily,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.w),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 40.h,
+                                      width: 110.w,
+                                      decoration: BoxDecoration(
+                                          color: HexColor("#8281F8")
+                                              .withOpacity(0.10),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Text(
+                                        'الخدمة',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                          fontFamily:
+                                              FontConstants.cairoFontFamily,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.w),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 40.h,
+                                      width: 90.w,
+                                      decoration: BoxDecoration(
+                                          color: HexColor('#FFC57B')
+                                              .withOpacity(0.10),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Text(
+                                        'الخدمة',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                          fontFamily:
+                                              FontConstants.cairoFontFamily,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              FittedBox(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 40.h,
+                                      width: 90.w,
+                                      decoration: BoxDecoration(
+                                          color: HexColor('#FFC57B')
+                                              .withOpacity(0.10),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Text(
+                                        'الخدمة',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                          fontFamily:
+                                              FontConstants.cairoFontFamily,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.w),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 40.h,
+                                      width: 90.w,
+                                      decoration: BoxDecoration(
+                                          color: HexColor("#EC8E6C")
+                                              .withOpacity(0.10),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Text(
+                                        'الخدمة',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                          fontFamily:
+                                              FontConstants.cairoFontFamily,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.w),
+                                    Container(
+                                      alignment: Alignment.center,
+                                      height: 40.h,
+                                      width: 110.w,
+                                      decoration: BoxDecoration(
+                                          color: HexColor('#8281F8')
+                                              .withOpacity(0.11),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Text(
+                                        'الخدمة',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight:
+                                              FontWeightManager.semiBold,
+                                          fontFamily:
+                                              FontConstants.cairoFontFamily,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      const Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          'الفاتورة',
+                          style: TextStyle(
+                              fontWeight: FontWeightManager.medium,
+                              fontFamily: FontConstants.cairoFontFamily,
+                              fontSize: 16),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Container(
+                          padding: EdgeInsets.only(
+                              right: 25.w, left: 24.w, top: 21.h, bottom: 21.h),
+                          height: 186.h,
+                          width: 320.w,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: HexColor('#FFFFFF').withOpacity(0.24),
+                          ),
+                          child: Column(
+                            children: [
+                              rowItem(
+                                  title: 'المجموع الفرعي', subtitle: '125 ر.س'),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              rowItem(title: 'الضريبة:', subtitle: '12 %'),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              rowItem(
+                                  title: 'المجموع الفرعي',
+                                  subtitle: 'الاجمالى:'),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                            ],
+                          )),
+                      SizedBox(
+                        height: 32.h,
                       ),
                       SizedBox(
                         height: 64.h,
@@ -186,7 +464,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                             }
                           },
                           child: const Text(
-                            'حفظ',
+                            'احجز موعد',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

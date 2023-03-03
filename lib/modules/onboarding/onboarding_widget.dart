@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -10,52 +11,44 @@ import 'onboarding_screen.dart';
 List<BoardingModel> boarding = [
   BoardingModel(
       container: Container(
-        height: 210,
-        width: 210,
+        height: 220.h,
+        width: 200.w,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.backgroundLogoImage1),
-                fit: BoxFit.cover)),
-        child: const SizedBox(
-            height: 50,
-            width: 50,
-            child: Image(
-              image: AssetImage(ImageAssets.onBoardingLogo1),
-            )),
+              )),
+        child:   Image.asset(
+
+          ImageAssets.onBoardingLogo1,scale: 1.2,
+        ),
       ),
       title: AppStrings.onBoardingTitle1,
       subTitle: AppStrings.onBoardingSubTitle),
   BoardingModel(
       container: Container(
-        height: 210,
-        width: 210,
+        height: 240.h,
+        width: 210.w,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.backgroundLogoImage2),
-                fit: BoxFit.cover)),
-        child: const SizedBox(
-            height: 50,
-            width: 50,
-            child: Image(
-              image: AssetImage(ImageAssets.onBoardingLogo2),
-            )),
+               )),
+        child:  const Image(
+          image: AssetImage(ImageAssets.onBoardingLogo2),
+        ),
       ),
       title: AppStrings.onBoardingTitle2,
       subTitle: AppStrings.onBoardingSubTitle),
   BoardingModel(
       container: Container(
-        height: 210,
-        width: 210,
+        height: 240.h,
+        width: 210.w,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.backgroundLogoImage3),
-                fit: BoxFit.cover)),
-        child: const SizedBox(
-            height: 50,
-            width: 50,
-            child: Image(
-              image: AssetImage(ImageAssets.onBoardingLogo3),
-            )),
+               )),
+        child:  const Image(
+          image: AssetImage(ImageAssets.onBoardingLogo3),
+        ),
       ),
       title: AppStrings.onBoardingTitle3,
       subTitle: AppStrings.onBoardingSubTitle)
@@ -65,7 +58,7 @@ Widget buildBoardingImage(BoardingModel model) => Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         model.container,
-        const SizedBox(height: 30),
+         SizedBox(height: 50.h),
         Text(
           model.title,
           style: TextStyle(
@@ -74,12 +67,13 @@ Widget buildBoardingImage(BoardingModel model) => Column(
               fontFamily: FontConstants.cairoFontFamily,
               fontSize: 25.sp),
         ),
+        SizedBox(height: 10.h,),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60.0.w),
           child: Text(
             model.subTitle,
-            style: TextStyle(
-                fontSize: 14.sp,
+            style: const TextStyle(
+                fontSize: 14,
                 fontWeight: FontWeightManager.semiBold,
                 fontFamily: FontConstants.cairoFontFamily),
             softWrap: true,

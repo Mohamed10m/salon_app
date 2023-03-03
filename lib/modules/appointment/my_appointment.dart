@@ -29,7 +29,7 @@ class MyAppointment extends StatelessWidget {
                 width: 84.w,
               ),
               const Text(
-                'المعلومات الشخصية',
+                'مواعيدي',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: FontConstants.cairoFontFamily,

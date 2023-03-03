@@ -18,6 +18,7 @@ dependencies:
   shared_preferences: ^2.0.13
   flutter_bloc: ^8.1.2
   date_picker_timeline: ^1.2.3
+  flutter_svg: ^2.0.2
   flutter_timeline: ^0.3.0
   dotted_border: ^2.0.0+3
   bloc: ^8.0.2
@@ -40,7 +41,6 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Poppins
     - family: Cairo
       fonts:
         - asset: assets/fonts/Poppins-Black.ttf

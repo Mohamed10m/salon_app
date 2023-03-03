@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import '../../../layout/home_layout/home_layout.dart';
 import '../../../shared/componants/assets_manager.dart';
 import '../../../shared/componants/componants.dart';
 import '../../../shared/componants/fonts_manager.dart';
+import '../../chose_place/choose_place.dart';
 import '../../password/forget_password.dart';
 import '../auth_cubit/auth_cubit.dart';
 import '../auth_cubit/auth_states.dart';
@@ -65,8 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               topLeft: Radius.circular(32)),
                           border: Border.all(
                               color: HexColor('#FCC885').withOpacity(0.30),
-                              width: 2),
-                          color: HexColor('#FFFFFF'),
+                              width: 1),
+                          color: HexColor('#FFFFFF').withOpacity(0.40),
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
@@ -97,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             fontWeight:
                                                 FontWeightManager.medium,
                                             fontFamily:
-                                                FontConstants.cairoFontFamily),
+                                                FontConstants.poppinsFontFamily),
                                         validate: (String? value) {
                                           if (value!.isEmpty) {
                                             return "Email must not be empty";
@@ -117,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             fontWeight:
                                                 FontWeightManager.regular,
                                             fontFamily:
-                                                FontConstants.cairoFontFamily),
+                                                FontConstants.poppinsFontFamily),
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -129,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             fontWeight:
                                                 FontWeightManager.medium,
                                             fontFamily:
-                                                FontConstants.cairoFontFamily),
+                                                FontConstants.poppinsFontFamily),
                                         validate: (String? value) {
                                           if (value!.isEmpty) {
                                             return "Password must not be empty";
@@ -185,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  const HomeLayout()),
+                                                  const ChosePlace()),
                                           (route) => false);
                                     }
                                   },

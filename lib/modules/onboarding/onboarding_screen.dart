@@ -45,7 +45,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.only(top: 50.0, right: 35, left: 35),
+                       EdgeInsets.only(top: 50.0.h, right: 35.w, left: 35.w),
                   child: SizedBox(
                     height: 35.h,
                     width: 67.w,
@@ -59,18 +59,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         onPressed: () =>
                             navigateAndFinish(context, const LoginScreen()),
                         child: Center(
-                          child: Text(
-                            AppStrings.skip,
-                            style: TextStyle(
-                                color: HexColor('#8281F8'),
-                                fontWeight: FontWeightManager.medium,
-                                // fontFamily: FontConstants.poppinsFontFamily,
-                                fontSize: 16),
+                          child: FittedBox(
+                            child: Text(
+                              AppStrings.skip,
+                              style: TextStyle(
+                                  color: HexColor('#8281F8'),
+                                  fontWeight: FontWeightManager.medium,
+                                  fontSize: 16),
+                            ),
                           ),
                         )),
                   ),
                 ),
-                const SizedBox(height: 40),
+                 SizedBox(height: 40.h),
                 Expanded(
                   child: Stack(
                     alignment: Alignment.center,
@@ -93,7 +94,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         },
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 30),
+
+                        padding:  EdgeInsets.only(top: 55.0.h),
                         child: SmoothPageIndicator(
                             controller: boardController,
                             effect: ExpandingDotsEffect(
@@ -126,7 +128,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     child: const Icon(Icons.arrow_forward),
                   ),
                 ),
-                SizedBox(height: 57.h),
+                SizedBox(height: 30.h),
               ],
             )));
   }

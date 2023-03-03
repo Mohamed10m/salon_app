@@ -181,7 +181,7 @@ class _PaymentScreenState extends State<AddCard> {
                                           ),
                                           customFormField(
                                             fill: false,
-                                            text: "",
+                                            text: "omnia nihad",
                                             hintStyle: const TextStyle(
                                                 color: Colors.grey),
                                             validate: (String? value) {
@@ -216,7 +216,7 @@ class _PaymentScreenState extends State<AddCard> {
                                                     ),
                                                     customFormField(
                                                       fill: false,
-                                                      text: "",
+                                                      text: "2/5/2023",
                                                       hintStyle:
                                                           const TextStyle(
                                                               color:
@@ -256,7 +256,7 @@ class _PaymentScreenState extends State<AddCard> {
                                                     ),
                                                     customFormField(
                                                       fill: false,
-                                                      text: "",
+                                                      text: "568",
                                                       hintStyle:
                                                           const TextStyle(
                                                               color:

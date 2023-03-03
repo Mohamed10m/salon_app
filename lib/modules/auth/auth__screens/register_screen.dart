@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:salon_app/layout/home_layout/home_layout.dart';
 
 import '../../../shared/componants/assets_manager.dart';
 import '../../../shared/componants/componants.dart';
 import '../../../shared/componants/fonts_manager.dart';
+import '../../chose_place/choose_place.dart';
 import '../auth_cubit/auth_cubit.dart';
 import '../auth_cubit/auth_states.dart';
 
@@ -92,6 +92,9 @@ class _LoginScreenState extends State<RegisterScreen> {
                                           fontFamily:
                                               FontConstants.cairoFontFamily),
                                     ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
                                     customFormField(
                                       text: "Example",
                                       validate: (String? value) {
@@ -115,6 +118,9 @@ class _LoginScreenState extends State<RegisterScreen> {
                                           fontFamily:
                                               FontConstants.cairoFontFamily),
                                     ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
                                     customFormField(
                                       text: "+966 545 254 ",
                                       validate: (String? value) {
@@ -137,6 +143,9 @@ class _LoginScreenState extends State<RegisterScreen> {
                                           fontWeight: FontWeightManager.medium,
                                           fontFamily:
                                               FontConstants.cairoFontFamily),
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
                                     ),
                                     customFormField(
                                       text: "Example@gmail.com",
@@ -225,7 +234,7 @@ class _LoginScreenState extends State<RegisterScreen> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   navigateAndFinish(
-                                      context, const HomeLayout());
+                                      context, const ChosePlace());
                                 },
                                 child: const Text(
                                   'انشاء حساب',

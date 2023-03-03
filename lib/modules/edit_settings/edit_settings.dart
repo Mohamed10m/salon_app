@@ -24,7 +24,7 @@ class _EditSettingsState extends State<EditSettings> {
     return Scaffold(
       body: background(
         child: Padding(
-          padding: EdgeInsets.only(top: 53.h, right: 20.w, left: 20.w),
+          padding: EdgeInsets.only(top: 53.h, right: 30.w, left: 30.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -36,10 +36,10 @@ class _EditSettingsState extends State<EditSettings> {
                       },
                       child: const Icon(Icons.arrow_back)),
                   SizedBox(
-                    width: 72.w,
+                    width: 89.w,
                   ),
                   const Text(
-                    'المعلومات الشخصية',
+                    'الاعدادات',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,

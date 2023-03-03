@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -59,8 +58,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             buildSettingsCardItem(
               color: HexColor("#8281F8").withOpacity(0.04),
+              iconColor: HexColor('#8281F8'),
               text: 'المعلومات الشخصية',
-              image: ImageAssets.personIcon,
+              image: ImageAssets.personIconSvg,
               context: context,
               widget: const ProfileScreen(),
             ),
@@ -70,6 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
             buildSettingsCardItem(
               color: HexColor("#8281F8").withOpacity(0.04),
               text: 'الاعدادات',
+              iconColor: HexColor('#8281F8'),
               image: ImageAssets.settingsIcon,
               context: context,
               widget: const EditSettings(),
@@ -80,6 +81,7 @@ class _SettingsPageState extends State<SettingsPage> {
             buildSettingsCardItem(
               color: HexColor("#8281F8").withOpacity(0.04),
               text: 'مواعيدى',
+              iconColor: HexColor('#8281F8'),
               image: ImageAssets.appointmentIcon,
               context: context,
               widget: const BookingViewScreen(),
@@ -90,7 +92,8 @@ class _SettingsPageState extends State<SettingsPage> {
             buildSettingsCardItem(
               color: HexColor("#8281F8").withOpacity(0.04),
               text: 'طرق الدفع',
-              image: ImageAssets.bookingIcon,
+              iconColor: HexColor('#8281F8'),
+              image: ImageAssets.cardIcon,
               context: context,
               widget: const PaymentScreen(),
             ),
@@ -100,6 +103,7 @@ class _SettingsPageState extends State<SettingsPage> {
             buildSettingsCardItem(
               color: HexColor("#8281F8").withOpacity(0.04),
               text: 'مركز المساعدة',
+              iconColor: HexColor('#8281F8'),
               image: ImageAssets.helpIcon,
               context: context,
               widget: const HelpCenterScreen(),
@@ -110,6 +114,13 @@ class _SettingsPageState extends State<SettingsPage> {
             buildSettingsCardItem(
               color: HexColor("#FF725E").withOpacity(0.06),
               text: 'تسجيل الخروج',
+              style: TextStyle(
+                color: HexColor('#FF725E'),
+                fontWeight: FontWeight.bold,
+                fontFamily: FontConstants.cairoFontFamily,
+                fontSize: 16,
+              ),
+              iconColor: HexColor('#FF725E'),
               image: ImageAssets.logoutIcon,
               context: context,
               widget: const LoginScreen(),
@@ -129,7 +140,7 @@ class BookingViewScreen extends StatelessWidget {
           child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 50, right: 20),
+            padding:  EdgeInsets.only(top: 50.h, right: 22.w),
             child: Row(
               children: [
                 InkWell(
@@ -138,10 +149,10 @@ class BookingViewScreen extends StatelessWidget {
                     },
                     child: const Icon(Icons.arrow_back)),
                 SizedBox(
-                  width: 84.w,
+                  width: 90.w,
                 ),
                 const Text(
-                  'المعلومات الشخصية',
+                  'مواعيدي',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: FontConstants.cairoFontFamily,
@@ -151,7 +162,7 @@ class BookingViewScreen extends StatelessWidget {
               ],
             ),
           ),
-          const BookingScreen(topPadding: 20),
+           BookingScreen(topPadding: 40.h),
         ],
       )),
     );

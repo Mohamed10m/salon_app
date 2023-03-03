@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import 'modules/onboarding/onboarding_screen.dart';
 
 void main() async {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.dark,
-    statusBarColor: Colors.white,
+    statusBarColor: HexColor('#FFFFFF').withOpacity(0.1),
   ));
 
   runApp(const MyApp());

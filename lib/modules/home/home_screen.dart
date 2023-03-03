@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           return Column(children: [
             Padding(
               padding: EdgeInsets.only(
-                  top: 55.h, right: 20.w, left: 20.w, bottom: 18.h),
+                  top: 60.h, right: 34.w, left: 36.w, bottom: 40.h),
               child: Row(
                 children: [
                   SizedBox(
@@ -55,18 +55,14 @@ class HomeScreen extends StatelessWidget {
                       )),
                     ),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const NotificationsScreen()));
+                      navigateTo(context, const NotificationsScreen());
                     },
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 20.w, left: 20.w),
+              padding: EdgeInsets.only(right: 34.w, left: 36.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -108,15 +104,15 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 21,
+                   SizedBox(
+                    height: 24.h,
                   ),
                   Container(
                       height: 138.h,
                       width: 320.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        color: Colors.white38,
+                        color:HexColor('#FFFFFF').withOpacity(0.32),
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -238,6 +234,7 @@ class HomeScreen extends StatelessWidget {
                           ],
                         ),
                       )),
+                  SizedBox(height: 16.h,),
                   const Text(
                     'احجز خدمة',
                     style: TextStyle(

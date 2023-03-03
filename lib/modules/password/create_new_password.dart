@@ -32,7 +32,7 @@ class _LoginScreenState extends State<CreateNewPassword> {
         body: background(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
-          padding: EdgeInsets.only(left: 38.w, top: 37.h),
+          padding: EdgeInsets.only(left: 26.w, top: 37.h),
           child: Align(
               alignment: Alignment.centerLeft,
               child: Directionality(
@@ -142,7 +142,7 @@ class _LoginScreenState extends State<CreateNewPassword> {
                     height: 64,
                     width: double.infinity,
                     child: elevatedButton(
-                        text: 'التالى',
+                        text: 'تغير كلمة المرور',
                         onPress: () {
                           Navigator.push(
                               context,

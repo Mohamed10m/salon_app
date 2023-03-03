@@ -15,7 +15,7 @@ class HelpCenterScreen extends StatelessWidget {
             child: Directionality(
       textDirection: TextDirection.rtl,
       child: Padding(
-        padding: const EdgeInsets.only(top: 53, right: 36, left: 36),
+        padding:  EdgeInsets.only(top: 53.h, right: 30.w, left: 30.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -27,10 +27,10 @@ class HelpCenterScreen extends StatelessWidget {
                     },
                     child: const Icon(Icons.arrow_back)),
                 SizedBox(
-                  width: 71.w,
+                  width: 70.w,
                 ),
                 const Text(
-                  'المعلومات الشخصية',
+                  'مركز المساعدة',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: FontConstants.cairoFontFamily,
@@ -39,7 +39,7 @@ class HelpCenterScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 44),
+             SizedBox(height: 44.h),
             const Align(
                 alignment: Alignment.topRight,
                 child: Text(
@@ -66,7 +66,7 @@ class HelpCenterScreen extends StatelessWidget {
                     fontSize: 16,
                   ),
                 )),
-            const SizedBox(height: 24),
+             SizedBox(height: 24.h),
             const Align(
                 alignment: Alignment.topRight,
                 child: Text(
@@ -77,6 +77,8 @@ class HelpCenterScreen extends StatelessWidget {
                     fontSize: 16,
                   ),
                 )),
+             SizedBox(height: 16.h),
+
             Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 24),

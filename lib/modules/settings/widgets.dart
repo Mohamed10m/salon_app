@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../shared/componants/assets_manager.dart';
@@ -8,6 +9,12 @@ import '../../shared/componants/fonts_manager.dart';
 
 Widget buildSettingsCardItem(
         {required text,
+          TextStyle style = const TextStyle(
+fontWeight: FontWeight.bold,
+fontFamily: FontConstants.cairoFontFamily,
+fontSize: 16,
+),
+         required  HexColor  iconColor ,
         required image,
         required widget,
         context,
@@ -28,22 +35,18 @@ Widget buildSettingsCardItem(
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(ImageAssets.backgroundIcon))),
-                child: Image(image: AssetImage(image))),
+                child: SvgPicture.asset(image,fit: BoxFit.scaleDown,width: 19.w,height: 19.h,)),
             SizedBox(
               width: 16.w,
             ),
             Text(
               text,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: FontConstants.cairoFontFamily,
-                fontSize: 16,
-              ),
+              style: style
             ),
             const Spacer(),
             Directionality(
                 textDirection: TextDirection.ltr,
-                child: Icon(Icons.arrow_back, color: HexColor('#8281F8'))),
+                child: Icon(Icons.arrow_back, color: iconColor)),
           ],
         ),
       ),

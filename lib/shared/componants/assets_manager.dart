@@ -19,20 +19,25 @@ class ImageAssets {
   static const String userImage = "$imagePath/userImage.png";
   static const String background = "$imagePath/background.png";
   static const String placeImage = "$imagePath/Rectangle 210.png";
+  static const String placeImage2 = "$imagePath/place2.png";
+  static const String placeImage3 = "$imagePath/place3.png";
+  static const String placeImage4 = "$imagePath/place4.png";
   static const String addIcon = "$imagePath/add_icon.png";
   static const String appointmentImage = "$imagePath/My project (14) 1.png";
   static const String backgroundAppointmentImage = "$imagePath/Ellipse 2 (7).png";
   static const String backgroundText = "$imagePath/Rectangle 214 (1).png";
   static const String backgroundIcon = "$imagePath/background_icon.png";
   static const String cardImage = "$imagePath/card_image.png";
+  static const String cardIcon = "$imagePath/card_icon.svg";
   static const String bookingIcon = "$imagePath/booking_icon.png";
   static const String lineIcon = "$imagePath/Line_icon.png";
   static const String backIcon = "$imagePath/back_icon.png";
   static const String personIcon = "$imagePath/person_icon.png";
-  static const String appointmentIcon = "$imagePath/appointment_icon.png";
-  static const String settingsIcon = "$imagePath/settings_icon.png";
-  static const String helpIcon = "$imagePath/help_icon.png";
-  static const String logoutIcon = "$imagePath/logout_icon.png";
+  static const String personIconSvg = "$imagePath/person_icon.svg";
+  static const String appointmentIcon = "$imagePath/appointment_icon.svg";
+  static const String settingsIcon = "$imagePath/settings_icon.svg";
+  static const String helpIcon = "$imagePath/help_icon.svg";
+  static const String logoutIcon = "$imagePath/logOut.svg";
   static const String homeIcon = "$imagePath/home_icon.png";
   static const String appointNavIcon = "$imagePath/appointment_nav_icon.png";
   static const String backNavBar = "$imagePath/back_navbar.png";
@@ -42,4 +47,7 @@ class ImageAssets {
   static const String changeLanguageIcon = "$imagePath/change_language_icon.png";
   static const String lockIcon = "$imagePath/lock_icon.png";
   static const String typeIcon = "$imagePath/type_icon.png";
+  static const String gold = "$imagePath/gold.svg";
+  static const String notIcon = "$imagePath/blue.svg";
+  static const String type = "$imagePath/type.png";
 }
