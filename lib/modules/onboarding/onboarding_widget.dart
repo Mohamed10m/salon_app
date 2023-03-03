@@ -11,8 +11,8 @@ import 'onboarding_screen.dart';
 List<BoardingModel> boarding = [
   BoardingModel(
       container: Container(
-        height: 220.h,
-        width: 200.w,
+        height: 240.h,
+        width: 210.w,
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.backgroundLogoImage1),

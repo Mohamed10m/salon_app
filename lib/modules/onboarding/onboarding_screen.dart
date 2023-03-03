@@ -94,8 +94,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         },
                       ),
                       Padding(
-
-                        padding:  EdgeInsets.only(top: 55.0.h),
+                        padding:  EdgeInsets.only(top: 75.0.h),
                         child: SmoothPageIndicator(
                             controller: boardController,
                             effect: ExpandingDotsEffect(
