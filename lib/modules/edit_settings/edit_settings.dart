@@ -1,11 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/modules/settings/settings_screen.dart';
 
 import '../../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
+import '../../shared/componants/di.dart';
 import '../../shared/componants/fonts_manager.dart';
+import '../../shared/componants/language_type.dart';
+import '../../shared/local_data_source/locale_data_source.dart';
 import '../password/create_new_password.dart';
 
 class EditSettings extends StatefulWidget {
@@ -18,6 +24,7 @@ class EditSettings extends StatefulWidget {
 class _EditSettingsState extends State<EditSettings> {
   bool notify1 = false;
   bool notify2 = false;
+  final AppPreferences _appPreferences = instance<AppPreferences>();
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +114,9 @@ class _EditSettingsState extends State<EditSettings> {
               ),
               const SizedBox(height: 16),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                    _changeLanguage();
+                },
                 child: Container(
                     padding: EdgeInsets.only(
                         left: 29.w, right: 14.w, top: 11.h, bottom: 10),
@@ -170,20 +179,18 @@ class _EditSettingsState extends State<EditSettings> {
                             image: AssetImage(ImageAssets.notificationImage))),
                     title: Text('اشعارات عامة',
                         style: Theme.of(context).textTheme.bodyLarge),
-                    trailing: Directionality(
-                        textDirection: TextDirection.ltr,
-                        child: Transform.scale(
-                            scale: 0.7,
-                            child: CupertinoSwitch(
-                              trackColor: HexColor('#C5C5C5'),
-                              activeColor: HexColor('#8281F8'),
-                              value: notify1,
-                              onChanged: (bool newValue) {
-                                setState(() {
-                                  notify1 = newValue;
-                                });
-                              },
-                            ))),
+                    trailing: Transform.scale(
+                        scale: 0.7,
+                        child: CupertinoSwitch(
+                          trackColor: HexColor('#C5C5C5'),
+                          activeColor: HexColor('#8281F8'),
+                          value: notify1,
+                          onChanged: (bool newValue) {
+                            setState(() {
+                              notify1 = newValue;
+                            });
+                          },
+                        )),
                     onTap: () {},
                   ),
                 ),
@@ -210,20 +217,18 @@ class _EditSettingsState extends State<EditSettings> {
                                   AssetImage(ImageAssets.notificationImage))),
                       title: Text('المنبة',
                           style: Theme.of(context).textTheme.bodyLarge),
-                      trailing: Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Transform.scale(
-                              scale: 0.7,
-                              child: CupertinoSwitch(
-                                trackColor: HexColor('#C5C5C5'),
-                                activeColor: HexColor('#8281F8'),
-                                value: notify2,
-                                onChanged: (bool newValue) {
-                                  setState(() {
-                                    notify2 = newValue;
-                                  });
-                                },
-                              )))),
+                      trailing: Transform.scale(
+                          scale: 0.7,
+                          child: CupertinoSwitch(
+                            trackColor: HexColor('#C5C5C5'),
+                            activeColor: HexColor('#8281F8'),
+                            value: notify2,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                notify2 = newValue;
+                              });
+                            },
+                          ))),
                 ),
               ),
               SizedBox(
@@ -235,4 +240,10 @@ class _EditSettingsState extends State<EditSettings> {
       ),
     );
   }
+
+  _changeLanguage() {
+    _appPreferences.changeAppLanguage();
+    Phoenix.rebirth(context);
+  }
+
 }

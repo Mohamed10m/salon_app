@@ -28,6 +28,8 @@ class _State extends State<AcceptNotifications> {
       child: Column(
         children: [
           buildUserDataItem(
+              image:ImageAssets.notIcon,
+
               container:
                   Container(
                 height: 26.h,

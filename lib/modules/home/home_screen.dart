@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                     height: 24.h,
                   ),
                   Container(
-                      height: 138.h,
+                      height: 146.h,
                       width: 320.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
@@ -165,9 +165,10 @@ class HomeScreen extends StatelessWidget {
                                   ],
                                 ),
                                 const Spacer(),
-                                const Text(
+                                 Text(
                                   '11:00 AM',
                                   style: TextStyle(
+                                    color: HexColor('#EC8E6C'),
                                     fontWeight: FontWeight.bold,
                                     fontFamily: FontConstants.cairoFontFamily,
                                   ),
@@ -181,51 +182,57 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 Container(
                                   alignment: Alignment.center,
-                                  height: 24.h,
+                                  height: 28.h,
                                   width: 71.w,
                                   decoration: BoxDecoration(
                                       color: HexColor('#EC8E6C'),
                                       borderRadius: BorderRadius.circular(8)),
-                                  child: const Text(
-                                    'مكياج',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeightManager.medium,
-                                      fontFamily: FontConstants.cairoFontFamily,
+                                  child: const FittedBox(
+                                    child: Text(
+                                      'مكياج',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily: FontConstants.cairoFontFamily,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 SizedBox(width: 19.w),
                                 Container(
                                   alignment: Alignment.center,
-                                  height: 24.h,
+                                  height: 28.h,
                                   width: 74.w,
                                   decoration: BoxDecoration(
                                       color: HexColor('#8281F8'),
                                       borderRadius: BorderRadius.circular(8)),
-                                  child: const Text(
-                                    'قص شعر',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeightManager.medium,
-                                      fontFamily: FontConstants.cairoFontFamily,
+                                  child: const FittedBox(
+                                    child: Text(
+                                      'قص شعر',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily: FontConstants.cairoFontFamily,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 SizedBox(width: 19.w),
                                 Container(
                                   alignment: Alignment.center,
-                                  height: 24.h,
+                                  height: 28.h,
                                   width: 74.w,
                                   decoration: BoxDecoration(
                                       color: HexColor('#FFC57B'),
                                       borderRadius: BorderRadius.circular(8)),
-                                  child: const Text(
-                                    'حلاقة',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeightManager.medium,
-                                      fontFamily: FontConstants.cairoFontFamily,
+                                  child: const FittedBox(
+                                    child: Text(
+                                      'حلاقة',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily: FontConstants.cairoFontFamily,
+                                      ),
                                     ),
                                   ),
                                 ),

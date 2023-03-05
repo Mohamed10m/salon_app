@@ -50,4 +50,5 @@ class ImageAssets {
   static const String gold = "$imagePath/gold.svg";
   static const String notIcon = "$imagePath/blue.svg";
   static const String type = "$imagePath/type.png";
+  static const String forgetPasswordIcon = "$imagePath/forgetpassword_icon.png";
 }

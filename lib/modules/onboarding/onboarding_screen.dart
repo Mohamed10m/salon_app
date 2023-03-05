@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -43,33 +44,39 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding:
-                       EdgeInsets.only(top: 50.0.h, right: 35.w, left: 35.w),
-                  child: SizedBox(
-                    height: 35.h,
-                    width: 67.w,
-                    child: OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                            side: BorderSide(
-                                color: HexColor('#8281F8'), width: 1),
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(16)))),
-                        onPressed: () =>
-                            navigateAndFinish(context, const LoginScreen()),
-                        child: Center(
-                          child: FittedBox(
-                            child: Text(
-                              AppStrings.skip,
-                              style: TextStyle(
-                                  color: HexColor('#8281F8'),
-                                  fontWeight: FontWeightManager.medium,
-                                  fontSize: 16),
-                            ),
-                          ),
-                        )),
-                  ),
+
+                Row(
+                  children: [
+                    const Spacer(),
+                    Padding(
+                      padding:
+                           EdgeInsets.only(top: 50.0.h, right: 35.w, left: 35.w),
+                      child: SizedBox(
+                        height: 35.h,
+                        width: 67.w,
+                        child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                    color: HexColor('#8281F8'), width: 1),
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(16)))),
+                            onPressed: () =>
+                                navigateAndFinish(context, const LoginScreen()),
+                            child: Center(
+                              child: FittedBox(
+                                child: Text(
+                                  AppStrings.skip.tr(),
+                                  style: TextStyle(
+                                      color: HexColor('#8281F8'),
+                                      fontWeight: FontWeightManager.medium,
+                                      fontSize: 16),
+                                ),
+                              ),
+                            )),
+                      ),
+                    ),
+                  ],
                 ),
                  SizedBox(height: 40.h),
                 Expanded(

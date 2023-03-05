@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,11 +29,11 @@ List<BoardingModel> boarding = [
       container: Container(
         height: 240.h,
         width: 210.w,
-        decoration: const BoxDecoration(
+        decoration:  const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(ImageAssets.backgroundLogoImage2),
                )),
-        child:  const Image(
+        child:   const Image(
           image: AssetImage(ImageAssets.onBoardingLogo2),
         ),
       ),
@@ -60,7 +61,7 @@ Widget buildBoardingImage(BoardingModel model) => Column(
         model.container,
          SizedBox(height: 50.h),
         Text(
-          model.title,
+          model.title.tr(),
           style: TextStyle(
               color: HexColor('#212121'),
               fontWeight: FontWeight.bold,
@@ -71,7 +72,7 @@ Widget buildBoardingImage(BoardingModel model) => Column(
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 60.0.w),
           child: Text(
-            model.subTitle,
+            model.subTitle.tr(),
             style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeightManager.semiBold,

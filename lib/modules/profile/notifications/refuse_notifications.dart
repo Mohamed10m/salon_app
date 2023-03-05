@@ -28,6 +28,7 @@ class _State extends State<RefuseNotifications2> {
       child: Column(
         children: [
           buildUserDataItem(
+            image:ImageAssets.gold,
               container:
                   Container(
                 height: 26.h,

@@ -54,26 +54,28 @@ class _ChosePlaceState extends State<ChosePlace> {
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                mainAxisSpacing: 1,
-                crossAxisSpacing: 20,
-                childAspectRatio: 1 / 1.70,
+                mainAxisSpacing: 1.h,
+                crossAxisSpacing: 20.w,
+                childAspectRatio: 1.h / 1.70.h,
                 children: List.generate(
                   model.length,
                   (index) => InkWell(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image:  DecorationImage(
-                                  image: AssetImage(model[index]),
-                                  fit: BoxFit.cover)),
-                          height: 224.h,
-                          width: 151.w,
+                        FittedBox(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image:  DecorationImage(
+                                    image: AssetImage(model[index]),
+                                    fit: BoxFit.cover)),
+                            height: 224.h,
+                            width: 151.w,
+                          ),
                         ),
-                        const SizedBox(
-                          height: 10,
+                         SizedBox(
+                          height: 10.h,
                         ),
                         const Align(
                             alignment: Alignment.topRight,

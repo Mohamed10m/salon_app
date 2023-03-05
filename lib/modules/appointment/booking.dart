@@ -1,8 +1,8 @@
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:intl/intl.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
 import 'package:salon_app/shared/componants/color_manager.dart';
 
@@ -26,8 +26,6 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   void initState() {
     DateTime now = DateTime.now();
-    dates.add(now.subtract(const Duration(days: 5)));
-    dates.add(now.subtract(const Duration(days: 4)));
     dates.add(now.subtract(const Duration(days: 3)));
     dates.add(now.subtract(const Duration(days: 2)));
     dates.add(now.subtract(const Duration(days: 1)));
@@ -37,11 +35,13 @@ class _BookingScreenState extends State<BookingScreen> {
     dates.add(now.add(const Duration(days: 3)));
     dates.add(now.add(const Duration(days: 4)));
     dates.add(now.add(const Duration(days: 5)));
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    Locale myLocale = Localizations.localeOf(context);
     return Padding(
         padding:
             EdgeInsets.only(top: widget.topPadding, right: 30.w, left: 30.w),
@@ -123,13 +123,19 @@ class _BookingScreenState extends State<BookingScreen> {
                     },
                     child: Column(
                       children: [
-                        Text(
-                          DateFormat('EEE').format(dates[index]),
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: dates[index].day == selectedDateTime.day
-                                ? ColorManager.buttonColor
-                                : Colors.grey,
+                        Center(
+                          child: Align(
+                            child: Text(
+                              DateFormat.E(myLocale.languageCode).format(dates[index]),
+                              style: TextStyle(
+
+                                fontSize: 18,
+                                color: dates[index].day == selectedDateTime.day
+                                    ? ColorManager.buttonColor
+                                    : Colors.grey,
+                              ),
+                            ),
+                            alignment: Alignment.center,
                           ),
                         ),
                         Text(

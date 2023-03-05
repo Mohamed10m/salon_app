@@ -55,14 +55,15 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
              child: Column(children: [
                Center(
                  child: Container(
-                   width: 112,
-                   height: 114,
+                   width: 152,
+                   height: 152,
                    decoration: const BoxDecoration(
                        image: DecorationImage(
+
                            image: AssetImage("assets/images/Ellipse 2.png"),
                            fit: BoxFit.cover)),
                    child: const Image(
-                     image: AssetImage(ImageAssets.onBoardingLogo1),
+                     image: AssetImage(ImageAssets.forgetPasswordIcon),
                    ),
                  ),
                ),

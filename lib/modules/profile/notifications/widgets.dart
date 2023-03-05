@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../shared/componants/assets_manager.dart';
@@ -13,6 +14,7 @@ Widget buildUserDataItem({
   required String subtitle,
   required String trailing,
   required Container container,
+  required String image,
 }) =>
     Padding(
       padding: EdgeInsets.only(left: 26.w, bottom: 16.h),
@@ -24,14 +26,17 @@ Widget buildUserDataItem({
               Expanded(
                   child: Row(
                 children: [
+                  container,
+
                   SizedBox(
-                    width: 10.w,
+                    width: 12.w,
                   ),
+                 
                   Container(
                     height: 26.h,
                     width: 27.w,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(6),
                         color: HexColor('#8281F8'),
                         image: const DecorationImage(
                           image: AssetImage(ImageAssets.userImage),

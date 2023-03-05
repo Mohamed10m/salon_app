@@ -1,11 +1,11 @@
 class AppStrings {
-  static const noRouteFound = "noRouteFound";
-  static const onBoardingTitle1 = "سهل و مفيد";
-  static const onBoardingTitle2 = "احجز موعد الان";
-  static const onBoardingTitle3 = "الحلاق المفضل لديك";
-
-  static const onBoardingSubTitle = "هذا النص هو مثال لنص يمكن أن يستبدل في  نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك";
-  static const skip = "تخطي";
+  static const noRouteFound = "no_Route_Found";
+  static const onBoardingTitle1 = "on_boarding_title1";
+  static const onBoardingTitle2 = "on_boarding_title2";
+  static const onBoardingTitle3 = "on_boarding_title3";
+  static const onBoardingSubTitle = "on_Boarding_SubTitle";
+  static const skip = "skip";
+  static const loginButton = "loginButton";
 
 
 }
