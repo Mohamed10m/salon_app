@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -5,7 +6,9 @@ import 'package:salon_app/shared/componants/color_manager.dart';
 
 
 import '../../../shared/componants/componants.dart';
+import '../../shared/componants/app_strings.dart';
 import '../../shared/componants/fonts_manager.dart';
+import '../../shared/componants/language_type.dart';
 import '../payment/payment_widget.dart';
 import 'add_appointment_successfully.dart';
 
@@ -27,10 +30,13 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
   var phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
     return Scaffold(
       body: background(
         child: Padding(
-          padding: EdgeInsets.only(top: 53.h, right: 30.w, left: 30.w),
+          padding: EdgeInsets.only(top: 62.h, right: 30.w, left: 30.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,11 +48,11 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       },
                       child: const Icon(Icons.arrow_back)),
                   SizedBox(
-                    width: 90.w,
+                    width: 96.w,
                   ),
-                  const Text(
-                    'اضف موعد',
-                    style: TextStyle(
+                   Text(
+                     AppStrings.addAppointment.tr(),
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -54,9 +60,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                 ],
               ),
               SizedBox(height: 44.h),
-              const Text(
-                'اختر اليوم',
-                style: TextStyle(
+               Text(
+                 AppStrings.chooseDay.tr(),
+                style: const TextStyle(
                   fontWeight: FontWeightManager.semiBold,
                   fontFamily: FontConstants.cairoFontFamily,
                   fontSize: 18,
@@ -93,8 +99,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
               SizedBox(
                 height: 32.h,
               ),
-              const Text('الاسم بالكامل',
-                  style: TextStyle(
+                Text(AppStrings.name.tr(),
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeightManager.medium,
                     fontFamily: FontConstants.cairoFontFamily,
@@ -108,7 +114,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       customFormField(
-                        text: "الاسم بالكامل",
+                        valueKey: 'name',
+text: AppStrings.name.tr(),
                         hintStyle: const TextStyle(color: Colors.black87),
                         validate: (String? value) {
                           if (value!.isEmpty) {
@@ -123,8 +130,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       SizedBox(
                         height: 32.h,
                       ),
-                      const Text('البريد الالكتروني',
-                          style: TextStyle(
+                       Text(AppStrings.emailAddress.tr(),
+                          style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeightManager.medium,
                             fontFamily: FontConstants.cairoFontFamily,
@@ -133,7 +140,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         height: 24.h,
                       ),
                       customFormField(
-                        text: "Example@gmail.com",
+                        valueKey: 'Email',
+                        text: AppStrings.emilHintText.tr(),
                         hintStyle: const TextStyle(color: Colors.black),
                         validate: (String? value) {
                           if (value!.isEmpty) {
@@ -148,9 +156,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       SizedBox(
                         height: 32.h,
                       ),
-                      const Text(
-                        'رقم الهاتف',
-                        style: TextStyle(
+                       Text(
+                         AppStrings.phoneText.tr()  ,
+                        style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeightManager.medium,
                             fontFamily: FontConstants.cairoFontFamily),
@@ -159,6 +167,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                         height: 24.h,
                       ),
                       customFormField(
+                        valueKey: 'phone',
                         text: "996 447 558+",
                         hintStyle: const TextStyle(color: Colors.black87),
                         validate: (String? value) {
@@ -180,9 +189,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'التاريخ',
-                                  style: TextStyle(
+                                  Text(
+                                  AppStrings.dateText.tr(),
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -190,6 +199,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                   height: 8,
                                 ),
                                 customFormField(
+                                  valueKey: 'Password',
+
                                   fill: false,
                                   text: "2/5/2023",
                                   hintStyle:
@@ -214,9 +225,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'الوقت',
-                                  style: TextStyle(
+                                 Text(
+                                AppStrings.time.tr(),
+                                  style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
@@ -224,6 +235,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                   height: 8,
                                 ),
                                 customFormField(
+                                  valueKey: 'Password',
                                   fill: false,
                                   text: "568",
                                   hintStyle:
@@ -249,8 +261,8 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('اختر الخدمة',
-                              style: TextStyle(
+                           Text(AppStrings.chooseService.tr(),
+                              style: const TextStyle(
                                   fontSize: 16,
                                   fontFamily: FontConstants.cairoFontFamily,
                                   fontWeight: FontWeight.w700)),
@@ -271,9 +283,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                               .withOpacity(0.10),
                                           borderRadius:
                                               BorderRadius.circular(8)),
-                                      child: const Text(
-                                        'الخدمة',
-                                        style: TextStyle(
+                                      child:  Text(
+                                        AppStrings.service.tr(),
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight:
                                               FontWeightManager.semiBold,
@@ -292,9 +304,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                               .withOpacity(0.10),
                                           borderRadius:
                                               BorderRadius.circular(8)),
-                                      child: const Text(
-                                        'الخدمة',
-                                        style: TextStyle(
+                                      child:  Text(
+                                        AppStrings.service.tr(),
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight:
                                               FontWeightManager.semiBold,
@@ -313,9 +325,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                               .withOpacity(0.10),
                                           borderRadius:
                                               BorderRadius.circular(8)),
-                                      child: const Text(
-                                        'الخدمة',
-                                        style: TextStyle(
+                                      child:  Text(
+                                        AppStrings.service.tr(),
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight:
                                               FontWeightManager.semiBold,
@@ -342,9 +354,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                               .withOpacity(0.10),
                                           borderRadius:
                                               BorderRadius.circular(8)),
-                                      child: const Text(
-                                        'الخدمة',
-                                        style: TextStyle(
+                                      child:  Text(
+                                        AppStrings.service.tr(),
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight:
                                               FontWeightManager.semiBold,
@@ -363,9 +375,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                               .withOpacity(0.10),
                                           borderRadius:
                                               BorderRadius.circular(8)),
-                                      child: const Text(
-                                        'الخدمة',
-                                        style: TextStyle(
+                                      child:  Text(
+                                        AppStrings.service.tr(),
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight:
                                               FontWeightManager.semiBold,
@@ -384,9 +396,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                               .withOpacity(0.11),
                                           borderRadius:
                                               BorderRadius.circular(8)),
-                                      child: const Text(
-                                        'الخدمة',
-                                        style: TextStyle(
+                                      child:  Text(
+                                        AppStrings.service.tr(),
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight:
                                               FontWeightManager.semiBold,
@@ -405,11 +417,11 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      const Align(
-                        alignment: Alignment.topRight,
+                       Align(
+                        alignment:isRtl() ? Alignment.topRight:Alignment.topLeft,
                         child: Text(
-                          'الفاتورة',
-                          style: TextStyle(
+                          AppStrings.bill.tr(),
+                          style: const TextStyle(
                               fontWeight: FontWeightManager.medium,
                               fontFamily: FontConstants.cairoFontFamily,
                               fontSize: 16),
@@ -430,17 +442,17 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                           child: Column(
                             children: [
                               rowItem(
-                                  title: 'المجموع الفرعي', subtitle: '125 ر.س'),
+                                  title:  AppStrings.subtotal.tr(), subtitle: '125 ر.س'),
                               const SizedBox(
                                 height: 16,
                               ),
-                              rowItem(title: 'الضريبة:', subtitle: '12 %'),
+                              rowItem(title:  AppStrings.tax.tr(), subtitle: '12 %'),
                               const SizedBox(
                                 height: 16,
                               ),
                               rowItem(
-                                  title: 'المجموع الفرعي',
-                                  subtitle: 'الاجمالى:'),
+                                  title:  AppStrings.total.tr(),
+                                  subtitle: AppStrings.total.tr()),
                               const SizedBox(
                                 height: 16,
                               ),
@@ -463,9 +475,9 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                   (route) => false);
                             }
                           },
-                          child: const Text(
-                            'احجز موعد',
-                            style: TextStyle(
+                          child:  Text(
+                            AppStrings.bookAppointment.tr(),
+                            style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               fontFamily: FontConstants.cairoFontFamily,

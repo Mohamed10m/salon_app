@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
 
 import '../../shared/componants/assets_manager.dart';
+import '../../shared/componants/language_type.dart';
 
 class BookingWidget extends StatefulWidget {
   BookingWidget({super.key, required this.index});
@@ -19,6 +22,9 @@ class _BookingWidgetState extends State<BookingWidget> {
   _BookingWidgetState(this.index);
   @override
   Widget build(BuildContext context) {
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
     return InkWell(
       onTap: () {
         setState(() {
@@ -73,7 +79,7 @@ class _BookingWidgetState extends State<BookingWidget> {
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 3.h),
                     padding: EdgeInsets.only(
-                        top: 13.h, right: 17.w, left: 18.w, bottom: 17.h),
+                        top: 13.h, right:isRtl()? 17.w:18.w, left:isRtl()? 18.w:17.w, bottom: 17.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         color: isShow
@@ -85,7 +91,7 @@ class _BookingWidgetState extends State<BookingWidget> {
                     child: isShow
                         ? Container(
                             padding: EdgeInsets.only(
-                                top: 13.h, left: 18.w, bottom: 8.h),
+                                top: 13.h, left:isRtl()? 18.w:0, bottom: 8.h),
                             child: FittedBox(
                               child: Row(
                                 children: [
@@ -95,9 +101,9 @@ class _BookingWidgetState extends State<BookingWidget> {
                                     children: [
                                       Row(
                                         children: [
-                                          const Text(
-                                            'حلاقة',
-                                            style: TextStyle(
+                                          Text(
+                                          AppStrings.shaving.tr() ,
+                                            style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600),
@@ -116,9 +122,9 @@ class _BookingWidgetState extends State<BookingWidget> {
                                       SizedBox(
                                         height: 11.h,
                                       ),
-                                      const Text(
-                                        'هذا النص هو مثال يمكن ان يستبدل \nحيث يمكنك وضع',
-                                        style: TextStyle(
+                                       Text(
+                                        AppStrings.cardText2.tr() ,
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500),
@@ -185,25 +191,31 @@ class _BookingWidgetState extends State<BookingWidget> {
                         : Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'حلاقة',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700),
+                              SizedBox(
+                                child: FittedBox(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                       Text(
+                    AppStrings.shaving.tr() ,
+
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                       Text(
+                                          AppStrings.cardText1.tr() ,
+
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: 8.h,
-                                  ),
-                                  const Text(
-                                    'هذا النص هو مثال يمكن ان يستبدل',
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
+                                ),
                               ),
                               const Spacer(),
                               Text(

@@ -14,25 +14,25 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
       return false;
     });
 
-Widget background({required child}) => Directionality(
-    textDirection: TextDirection.rtl,
-    child: Container(
-      height: double.infinity,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(ImageAssets.background), fit: BoxFit.cover)),
-      child: SingleChildScrollView(
-        child: child,
-      ),
-    ));
+Widget background({required child}) => Container(
+  height: double.infinity,
+  width: double.infinity,
+  decoration: const BoxDecoration(
+      image: DecorationImage(
+          image: AssetImage(ImageAssets.background), fit: BoxFit.cover)),
+  child: SingleChildScrollView(
+    child: child,
+  ),
+);
+
 
 Widget customFormField({
-  required TextEditingController controller,
+  required String valueKey,
+
+  TextEditingController ?controller,
   required String text,
   TextStyle hintStyle =
       const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-  bool? enabled,
   bool obSecureText = false,
   IconData? suffix,
   bool fill = true,
@@ -41,9 +41,12 @@ Widget customFormField({
   FormFieldValidator<String>? validate,
 }) =>
     TextFormField(
+        controller: controller,
+        validator: validate,
+        key: ValueKey(valueKey),
+
         cursorRadius: const Radius.circular(40),
         obscureText: obSecureText,
-        enabled: enabled,
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -64,7 +67,21 @@ Widget customFormField({
                 : null,
             border: InputBorder.none,
             hintText: text,
-            hintStyle: hintStyle));
+            hintStyle: hintStyle,
+
+
+          focusedBorder: const UnderlineInputBorder(
+
+            borderSide: BorderSide(color:Colors.green),
+          ),
+          errorBorder: const UnderlineInputBorder(
+
+            borderSide: BorderSide(color:Colors.red),
+          ),
+
+        ),
+
+    );
 
 Widget elevatedButton({required String text, required Function onPress}) =>
     ElevatedButton(

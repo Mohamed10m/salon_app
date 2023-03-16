@@ -1,10 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
 
 import '../../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
+import '../../shared/componants/language_type.dart';
 
 class AddCard extends StatefulWidget {
   const AddCard({Key? key}) : super(key: key);
@@ -28,6 +31,9 @@ class _PaymentScreenState extends State<AddCard> {
 
   @override
   Widget build(BuildContext context) {
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
     return Scaffold(
         bottomNavigationBar: SizedBox(
             child: isButtonPressed
@@ -60,9 +66,9 @@ class _PaymentScreenState extends State<AddCard> {
                             SizedBox(
                               width: 8.w,
                             ),
-                            const Text(
-                              'اضف بطاقة جديدة',
-                              style: TextStyle(
+                             Text(
+                              AppStrings.addAnotherCard.tr(),
+                              style: const TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w700),
                             ),
                           ],
@@ -93,9 +99,9 @@ class _PaymentScreenState extends State<AddCard> {
                       SizedBox(
                         width: 71.w,
                       ),
-                      const Text(
-                        'طرق الدفع و السداد',
-                        style: TextStyle(
+                       Text(
+                        AppStrings.paymentMethod.tr(),
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 16,
@@ -104,11 +110,11 @@ class _PaymentScreenState extends State<AddCard> {
                     ],
                   ),
                   const SizedBox(height: 44),
-                  const Align(
-                      alignment: Alignment.topRight,
+                   Align(
+                      alignment: isRtl()? Alignment.topRight:Alignment.topLeft,
                       child: Text(
-                        'اختر البطاقة',
-                        style: TextStyle(
+                        AppStrings.choosePayment.tr(),
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeightManager.semiBold,
                           fontFamily: FontConstants.cairoFontFamily,
@@ -133,9 +139,7 @@ class _PaymentScreenState extends State<AddCard> {
                             style: Theme.of(context).textTheme.bodyLarge),
                         subtitle: Text('**********565',
                             style: Theme.of(context).textTheme.bodyLarge),
-                        trailing: const Directionality(
-                            textDirection: TextDirection.ltr,
-                            child: Icon(Icons.keyboard_arrow_down_sharp)),
+                        trailing: const Icon(Icons.keyboard_arrow_down_sharp),
                         onTap: () {},
                       ),
                     ),
@@ -149,8 +153,8 @@ class _PaymentScreenState extends State<AddCard> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                const Text('اضف بطاقة جديدة',
-                                    style: TextStyle(
+                                 Text(AppStrings.addAnotherCard.tr(),
+                                    style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600)),
                                 SizedBox(
@@ -170,9 +174,9 @@ class _PaymentScreenState extends State<AddCard> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const Text(
-                                            'اسم صاحب البطاقة',
-                                            style: TextStyle(
+                                           Text(
+                                            AppStrings.cardName.tr(),
+                                            style: const TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.w500),
                                           ),
@@ -180,6 +184,7 @@ class _PaymentScreenState extends State<AddCard> {
                                             height: 8,
                                           ),
                                           customFormField(
+                                            valueKey: 'Name',
                                             fill: false,
                                             text: "omnia nihad",
                                             hintStyle: const TextStyle(
@@ -204,9 +209,9 @@ class _PaymentScreenState extends State<AddCard> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    const Text(
-                                                      'تاريخ الانتهاء',
-                                                      style: TextStyle(
+                                                     Text(
+                                                      AppStrings.date.tr(),
+                                                      style: const TextStyle(
                                                           fontSize: 16,
                                                           fontWeight:
                                                               FontWeight.w500),
@@ -215,6 +220,8 @@ class _PaymentScreenState extends State<AddCard> {
                                                       height: 8,
                                                     ),
                                                     customFormField(
+                                                      valueKey: 'Password',
+
                                                       fill: false,
                                                       text: "2/5/2023",
                                                       hintStyle:
@@ -255,6 +262,8 @@ class _PaymentScreenState extends State<AddCard> {
                                                       height: 8,
                                                     ),
                                                     customFormField(
+                                                      valueKey: 'cvv',
+
                                                       fill: false,
                                                       text: "568",
                                                       hintStyle:
@@ -307,10 +316,10 @@ class _PaymentScreenState extends State<AddCard> {
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
                                                                   .center,
-                                                          children: const [
+                                                          children:  [
                                                             Text(
-                                                              'اضف البطاقة',
-                                                              style: TextStyle(
+                                                              AppStrings.done.tr(),
+                                                              style: const TextStyle(
                                                                   fontSize: 18,
                                                                   fontWeight:
                                                                       FontWeight

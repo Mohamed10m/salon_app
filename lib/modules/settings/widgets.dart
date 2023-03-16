@@ -4,25 +4,27 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../shared/componants/assets_manager.dart';
-import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 
 Widget buildSettingsCardItem(
         {required text,
-          TextStyle style = const TextStyle(
-fontWeight: FontWeight.bold,
-fontFamily: FontConstants.cairoFontFamily,
-fontSize: 16,
-),
-         required  HexColor  iconColor ,
+        TextStyle style = const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: FontConstants.cairoFontFamily,
+          fontSize: 16,
+        ),
+        required HexColor iconColor,
         required image,
-        required widget,
+        required Function function,
+        required double rightWidth,
+        required double leftWidth,
         context,
         required Color color}) =>
     InkWell(
+
       child: Container(
         padding:
-            EdgeInsets.only(bottom: 10.h, top: 10.h, right: 10.w, left: 27.w),
+            EdgeInsets.only(bottom: 10.h, top: 10.h, right: rightWidth.w, left: leftWidth.w),
         height: 64.h,
         width: 320.w,
         decoration: BoxDecoration(
@@ -35,22 +37,23 @@ fontSize: 16,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(ImageAssets.backgroundIcon))),
-                child: SvgPicture.asset(image,fit: BoxFit.scaleDown,width: 19.w,height: 19.h,)),
+                child: SvgPicture.asset(
+                  image,
+                  fit: BoxFit.scaleDown,
+                  width: 19.w,
+                  height: 19.h,
+                )),
             SizedBox(
               width: 16.w,
             ),
-            Text(
-              text,
-              style: style
-            ),
+            Text(text, style: style),
             const Spacer(),
-            Directionality(
-                textDirection: TextDirection.ltr,
-                child: Icon(Icons.arrow_back, color: iconColor)),
+          Icon(Icons.arrow_forward,color: iconColor,),
+
           ],
         ),
       ),
-      onTap: () {
-        navigateTo(context, widget);
+      onTap: (){
+        function();
       },
     );

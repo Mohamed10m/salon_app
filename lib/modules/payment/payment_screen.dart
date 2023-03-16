@@ -1,12 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/modules/payment/add_card.dart';
 import 'package:salon_app/modules/payment/payment_widget.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
 
 import '../../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
+import '../../shared/componants/language_type.dart';
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({Key? key}) : super(key: key);
@@ -30,6 +33,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
     return Scaffold(
         body: background(
       child: Padding(
@@ -47,9 +53,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 SizedBox(
                   width: 71.w,
                 ),
-                const Text(
-                  'طرق الدفع و السداد',
-                  style: TextStyle(
+                  Text(
+                  AppStrings.paymentMethod.tr(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: FontConstants.cairoFontFamily,
                     fontSize: 16,
@@ -58,11 +64,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
               ],
             ),
             const SizedBox(height: 44),
-            const Align(
-                alignment: Alignment.topRight,
+             Align(
+                alignment:isRtl() ? Alignment.topRight:Alignment.topLeft,
                 child: Text(
-                  'اختر البطاقة',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  AppStrings.choosePayment.tr(),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 )),
             const SizedBox(height: 16),
             Container(
@@ -83,9 +89,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       style: Theme.of(context).textTheme.bodyLarge),
                   subtitle: Text('**********565',
                       style: Theme.of(context).textTheme.bodyLarge),
-                  trailing: const Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Icon(Icons.keyboard_arrow_down_sharp)),
+                  trailing:  const Icon(Icons.keyboard_arrow_down_sharp),
                   onTap: () {},
                 ),
               ),
@@ -107,7 +111,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   SizedBox(
                     width: 8.w,
                   ),
-                  Text('اضف بطاقة اخري',
+                  Text( AppStrings.addAnotherCard.tr(),
                       style: TextStyle(
                         color: HexColor('#8281F8'),
                         fontWeight: FontWeightManager.semiBold,
@@ -123,11 +127,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
             SizedBox(
               height: 24.h,
             ),
-            const Align(
-              alignment: Alignment.topRight,
+             Align(
+              alignment:isRtl()? Alignment.topRight: Alignment.topLeft,
               child: Text(
-                'الفاتورة',
-                style: TextStyle(
+                AppStrings.bill.tr(),
+                style: const TextStyle(
                     fontWeight: FontWeightManager.medium,
                     fontFamily: FontConstants.cairoFontFamily,
                     fontSize: 16),
@@ -147,15 +151,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 ),
                 child: Column(
                   children: [
-                    rowItem(title: 'المجموع الفرعي', subtitle: '125 ر.س'),
+                    rowItem(title: AppStrings.subtotal.tr(), subtitle: '125 ر.س'),
                     const SizedBox(
                       height: 16,
                     ),
-                    rowItem(title: 'الضريبة:', subtitle: '12 %'),
+                    rowItem(title:  AppStrings.tax.tr(), subtitle: '12 %'),
                     const SizedBox(
                       height: 16,
                     ),
-                    rowItem(title: 'المجموع الفرعي', subtitle: 'الاجمالى:'),
+                    rowItem(title:  AppStrings.total.tr(), subtitle:  AppStrings.total.tr()),
                     const SizedBox(
                       height: 16,
                     ),
@@ -174,9 +178,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         borderRadius: BorderRadius.circular(10)),
                   ),
                   onPressed: () {},
-                  child: const Text(
-                    'ادفع الان',
-                    style: TextStyle(
+                  child:  Text(
+                   AppStrings.payNow.tr(),
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         fontFamily: FontConstants.cairoFontFamily),

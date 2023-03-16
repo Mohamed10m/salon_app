@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:salon_app/modules/settings/settings_screen.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
+import 'package:salon_app/shared/componants/language_type.dart';
 
 import '../../../shared/componants/assets_manager.dart';
 import '../../shared/componants/componants.dart';
 import '../../shared/componants/di.dart';
 import '../../shared/componants/fonts_manager.dart';
-import '../../shared/componants/language_type.dart';
 import '../../shared/local_data_source/locale_data_source.dart';
 import '../password/create_new_password.dart';
 
@@ -28,6 +28,9 @@ class _EditSettingsState extends State<EditSettings> {
 
   @override
   Widget build(BuildContext context) {
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
     return Scaffold(
       body: background(
         child: Padding(
@@ -43,11 +46,11 @@ class _EditSettingsState extends State<EditSettings> {
                       },
                       child: const Icon(Icons.arrow_back)),
                   SizedBox(
-                    width: 89.w,
+                    width:isRtl()? 89.w:120.w,
                   ),
-                  const Text(
-                    'الاعدادات',
-                    style: TextStyle(
+                   Text(
+                    AppStrings.setting.tr(),
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: FontConstants.cairoFontFamily,
                       fontSize: 16,
@@ -56,9 +59,9 @@ class _EditSettingsState extends State<EditSettings> {
                 ],
               ),
               const SizedBox(height: 44),
-              const Text(
-                'إدارة كلمة المرور',
-                style: TextStyle(
+               Text(
+                AppStrings.mangePasswords.tr(),
+                style: const TextStyle(
                   fontWeight: FontWeightManager.semiBold,
                   fontFamily: FontConstants.cairoFontFamily,
                   fontSize: 18,
@@ -71,7 +74,8 @@ class _EditSettingsState extends State<EditSettings> {
                 },
                 child: Container(
                     padding: EdgeInsets.only(
-                        left: 29.w, right: 14.w, top: 11.h, bottom: 10),
+                        left:isRtl() ? 27 :10 ,
+                        right:isRtl() ? 10 :27  , top: 11.h, bottom: 10),
                     height: 64.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
@@ -91,9 +95,9 @@ class _EditSettingsState extends State<EditSettings> {
                         SizedBox(
                           width: 17.w,
                         ),
-                        const Text(
-                          'تغير كلمة المرور',
-                          style: TextStyle(
+                         Text(
+                          AppStrings.changePassword.tr(),
+                          style: const TextStyle(
                               fontWeight: FontWeightManager.medium,
                               fontFamily: FontConstants.cairoFontFamily,
                               fontSize: 16),
@@ -104,9 +108,9 @@ class _EditSettingsState extends State<EditSettings> {
                     ))),
               ),
               const SizedBox(height: 32),
-              const Text(
-                'اللغة',
-                style: TextStyle(
+               Text(
+                AppStrings.language.tr(),
+                style: const TextStyle(
                   fontWeight: FontWeightManager.medium,
                   fontFamily: FontConstants.cairoFontFamily,
                   fontSize: 16,
@@ -119,7 +123,8 @@ class _EditSettingsState extends State<EditSettings> {
                 },
                 child: Container(
                     padding: EdgeInsets.only(
-                        left: 29.w, right: 14.w, top: 11.h, bottom: 10),
+                        left:isRtl() ? 27 :10 ,
+                        right:isRtl() ? 10 :27  , top: 11.h, bottom: 10),
                     height: 64.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
@@ -140,9 +145,9 @@ class _EditSettingsState extends State<EditSettings> {
                         SizedBox(
                           width: 17.w,
                         ),
-                        const Text(
-                          'العربية',
-                          style: TextStyle(
+                         Text(
+                         AppStrings.english.tr() ,
+                          style: const TextStyle(
                               fontWeight: FontWeightManager.medium,
                               fontFamily: FontConstants.cairoFontFamily,
                               fontSize: 16),
@@ -153,9 +158,9 @@ class _EditSettingsState extends State<EditSettings> {
                     ))),
               ),
               const SizedBox(height: 32),
-              const Text(
-                'الاشعارات',
-                style: TextStyle(
+               Text(
+                AppStrings.notificationCenter.tr(),
+                style: const TextStyle(
                   fontWeight: FontWeightManager.medium,
                   fontFamily: FontConstants.cairoFontFamily,
                   fontSize: 16,
@@ -177,7 +182,7 @@ class _EditSettingsState extends State<EditSettings> {
                                 image: AssetImage(ImageAssets.backgroundIcon))),
                         child: const Image(
                             image: AssetImage(ImageAssets.notificationImage))),
-                    title: Text('اشعارات عامة',
+                    title: Text(AppStrings.general.tr(),
                         style: Theme.of(context).textTheme.bodyLarge),
                     trailing: Transform.scale(
                         scale: 0.7,
@@ -215,7 +220,7 @@ class _EditSettingsState extends State<EditSettings> {
                           child: const Image(
                               image:
                                   AssetImage(ImageAssets.notificationImage))),
-                      title: Text('المنبة',
+                      title: Text(AppStrings.reminder.tr(),
                           style: Theme.of(context).textTheme.bodyLarge),
                       trailing: Transform.scale(
                           scale: 0.7,
@@ -241,9 +246,11 @@ class _EditSettingsState extends State<EditSettings> {
     );
   }
 
+
+
+
   _changeLanguage() {
     _appPreferences.changeAppLanguage();
     Phoenix.rebirth(context);
   }
-
 }

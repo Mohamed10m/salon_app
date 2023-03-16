@@ -1,10 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
+import '../../../shared/componants/app_constane.dart';
 import '../../../shared/componants/assets_manager.dart';
 import '../../../shared/componants/componants.dart';
 import '../../../shared/componants/fonts_manager.dart';
+import '../../../shared/componants/language_type.dart';
+import '../../../shared/local_data_source/locale_data_source.dart';
 import '../../chose_place/choose_place.dart';
 import '../../password/forget_password.dart';
 import '../auth_cubit/auth_cubit.dart';
@@ -33,126 +38,143 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
+
     return BlocProvider(
-        create: (BuildContext context) => AuthCubit(),
-        child: BlocConsumer<AuthCubit, AuthStates>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return Scaffold(
-                body: background(
+      create: (BuildContext context) => AuthCubit(),
+      child: BlocConsumer<AuthCubit, AuthStates>(
+        listener: (context, state) {
+          if (state is AppLoginSuccessStates) {
+            if (state.loginModel.status) {
+              AppPreferences.saveData('token', state.loginModel.token)
+                  .then((value) {
+                token = state.loginModel.token;
+                print(token);
+                navigateAndFinish(context, const ChosePlace());
+              });
+            } else {}
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: background(
+                child: Padding(
+              padding: EdgeInsets.only(top: 68.h),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 60,
+                    backgroundColor: HexColor('#EC8E6C').withOpacity(0.1),
+                    child: const Image(
+                      width: 152,
+                      height: 152,
+                      image: AssetImage(ImageAssets.onBoardingLogo1),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 19.h,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(32),
+                          topLeft: Radius.circular(32)),
+                      border: Border.all(
+                          color: HexColor('#FCC885').withOpacity(0.30),
+                          width: 1),
+                      color: HexColor('#FFFFFF').withOpacity(0.40),
+                    ),
                     child: Padding(
-                  padding: EdgeInsets.only(top: 68.h),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 60,
-                        backgroundColor: HexColor('#EC8E6C').withOpacity(0.1),
-                        child: const Image(
-                          width: 152,
-                          height: 152,
-                          image: AssetImage(ImageAssets.onBoardingLogo1),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 19.h,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(32),
-                              topLeft: Radius.circular(32)),
-                          border: Border.all(
-                              color: HexColor('#FCC885').withOpacity(0.30),
-                              width: 1),
-                          color: HexColor('#FFFFFF').withOpacity(0.40),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 35.h, vertical: 32.h),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'البريد الالكتروني',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeightManager.regular,
-                                    fontFamily: FontConstants.cairoFontFamily),
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Form(
-                                  key: formKey,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      customFormField(
-                                        text: "Example@gmail.com",
-                                        hintStyle: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight:
-                                                FontWeightManager.medium,
-                                            fontFamily:
-                                                FontConstants.poppinsFontFamily),
-                                        validate: (String? value) {
-                                          if (value!.isEmpty) {
-                                            return "Email must not be empty";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                        controller: emailController,
-                                        type: TextInputType.emailAddress,
-                                      ),
-                                      SizedBox(
-                                        height: 32.h,
-                                      ),
-                                      const Text(
-                                        'كلمة المرور',
-                                        style: TextStyle(
-                                            fontWeight:
-                                                FontWeightManager.regular,
-                                            fontFamily:
-                                                FontConstants.poppinsFontFamily),
-                                      ),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      customFormField(
-                                        text: "*********",
-                                        hintStyle: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight:
-                                                FontWeightManager.medium,
-                                            fontFamily:
-                                                FontConstants.poppinsFontFamily),
-                                        validate: (String? value) {
-                                          if (value!.isEmpty) {
-                                            return "Password must not be empty";
-                                          } else {
-                                            return null;
-                                          }
-                                        },
-                                        suffix: AuthCubit.get(context).suffix,
-                                        suffixPressed: () {
-                                          AuthCubit.get(context)
-                                              .changePasswordVisibility();
-                                        },
-                                        obSecureText:
-                                            AuthCubit.get(context).isPassword,
-                                        controller: passwordController,
-                                        type: TextInputType.number,
-                                      ),
-                                    ],
-                                  )),
-                              SizedBox(
-                                height: 11.h,
-                              ),
-                              Align(
-                                  alignment: Alignment.bottomLeft,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 35.h, vertical: 32.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            AppStrings.emailAddress.tr(),
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeightManager.regular,
+                                fontFamily: FontConstants.cairoFontFamily),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Form(
+                              key: formKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  customFormField(
+                                    valueKey: 'Email',
+                                    text: "Example@gmail.com",
+                                    hintStyle: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.poppinsFontFamily),
+                                    validate: (String? value) {
+                                      if (value!.isEmpty ) {
+                                        return "Email must not be empty";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    controller: emailController,
+                                    type: TextInputType.emailAddress,
+                                  ),
+                                  SizedBox(
+                                    height: 32.h,
+                                  ),
+                                  Text(
+                                    AppStrings.passwordText.tr(),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeightManager.regular,
+                                        fontFamily:
+                                            FontConstants.poppinsFontFamily),
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  customFormField(
+                                    valueKey: 'Password',
+                                    text: "*********",
+                                    hintStyle: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.poppinsFontFamily),
+                                    validate: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return "Password must not be empty";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    suffix: AuthCubit.get(context).suffix,
+                                    suffixPressed: () {
+                                      AuthCubit.get(context)
+                                          .changePasswordVisibility();
+                                    },
+                                    obSecureText:
+                                        AuthCubit.get(context).isPassword,
+                                    controller: passwordController,
+                                    type: TextInputType.number,
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 11.h,
+                          ),
+                          Transform(
+                              transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                              child: Align(
+                                  alignment: isRtl()
+                                      ? Alignment.bottomLeft
+                                      : Alignment.bottomRight,
                                   child: TextButton(
                                       onPressed: () {
                                         Navigator.push(
@@ -162,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                     const ForgetPasswordScreen()));
                                       },
                                       child: Text(
-                                        "هل نسيت كلمة المرور؟",
+                                        AppStrings.forgetPasswordText.tr(),
                                         style: TextStyle(
                                             color: HexColor('#8281F8'),
                                             fontSize: 14.sp,
@@ -170,140 +192,133 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 FontWeightManager.semiBold,
                                             fontFamily:
                                                 FontConstants.cairoFontFamily),
-                                      ))),
-                              SizedBox(
-                                height: 39.h,
-                              ),
-                              SizedBox(
-                                height: 64.h,
-                                width: 320.w,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {
-                                      Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  const ChosePlace()),
-                                          (route) => false);
-                                    }
-                                  },
-                                  child: const Text(
-                                    'تسجيل الدخول',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily:
-                                            FontConstants.cairoFontFamily),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                      elevation: 0.0,
-                                      backgroundColor: HexColor('#8281F8'),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(14))),
-                                ),
-                              ),
-                              SizedBox(height: 24.h),
-                              const Center(
-                                  child: Text(
-                                'او سجل الدخول من خلال',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeightManager.medium,
+                                      )))),
+                          SizedBox(
+                            height: 39.h,
+                          ),
+                          SizedBox(
+                            height: 64.h,
+                            width: 320.w,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  AuthCubit.get(context).userLogin(
+                                      email: emailController.text,
+                                      password: passwordController.text);
+                                }
+                              },
+                              child: Text(
+                                AppStrings.loginText.tr(),
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
                                     fontFamily: FontConstants.cairoFontFamily),
-                              )),
-                              SizedBox(height: 24.h),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          color: HexColor('#EC8E6C')
-                                              .withOpacity(0.1)),
-                                      child: IconButton(
-                                        icon: Image.asset(
-                                            'assets/images/facebook_icon.png'),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          color: HexColor('#EC8E6C')
-                                              .withOpacity(0.1)),
-                                      child: IconButton(
-                                        icon: Image.asset(
-                                            'assets/images/apple.png'),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          color: HexColor('#EC8E6C')
-                                              .withOpacity(0.1)),
-                                      child: IconButton(
-                                        icon: Image.asset(
-                                            'assets/images/google.png'),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ),
-                              SizedBox(height: 52.h),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    'ليس لديك حساب؟',
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0.0,
+                                  backgroundColor: HexColor('#8281F8'),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(14))),
+                            ),
+                          ),
+                          SizedBox(height: 24.h),
+                          Center(
+                              child: Text(
+                            AppStrings.orSignInWith.tr(),
+                            style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeightManager.medium,
+                                fontFamily: FontConstants.cairoFontFamily),
+                          )),
+                          SizedBox(height: 24.h),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color:
+                                          HexColor('#EC8E6C').withOpacity(0.1)),
+                                  child: IconButton(
+                                    icon: Image.asset(
+                                        'assets/images/facebook_icon.png'),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color:
+                                          HexColor('#EC8E6C').withOpacity(0.1)),
+                                  child: IconButton(
+                                    icon:
+                                        Image.asset('assets/images/apple.png'),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color:
+                                          HexColor('#EC8E6C').withOpacity(0.1)),
+                                  child: IconButton(
+                                    icon:
+                                        Image.asset('assets/images/google.png'),
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 52.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                AppStrings.doNotHaveAccount.tr(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeightManager.medium,
+                                    fontFamily: FontConstants.cairoFontFamily,
+                                    fontSize: 16),
+                              ),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const RegisterScreen()));
+                                  },
+                                  child: Text(
+                                    AppStrings.createAccount.tr(),
                                     style: TextStyle(
+                                        color: HexColor('#8281F8'),
+                                        fontSize: 16.sp,
+                                        decoration: TextDecoration.underline,
                                         fontWeight: FontWeightManager.medium,
                                         fontFamily:
-                                            FontConstants.cairoFontFamily,
-                                        fontSize: 16),
-                                  ),
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const RegisterScreen()));
-                                      },
-                                      child: Text(
-                                        "انشئ حساب",
-                                        style: TextStyle(
-                                            color: HexColor('#8281F8'),
-                                            fontSize: 16.sp,
-                                            decoration:
-                                                TextDecoration.underline,
-                                            fontWeight:
-                                                FontWeightManager.medium,
-                                            fontFamily:
-                                                FontConstants.cairoFontFamily),
-                                      ))
-                                ],
-                              ),
+                                            FontConstants.cairoFontFamily),
+                                  ))
                             ],
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                )),
-              );
-            }));
+                ],
+              ),
+            )),
+          );
+        },
+      ),
+    );
   }
 }

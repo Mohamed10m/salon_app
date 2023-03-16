@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.6.1
+  conditional_builder_null_safety: ^0.0.6
   smooth_page_indicator: ^1.0.0+2
   flutter_advanced_calendar: ^1.0.0
   status_change: ^2.0.0
@@ -19,16 +20,14 @@ dependencies:
   date_picker_timeline: ^1.2.3
   flutter_svg: ^2.0.2
   flutter_timeline: ^0.3.0
-  dotted_border: ^2.0.0+3
   bloc: ^8.0.2
-  hexcolor: ^2.0.7
-  sweet_nav_bar: ^1.0.5
+  hexcolor: ^3.0.1
   cupertino_icons: ^1.0.2
   easy_localization: ^3.0.1
   flutter_phoenix: ^1.1.0
   get_it: ^7.2.0
   intl: ^0.17.0
-  lottie: ^2.2.0
+  dio: ^5.0.1
 
 dev_dependencies:
   flutter_test:
@@ -44,7 +43,7 @@ flutter:
     - assets/images/
     - assets/translations/ar-SA.json
     - assets/translations/en-US.json
-    -
+
   fonts:
     - family: Cairo
       fonts:

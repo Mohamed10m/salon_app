@@ -1,11 +1,18 @@
+// ignore_for_file: unrelated_type_equality_checks
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../../../shared/componants/app_constane.dart';
+import '../../../shared/componants/app_strings.dart';
 import '../../../shared/componants/assets_manager.dart';
 import '../../../shared/componants/componants.dart';
 import '../../../shared/componants/fonts_manager.dart';
+
+import '../../../shared/local_data_source/locale_data_source.dart';
 import '../../chose_place/choose_place.dart';
 import '../auth_cubit/auth_cubit.dart';
 import '../auth_cubit/auth_states.dart';
@@ -18,19 +25,23 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<RegisterScreen> {
-  var nameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
-  var phoneController = TextEditingController();
-  var emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
-  var passwordController = TextEditingController();
-  var confirmPasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  var confirmPassword;
 
   var formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -40,7 +51,15 @@ class _LoginScreenState extends State<RegisterScreen> {
     return BlocProvider(
       create: (BuildContext context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is AppRegisterSuccessStates) {
+            AppPreferences.saveData('token', state.authModel.token)
+                .then((value) {
+              token = state.authModel.token;
+              navigateAndFinish(context, const ChosePlace());
+            });
+          }
+        },
         builder: (context, state) {
           return Scaffold(
             body: background(
@@ -80,151 +99,159 @@ class _LoginScreenState extends State<RegisterScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Form(
-                                key: formKey,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      'الاسم',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeightManager.medium,
-                                          fontFamily:
-                                              FontConstants.cairoFontFamily),
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    customFormField(
-                                      text: "Example",
-                                      validate: (String? value) {
-                                        if (value!.isEmpty) {
-                                          return "Name must not be empty";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      controller: nameController,
-                                      type: TextInputType.name,
-                                    ),
-                                    SizedBox(
-                                      height: 32.h,
-                                    ),
-                                    const Text(
-                                      'رقم الهاتف',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeightManager.medium,
-                                          fontFamily:
-                                              FontConstants.cairoFontFamily),
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    customFormField(
-                                      text: "+966 545 254 ",
-                                      validate: (String? value) {
-                                        if (value!.isEmpty) {
-                                          return "Name must not be empty";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      controller: phoneController,
-                                      type: TextInputType.number,
-                                    ),
-                                    SizedBox(
-                                      height: 32.h,
-                                    ),
-                                    const Text(
-                                      'البريد الالكتروني',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeightManager.medium,
-                                          fontFamily:
-                                              FontConstants.cairoFontFamily),
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    customFormField(
-                                      text: "Example@gmail.com",
-                                      validate: (String? value) {
-                                        if (value!.isEmpty) {
-                                          return "Email must not be empty";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      controller: emailController,
-                                      type: TextInputType.emailAddress,
-                                    ),
-                                    SizedBox(
-                                      height: 32.h,
-                                    ),
-                                    const Text(
-                                      'كلمة المرور',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeightManager.medium,
-                                          fontFamily:
-                                              FontConstants.cairoFontFamily),
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    customFormField(
-                                      text: "كلمة المرور",
-                                      validate: (String? value) {
-                                        if (value!.isEmpty) {
-                                          return "Password must not be empty";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      suffix: AuthCubit.get(context).suffix,
-                                      suffixPressed: () {
-                                        AuthCubit.get(context)
-                                            .changePasswordVisibility();
-                                      },
-                                      obSecureText:
-                                          AuthCubit.get(context).isPassword,
-                                      controller: passwordController,
-                                    ),
-                                    SizedBox(
-                                      height: 32.h,
-                                    ),
-                                    const Text(
-                                      'تأكيد كلمة المرور',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeightManager.medium,
-                                          fontFamily:
-                                              FontConstants.cairoFontFamily),
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    customFormField(
-                                      text: "تأكيد كلمة المرور",
-                                      validate: (String? value) {
-                                        if (value!.isEmpty) {
-                                          return "Password must not be empty";
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-                                      suffix: AuthCubit.get(context).suffix,
-                                      suffixPressed: () {
-                                        AuthCubit.get(context)
-                                            .changePasswordVisibility();
-                                      },
-                                      obSecureText:
-                                          AuthCubit.get(context).isPassword,
-                                      controller: confirmPasswordController,
-                                    ),
-                                  ],
-                                )),
+                              key: formKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    AppStrings.name.tr(),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily),
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  customFormField(
+                                    valueKey: 'name',
+                                    text: "Example",
+                                    validate: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'name must not be empty';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    controller: nameController,
+                                    type: TextInputType.name,
+                                  ),
+                                  SizedBox(
+                                    height: 32.h,
+                                  ),
+                                  Text(
+                                    AppStrings.phoneText.tr(),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily),
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  customFormField(
+                                    valueKey: 'Phone',
+                                    text: "+966 545 254 ",
+                                    validate: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return "Phone must not be empty";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    controller: phoneController,
+                                    type: TextInputType.number,
+                                  ),
+                                  SizedBox(
+                                    height: 32.h,
+                                  ),
+                                  Text(
+                                    AppStrings.emailAddress.tr(),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily),
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  customFormField(
+                                    valueKey: 'Email',
+                                    text: "Example@gmail.com",
+                                    validate: (String? value) {
+                                      if (value!.isEmpty) {
+                                        return "Email must not be empty";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    controller: emailController,
+                                    type: TextInputType.emailAddress,
+                                  ),
+                                  SizedBox(
+                                    height: 32.h,
+                                  ),
+                                  Text(
+                                    AppStrings.passwordText.tr(),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily),
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  customFormField(
+                                    valueKey: 'Password',
+                                    controller: passwordController,
+                                    text: "********",
+                                    validate: (String? value) {
+                                      confirmPassword = value;
+                                      if (value!.isEmpty) {
+                                        return "Password must not be empty";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    suffix: AuthCubit.get(context).suffix,
+                                    suffixPressed: () {
+                                      AuthCubit.get(context)
+                                          .changePasswordVisibility();
+                                    },
+                                    obSecureText:
+                                        AuthCubit.get(context).isPassword,
+                                  ),
+                                  SizedBox(
+                                    height: 32.h,
+                                  ),
+                                  Text(
+                                    AppStrings.confirmPassword.tr(),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeightManager.medium,
+                                        fontFamily:
+                                            FontConstants.cairoFontFamily),
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  customFormField(
+                                    controller: confirmPasswordController,
+                                    valueKey: 'Confirm',
+                                    text: "********",
+                                    validate: (value) {
+                                      if (value!.isEmpty) {
+                                        return "Confirm must not be empty";
+                                      } else if (value != confirmPassword) {
+                                        return 'Not Match';
+                                      }
+                                      return null;
+                                    },
+                                    suffix: AuthCubit.get(context).suffix,
+                                    suffixPressed: () {
+                                      AuthCubit.get(context)
+                                          .changePasswordVisibility();
+                                    },
+                                    obSecureText:
+                                        AuthCubit.get(context).isPassword,
+                                  ),
+                                ],
+                              ),
+                            ),
                             SizedBox(
                               height: 39.h,
                             ),
@@ -233,12 +260,21 @@ class _LoginScreenState extends State<RegisterScreen> {
                               width: 320.w,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  navigateAndFinish(
-                                      context, const ChosePlace());
+                                  setState(() {
+                                    if (formKey.currentState!.validate()) {
+                                      AuthCubit.get(context).userRegister(
+                                          name: nameController.text,
+                                          email: emailController.text,
+                                          password: passwordController.text,
+                                          confirmPassword:
+                                              passwordController.text,
+                                          phone: phoneController.text);
+                                    }
+                                  });
                                 },
-                                child: const Text(
-                                  'انشاء حساب',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppStrings.registerText.tr(),
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeightManager.medium,
                                       fontFamily:

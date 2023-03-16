@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -8,6 +9,7 @@ import 'package:salon_app/modules/auth/auth__screens/login_screen.dart';
 import 'package:salon_app/shared/componants/componants.dart';
 
 import '../../../shared/componants/assets_manager.dart';
+import '../../shared/componants/app_strings.dart';
 import '../../shared/componants/fonts_manager.dart';
 
 class PasswordChangedSuccessfully extends StatefulWidget {
@@ -80,28 +82,24 @@ class _PasswordChangedSuccessfullyState
                       );
                     })),
           ),
-          Directionality(
-              textDirection: TextDirection.rtl,
-              child: Text(
-                'تم تغير كلمة المرور بنجاح',
-                style: TextStyle(
-                    fontSize: 19.sp,
-                    fontWeight: FontWeightManager.medium,
-                    fontFamily: FontConstants.cairoFontFamily),
-              )),
+          Text(
+            AppStrings.passwordChanged.tr(),
+            style: TextStyle(
+                fontSize: 19.sp,
+                fontWeight: FontWeightManager.medium,
+                fontFamily: FontConstants.cairoFontFamily),
+          ),
           SizedBox(
             height: 5.h,
           ),
-          Directionality(
-              textDirection: TextDirection.rtl,
-              child: Text(
-                'سجل الدخول الان لحجز موعدك',
-                style: TextStyle(
-                    color: HexColor('#212121').withOpacity(0.5),
-                    fontSize: 14.0.sp,
-                    fontWeight: FontWeightManager.medium,
-                    fontFamily: FontConstants.cairoFontFamily),
-              ))
+          Text(
+            AppStrings.bookYourAppointment.tr(),
+            style: TextStyle(
+                color: HexColor('#212121').withOpacity(0.5),
+                fontSize: 14.0.sp,
+                fontWeight: FontWeightManager.medium,
+                fontFamily: FontConstants.cairoFontFamily),
+          )
         ]),
       ),
     );

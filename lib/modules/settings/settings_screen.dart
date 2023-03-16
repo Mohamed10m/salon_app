@@ -1,15 +1,22 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:salon_app/modules/auth/auth__screens/login_screen.dart';
 import 'package:salon_app/modules/help_center/help_center.dart';
 import 'package:salon_app/modules/payment/payment_screen.dart';
 import 'package:salon_app/modules/settings/widgets.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
 import 'package:salon_app/shared/componants/componants.dart';
+import 'package:salon_app/shared/componants/language_type.dart';
 
+import '../../layout/cubut/home_layout_cubit.dart';
+import '../../layout/cubut/home_layout_states.dart';
+import '../../shared/componants/app_constane.dart';
 import '../../shared/componants/fonts_manager.dart';
-import '../appointment/booking.dart';
+import '../appointment/my_appointment.dart';
 import '../edit_settings/edit_settings.dart';
 import '../profile/profile_screen.dart';
 
@@ -23,148 +30,170 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.only(right: 20.0.w, left: 20.w),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 81.h,
-            ),
-            const Image(image: AssetImage(ImageAssets.userImage)),
-            SizedBox(
-              height: 16.h,
-            ),
-            const Text(
-              'امنية نهاد',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: FontConstants.cairoFontFamily,
-                fontSize: 20,
-              ),
-            ),
-            SizedBox(
-              height: 11.h,
-            ),
-            Text(
-              'Example@gmail.com',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                  color: HexColor('#212121').withOpacity(0.5),
-                  fontFamily: 'Poppins'),
-            ),
-            SizedBox(
-              height: 32.h,
-            ),
-            buildSettingsCardItem(
-              color: HexColor("#8281F8").withOpacity(0.04),
-              iconColor: HexColor('#8281F8'),
-              text: 'المعلومات الشخصية',
-              image: ImageAssets.personIconSvg,
-              context: context,
-              widget: const ProfileScreen(),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            buildSettingsCardItem(
-              color: HexColor("#8281F8").withOpacity(0.04),
-              text: 'الاعدادات',
-              iconColor: HexColor('#8281F8'),
-              image: ImageAssets.settingsIcon,
-              context: context,
-              widget: const EditSettings(),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            buildSettingsCardItem(
-              color: HexColor("#8281F8").withOpacity(0.04),
-              text: 'مواعيدى',
-              iconColor: HexColor('#8281F8'),
-              image: ImageAssets.appointmentIcon,
-              context: context,
-              widget: const BookingViewScreen(),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            buildSettingsCardItem(
-              color: HexColor("#8281F8").withOpacity(0.04),
-              text: 'طرق الدفع',
-              iconColor: HexColor('#8281F8'),
-              image: ImageAssets.cardIcon,
-              context: context,
-              widget: const PaymentScreen(),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            buildSettingsCardItem(
-              color: HexColor("#8281F8").withOpacity(0.04),
-              text: 'مركز المساعدة',
-              iconColor: HexColor('#8281F8'),
-              image: ImageAssets.helpIcon,
-              context: context,
-              widget: const HelpCenterScreen(),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            buildSettingsCardItem(
-              color: HexColor("#FF725E").withOpacity(0.06),
-              text: 'تسجيل الخروج',
-              style: TextStyle(
-                color: HexColor('#FF725E'),
-                fontWeight: FontWeight.bold,
-                fontFamily: FontConstants.cairoFontFamily,
-                fontSize: 16,
-              ),
-              iconColor: HexColor('#FF725E'),
-              image: ImageAssets.logoutIcon,
-              context: context,
-              widget: const LoginScreen(),
-            ),
-          ],
-        ));
-  }
-}
+    bool isRtl() {
+      return context.locale == arabicLocal;
+    }
+    var cubit = HomeLayoutCubit.get(context).userModel;
 
-class BookingViewScreen extends StatelessWidget {
-  const BookingViewScreen({Key? key}) : super(key: key);
+    return ConditionalBuilder(
+        condition: cubit != null,
+        builder: (BuildContext context) =>  BlocConsumer<HomeLayoutCubit, HomeLayoutStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Padding(
+                  padding: EdgeInsets.only(right: 20.0.w, left: 20.w),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 81.h,
+                      ),
+                      const Image(image: AssetImage(ImageAssets.userImage)),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Text(
+                        HomeLayoutCubit.get(context).userModel!.email,
+                        // cubit.userDataModel!.name!,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: FontConstants.cairoFontFamily,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 11.h,
+                      ),
+                      Text(
+                        HomeLayoutCubit.get(context).userModel!.email,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            color: HexColor('#212121').withOpacity(0.5),
+                            fontFamily: 'Poppins'),
+                      ),
+                      SizedBox(
+                        height: 32.h,
+                      ),
+                      Transform(
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child:  buildSettingsCardItem(
+                              leftWidth: isRtl() ? 27 : 10,
+                              rightWidth: isRtl() ? 10 : 27,
+                              color: HexColor("#8281F8").withOpacity(0.04),
+                              iconColor: HexColor('#8281F8'),
+                              text: AppStrings.personalInformation.tr(),
+                              image: ImageAssets.personIconSvg,
+                              context: context,
+                              function: (){
+                                navigateTo(context,  BlocProvider.value(
+                                    value: HomeLayoutCubit.get(context)..getUserData(),
+                                child: const ProfileScreen())
+                                );
+                              },
+                            ),
+                          ),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child: buildSettingsCardItem(
+                            leftWidth: isRtl() ? 27 : 10,
+                            rightWidth: isRtl() ? 10 : 27,
+                            color: HexColor("#8281F8").withOpacity(0.04),
+                            text: AppStrings.setting.tr(),
+                            iconColor: HexColor('#8281F8'),
+                            image: ImageAssets.settingsIcon,
+                            context: context,
+                            function: (){
+                              navigateTo(context, const EditSettings());
+                            },
+                          )),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child: buildSettingsCardItem(
+                            leftWidth: isRtl() ? 27 : 10,
+                            rightWidth: isRtl() ? 10 : 27,
+                            color: HexColor("#8281F8").withOpacity(0.04),
+                            text: AppStrings.appointments.tr(),
+                            iconColor: HexColor('#8281F8'),
+                            image: ImageAssets.appointmentIcon,
+                            context: context,
+                            function: (){
+                              navigateTo(context, const MyAppointments());
+                            },
+                          )),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child: buildSettingsCardItem(
+                            leftWidth: isRtl() ? 27 : 10,
+                            rightWidth: isRtl() ? 10 : 27,
+                            color: HexColor("#8281F8").withOpacity(0.04),
+                            text: AppStrings.payment.tr(),
+                            iconColor: HexColor('#8281F8'),
+                            image: ImageAssets.cardIcon,
+                            context: context,
+                            function: (){
+                              navigateTo(context, const PaymentScreen());
+                            },
+                          )),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child: buildSettingsCardItem(
+                            leftWidth: isRtl() ? 27 : 10,
+                            rightWidth: isRtl() ? 10 : 27,
+                            color: HexColor("#8281F8").withOpacity(0.04),
+                            text: AppStrings.helpCenter.tr(),
+                            iconColor: HexColor('#8281F8'),
+                            image: ImageAssets.helpIcon,
+                            context: context,
+                            function: (){
+                              navigateTo(context, const HelpCenterScreen());
+                            },
+                          )),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child: buildSettingsCardItem(
+                            leftWidth: isRtl() ? 27 : 10,
+                            rightWidth: isRtl() ? 10 : 27,
+                            color: HexColor("#FF725E").withOpacity(0.06),
+                            text: AppStrings.logout.tr(),
+                            style: TextStyle(
+                              color: HexColor('#FF725E'),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: FontConstants.cairoFontFamily,
+                              fontSize: 16,
+                            ),
+                            iconColor: HexColor('#FF725E'),
+                            image: ImageAssets.logoutIcon,
+                            context: context,
+                            function:(){
+                              signOut(context);
+                            },
+                          )),
+                    ],
+                  ));
+            }), fallback: (context)=>const Center(
+        child: CircularProgressIndicator()));
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: background(
-          child: Column(
-        children: [
-          Padding(
-            padding:  EdgeInsets.only(top: 50.h, right: 22.w),
-            child: Row(
-              children: [
-                InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(Icons.arrow_back)),
-                SizedBox(
-                  width: 90.w,
-                ),
-                const Text(
-                  'مواعيدي',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: FontConstants.cairoFontFamily,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-          ),
-           BookingScreen(topPadding: 40.h),
-        ],
-      )),
-    );
+
+
   }
 }

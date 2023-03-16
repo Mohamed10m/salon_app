@@ -1,7 +1,12 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:salon_app/shared/componants/app_strings.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
 
+import '../../layout/cubut/home_layout_cubit.dart';
+import '../../layout/cubut/home_layout_states.dart';
 import '../../layout/home_layout/home_layout.dart';
 import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
@@ -40,9 +45,9 @@ class _ChosePlaceState extends State<ChosePlace> {
         child: Column(children: [
           Padding(
             padding: EdgeInsets.only(top: 64.h),
-            child: const Text(
-              'اختر محل الحلاقة',
-              style: TextStyle(
+            child: Text(
+              AppStrings.discoverBarbershops.tr(),
+              style: const TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: 20,
               ),
@@ -56,41 +61,46 @@ class _ChosePlaceState extends State<ChosePlace> {
                 crossAxisCount: 2,
                 mainAxisSpacing: 1.h,
                 crossAxisSpacing: 20.w,
-                childAspectRatio: 1.h / 1.70.h,
+                childAspectRatio: 1.h / 1.56.h,
                 children: List.generate(
                   model.length,
-                  (index) => InkWell(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        FittedBox(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                image:  DecorationImage(
-                                    image: AssetImage(model[index]),
-                                    fit: BoxFit.cover)),
-                            height: 224.h,
-                            width: 151.w,
+                  (index) => FittedBox(
+                    child: InkWell(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FittedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                      image: AssetImage(model[index]),
+                                      fit: BoxFit.cover)),
+                              height: 224.h,
+                              width: 151.w,
+                            ),
                           ),
-                        ),
-                         SizedBox(
-                          height: 10.h,
-                        ),
-                        const Align(
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              'اسم محل الحلاقه',
-                              style: TextStyle(
-                                fontWeight: FontWeightManager.medium,
-                                fontFamily: FontConstants.cairoFontFamily,
-                              ),
-                            )),
-                      ],
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          Align(
+                              alignment: Alignment.topRight,
+                              child: Text(
+                                AppStrings.barbershopName.tr(),
+                                style: const TextStyle(
+                                  fontWeight: FontWeightManager.medium,
+                                  fontFamily: FontConstants.cairoFontFamily,
+                                ),
+                              )),
+                          SizedBox(
+                            height: 14.h,
+                          )
+                        ],
+                      ),
+                      onTap: () {
+                        navigateTo(context, const HomeLayout());
+                      },
                     ),
-                    onTap: () {
-                      navigateTo(context, const HomeLayout());
-                    },
                   ),
                 )),
           ),

@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../componants/language_type.dart';
 
-const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
+const String pressKeyLanguage = "PREFS_KEY_LANG";
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
@@ -12,12 +11,12 @@ class AppPreferences {
   AppPreferences(this._sharedPreferences);
 
   Future<String> getAppLanguage() async {
-    String? language = _sharedPreferences.getString(PREFS_KEY_LANG);
+    String? language = _sharedPreferences.getString(pressKeyLanguage);
     if (language != null && language.isNotEmpty) {
       return language;
     } else {
       // return default lang
-      return LanguageType.english.getValue();
+      return LanguageType.arabic.getValue();
     }
   }
 
@@ -27,11 +26,11 @@ class AppPreferences {
     if (currentLang == LanguageType.arabic.getValue()) {
       // set english
       _sharedPreferences.setString(
-          PREFS_KEY_LANG, LanguageType.english.getValue());
+          pressKeyLanguage, LanguageType.english.getValue());
     } else {
       // set arabic
       _sharedPreferences.setString(
-          PREFS_KEY_LANG, LanguageType.arabic.getValue());
+          pressKeyLanguage, LanguageType.arabic.getValue());
     }
   }
 
@@ -45,4 +44,31 @@ class AppPreferences {
     }
   }
 
+  static late SharedPreferences cacheHelper;
+
+  static init() async {
+    cacheHelper = await SharedPreferences.getInstance();
+  }
+
+  static Future<bool?> saveData(String key, value) async {
+    if (value is bool) {
+      return await cacheHelper.setBool(key, value);
+    }
+    if (value is String) {
+      return await cacheHelper.setString(key, value);
+    }
+    if (value is int) {
+      return await cacheHelper.setInt(key, value);
+    }
+    return null;
+  }
+
+  static  getData(String? key) {
+    return  cacheHelper.get(key!);
+  }
+
+
+  static Future<bool> removeData(String? key) {
+    return cacheHelper.remove(key!);
+  }
 }

@@ -1,9 +1,11 @@
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/shared/componants/componants.dart';
 import 'package:salon_app/shared/componants/fonts_manager.dart';
+import 'package:salon_app/shared/local_data_source/locale_data_source.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../shared/componants/app_strings.dart';
@@ -35,6 +37,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   bool isLast = false;
   @override
   Widget build(BuildContext context) {
+    void submit(){
+      AppPreferences.saveData('onBoarding', true).then((value){
+        if(value = true)
+        {
+          navigateAndFinish(context, const LoginScreen());
+        }
+      });
+    }
     return Scaffold(
         body: Container(
             decoration: const BoxDecoration(
@@ -61,8 +71,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                                 shape: const RoundedRectangleBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(16)))),
-                            onPressed: () =>
-                                navigateAndFinish(context, const LoginScreen()),
+                            onPressed: () {
+                              submit();
+                            },
                             child: Center(
                               child: FittedBox(
                                 child: Text(
@@ -92,6 +103,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           if (index == boarding.length - 1) {
                             setState(() {
                               isLast = true;
+
                             });
                           } else {
                             setState(() {
@@ -122,7 +134,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     elevation: 0.0,
                     onPressed: () {
                       if (isLast) {
-                        navigateAndFinish(context, const LoginScreen());
+                        submit();
                       } else {
                         boardController.nextPage(
                             duration: const Duration(
