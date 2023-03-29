@@ -13,6 +13,7 @@ class DioHelper {
       required Map<String, dynamic> data,
       String? token}) {
     dio.options.headers = {
+
       'lang': 'en',
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $token',
@@ -41,4 +42,6 @@ class DioHelper {
     };
     return await dio.get(path, queryParameters: data,);
   }
+
+
 }

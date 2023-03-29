@@ -1,8 +1,10 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:salon_app/layout/cubut/home_layout_cubit.dart';
 import 'package:salon_app/shared/componants/app_strings.dart';
 import '../../../shared/componants/app_constane.dart';
 import '../../../shared/componants/assets_manager.dart';
@@ -27,7 +29,6 @@ class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
 
   var passwordController = TextEditingController();
-
   var formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -35,6 +36,19 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController.dispose();
     super.dispose();
   }
+
+  // void validateEmail(){
+  //   final bool isValid =  EmailValidator.validate(emailController.text.trim());
+  //
+  //   if(isValid)
+  // {
+  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Center(child: Text('valid email'))));
+  // }
+  // else{
+  //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Center(child: Text('Not A valid email'))));
+  //
+  // }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +60,41 @@ class _LoginScreenState extends State<LoginScreen> {
       create: (BuildContext context) => AuthCubit(),
       child: BlocConsumer<AuthCubit, AuthStates>(
         listener: (context, state) {
+
+           if(state is GoogleSignInSuccessState){
+            AppPreferences.saveData('token', state.googleDataModel.token!)
+                .then((value) {
+              print(value.toString());
+              token = state.googleDataModel.token!;
+              print('2');
+
+              print(token);
+              print('2');
+              print('2');
+              navigateAndFinish(
+                  context,
+                  BlocProvider.value(
+                    value: HomeLayoutCubit.get(context)..getBarberData(),
+                    child: const ChosePlace(),
+                  ));
+            });
+
+          }
           if (state is AppLoginSuccessStates) {
-            if (state.loginModel.status) {
-              AppPreferences.saveData('token', state.loginModel.token)
-                  .then((value) {
-                token = state.loginModel.token;
-                print(token);
-                navigateAndFinish(context, const ChosePlace());
-              });
-            } else {}
+          if (state.loginModel.status!) {
+          AppPreferences.saveData('token', state.loginModel.token)
+              .then((value) {
+          token = state.loginModel.token;
+          print(token);
+          navigateAndFinish(
+          context,
+          BlocProvider.value(
+          value: HomeLayoutCubit.get(context)..getBarberData(),
+          child: const ChosePlace(),
+          ));
+          });
+          }
+
           }
         },
         builder: (context, state) {
@@ -117,11 +157,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                         fontFamily:
                                             FontConstants.poppinsFontFamily),
                                     validate: (String? value) {
-                                      if (value!.isEmpty ) {
-                                        return "Email must not be empty";
-                                      } else {
-                                        return null;
+                                      if (value!.isEmpty) {
+                                        return 'Email must not be empty';
+                                      } else if (!RegExp(
+                                              "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                          .hasMatch(value)) {
+                                        return 'Please a valid Email';
                                       }
+                                      return null;
                                     },
                                     controller: emailController,
                                     type: TextInputType.emailAddress,
@@ -177,11 +220,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                       : Alignment.bottomRight,
                                   child: TextButton(
                                       onPressed: () {
-                                        Navigator.push(
+                                        navigateTo(
                                             context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const ForgetPasswordScreen()));
+                                            BlocProvider.value(
+                                              value: AuthCubit.get(context),
+                                              child:
+                                                  const ForgetPasswordScreen(),
+                                            ));
                                       },
                                       child: Text(
                                         AppStrings.forgetPasswordText.tr(),
@@ -202,18 +247,28 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
+                                  // validateEmail();
                                   AuthCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passwordController.text);
-                                }
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                } else {}
                               },
-                              child: Text(
-                                AppStrings.loginText.tr(),
-                                style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: FontConstants.cairoFontFamily),
-                              ),
+                              child: ConditionalBuilder(
+                                  condition: state is! AppLoginLoadingStates &&
+                                      state is! AppLoginSuccessStates,
+                                  builder: (BuildContext context) => Text(
+                                        AppStrings.loginText.tr(),
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily:
+                                                FontConstants.cairoFontFamily),
+                                      ),
+                                  fallback: (BuildContext context) =>
+                                      const CircularProgressIndicator(
+                                        color: Colors.white,
+                                      )),
                               style: ElevatedButton.styleFrom(
                                   elevation: 0.0,
                                   backgroundColor: HexColor('#8281F8'),
@@ -246,7 +301,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: IconButton(
                                     icon: Image.asset(
                                         'assets/images/facebook_icon.png'),
-                                    onPressed: () {},
+                                    onPressed: () async{
+                                      AuthCubit.get(context).facebookSignIn();
+                                    },
                                   ),
                                 ),
                                 Container(
@@ -259,7 +316,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: IconButton(
                                     icon:
                                         Image.asset('assets/images/apple.png'),
-                                    onPressed: () {},
+                                    onPressed: () {
+
+                                    },
                                   ),
                                 ),
                                 Container(
@@ -272,7 +331,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: IconButton(
                                     icon:
                                         Image.asset('assets/images/google.png'),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      AuthCubit.get(context).googleSignIn();
+                                    },
                                   ),
                                 ),
                               ],
@@ -306,7 +367,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         fontWeight: FontWeightManager.medium,
                                         fontFamily:
                                             FontConstants.cairoFontFamily),
-                                  ))
+                                  ),
+                              ),
                             ],
                           ),
                         ],
@@ -315,7 +377,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-            )),
+            ),
+            ),
           );
         },
       ),

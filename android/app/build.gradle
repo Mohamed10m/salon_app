@@ -51,11 +51,20 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.salon_app"
         minSdkVersion 21
-        targetSdkVersion 29
+        multiDexEnabled true
+        targetSdkVersion 31
         versionCode 18
         versionName "2.8"
     }
 
+//    signingConfigs {
+//        release {
+//            keyAlias 'upload2'
+//            keyPassword 'Mohamed'
+//            storeFile File('upload2-keystore.jks')
+//            storePassword 'Mohamed'
+//        }
+//    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -71,4 +80,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 }

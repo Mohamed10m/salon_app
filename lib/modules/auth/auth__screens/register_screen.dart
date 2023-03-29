@@ -1,11 +1,13 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../../../layout/cubut/home_layout_cubit.dart';
 import '../../../shared/componants/app_constane.dart';
 import '../../../shared/componants/app_strings.dart';
 import '../../../shared/componants/assets_manager.dart';
@@ -56,7 +58,10 @@ class _LoginScreenState extends State<RegisterScreen> {
             AppPreferences.saveData('token', state.authModel.token)
                 .then((value) {
               token = state.authModel.token;
-              navigateAndFinish(context, const ChosePlace());
+              navigateAndFinish(context, BlocProvider.value(
+                value: HomeLayoutCubit.get(context)..getBarberData(),
+                child: const ChosePlace(),
+              ));
             });
           }
         },
@@ -260,7 +265,6 @@ class _LoginScreenState extends State<RegisterScreen> {
                               width: 320.w,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  setState(() {
                                     if (formKey.currentState!.validate()) {
                                       AuthCubit.get(context).userRegister(
                                           name: nameController.text,
@@ -270,16 +274,16 @@ class _LoginScreenState extends State<RegisterScreen> {
                                               passwordController.text,
                                           phone: phoneController.text);
                                     }
-                                  });
+
                                 },
-                                child: Text(
+                                child: ConditionalBuilder(condition:state is! AppRegisterLoadingStates &&  state is! AppRegisterSuccessStates , builder:(BuildContext context)=> Text(
                                   AppStrings.registerText.tr(),
                                   style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeightManager.medium,
                                       fontFamily:
-                                          FontConstants.cairoFontFamily),
-                                ),
+                                      FontConstants.cairoFontFamily),
+                                ),fallback: (BuildContext context)=>const CircularProgressIndicator(color: Colors.white,)),
                                 style: ElevatedButton.styleFrom(
                                     elevation: 0.0,
                                     backgroundColor: HexColor('#8281F8'),

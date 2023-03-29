@@ -25,7 +25,6 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return BlocConsumer<HomeLayoutCubit, HomeLayoutStates>(
     listener: (context, state) {},
     builder: (context, state) {
-      var cubit = HomeLayoutCubit.get(context).userModel;
 
       return Scaffold(
         body: background(

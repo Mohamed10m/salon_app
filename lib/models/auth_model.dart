@@ -14,11 +14,13 @@ class AuthModel {
 
 class Data {
   String? name;
+  int? id;
   String? email;
   String? phone;
 
   Data.fromJson(Map<String, dynamic> json) {
     name = json['name'];
+    id = json['id'];
     email = json['email'];
     phone = json['phone'];
   }

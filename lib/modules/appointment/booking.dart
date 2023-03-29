@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,7 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen> {
   int currentStep = 0;
   List<DateTime> dates = <DateTime>[];
-
+int? ff;
   DateTime selectedDateTime = DateTime.now();
 
   @override
@@ -45,10 +46,12 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     Locale myLocale = Localizations.localeOf(context);
-
+var cubit = HomeLayoutCubit.get(context).getChooseServices!.data;
     return BlocConsumer<HomeLayoutCubit, HomeLayoutStates>(
         listener: (context, state) {},
         builder: (context, state) {
+
+
           return Column(children: [
             Padding(
                 padding: EdgeInsets.only(top: 60.h, right: 35.w, left: 35.w),
@@ -93,7 +96,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          const AddAppointmentScreen()));
+                                          AddAppointmentScreen()));
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +140,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                       style: TextStyle(
                                         fontSize: 18,
                                         color: dates[index].day ==
-                                                selectedDateTime.day
+                                            selectedDateTime.day
                                             ? ColorManager.buttonColor
                                             : Colors.grey,
                                       ),
@@ -150,9 +153,9 @@ class _BookingScreenState extends State<BookingScreen> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     color:
-                                        dates[index].day == selectedDateTime.day
-                                            ? ColorManager.buttonColor
-                                            : Colors.grey,
+                                    dates[index].day == selectedDateTime.day
+                                        ? ColorManager.buttonColor
+                                        : Colors.grey,
                                   ),
                                 ),
                                 if (dates[index].day ==
@@ -172,17 +175,22 @@ class _BookingScreenState extends State<BookingScreen> {
                       ),
                     ),
                     SizedBox(height: 10.h),
-                    ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (_, int currentIndex) => BookingWidget(
-                              index: currentIndex,
+                    ConditionalBuilder(condition: cubit  != null, builder: (context)=>
+                        ListView.separated(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (_, int index) => BookingWidget(
+                              index: index,
                             ),
-                        separatorBuilder: (_, __) => SizedBox(width: 0.w),
-                        itemCount: 5),
+                            separatorBuilder: (_, __) => SizedBox(width: 0.w),
+                            itemCount: cubit!.length
+                        ),
+                        fallback: (context)=>const Center(child: CircularProgressIndicator()))
                   ],
                 ))
           ]);
+
         });
+
   }
 }

@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
           return Scaffold(
               body: background(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 54.h, right: 35.w, left: 35.w),
+                  padding: EdgeInsets.only(top: 34.h, right: 35.w, left: 35.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -185,14 +185,16 @@ class ProfileScreen extends StatelessWidget {
                                       type: TextInputType.number,
                                     ),
                                   ],
-                                )),
+                                ),
+                            ),
                           ],
                         ),
                       )
                     ],
                   ),
                 ),
-              ));
+              ),
+          );
         }
     );
   }

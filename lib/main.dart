@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'layout/cubut/home_layout_cubit.dart';
 import 'layout/cubut/home_layout_states.dart';
+import 'modules/auth/auth_cubit/auth_states.dart';
 import 'modules/chose_place/choose_place.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 
@@ -30,7 +31,7 @@ void main() async {
   Widget widget;
 
   bool? onBoarding = AppPreferences.getData('onBoarding');
- await SharedPreferences.getInstance();
+  await SharedPreferences.getInstance();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarIconBrightness: Brightness.dark,
     statusBarColor: HexColor('#FFFFFF').withOpacity(0.1),
@@ -38,6 +39,7 @@ void main() async {
 
   token = await AppPreferences.getData('token');
   print(token);
+
   if (onBoarding != null) {
     if (token != null) {
       widget = const ChosePlace();
@@ -47,21 +49,22 @@ void main() async {
   } else {
     widget = const OnBoardingScreen();
   }
+
   runApp(EasyLocalization(
-    child: Phoenix(child:  MyApp(startWidget: widget,)),
+    child: Phoenix(
+        child: MyApp(
+      startWidget: widget,
+    )),
     saveLocale: true,
     supportedLocales: const [arabicLocal, englishLocal],
     path: assetPathLocation,
     fallbackLocale: const Locale("ar", "SA"),
   ));
-
 }
 
 class MyApp extends StatefulWidget {
-   Widget startWidget;
-   MyApp({
-    Key? key,required this.startWidget
-  }) : super(key: key);
+  Widget startWidget;
+  MyApp({Key? key, required this.startWidget}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState(startWidget);
@@ -81,19 +84,30 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-    return ScreenUtilInit(
-      builder: (BuildContext context, Widget? child) {
-        return
-           MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        home: startWidget,
-        theme: ThemeData(platform: TargetPlatform.iOS, fontFamily: 'Cairo'),
-      );
-    }
-    );
+    return ScreenUtilInit(builder: (BuildContext context, Widget? child) {
+      return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (BuildContext contextApp) => HomeLayoutCubit()
+                  ..getBarberData()
+                  ),
+            BlocProvider(
+              create: (BuildContext contextApp) => AuthCubit(),
+            )
+          ],
+          child: BlocConsumer<HomeLayoutCubit, HomeLayoutStates>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return MaterialApp(
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  debugShowCheckedModeBanner: false,
+                  home:startWidget,
+                  theme: ThemeData(
+                      platform: TargetPlatform.iOS, fontFamily: 'Cairo'),
+                );
+              }));
+    });
   }
 }

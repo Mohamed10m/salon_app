@@ -1,5 +1,5 @@
 class LoginModel {
- late bool status;
+  bool? status;
   String? message;
   String? token;
   Data? data;

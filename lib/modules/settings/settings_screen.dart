@@ -52,7 +52,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         height: 16.h,
                       ),
                       Text(
-                        HomeLayoutCubit.get(context).userModel!.email,
+                        HomeLayoutCubit.get(context).userModel!.name,
                         // cubit.userDataModel!.name!,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -125,7 +125,9 @@ class _SettingsPageState extends State<SettingsPage> {
                             image: ImageAssets.appointmentIcon,
                             context: context,
                             function: (){
-                              navigateTo(context, const MyAppointments());
+                              navigateTo(context,BlocProvider.value(
+                                value: HomeLayoutCubit.get(context)..getChooseServicesData(),
+                                child:  const MyAppointments(),));
                             },
                           )),
                       SizedBox(
