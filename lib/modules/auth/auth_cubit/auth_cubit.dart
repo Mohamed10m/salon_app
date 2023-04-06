@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:salon_app/models/google_auth_model_.dart';
-import 'package:salon_app/models/user_data_model.dart';
-import 'package:salon_app/shared/componants/app_constane.dart';
-
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../models/auth_model.dart';
 
 import '../../../models/change_password.dart';
+import '../../../models/check_code_model.dart';
+import '../../../models/facebook_auth_model.dart';
 import '../../../models/login_model.dart';
 import '../../../models/reset_password_model.dart';
 import '../../../shared/end_points/end_points.dart';
@@ -18,6 +18,7 @@ import 'auth_states.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AppLoginInitialStates());
+
   static AuthCubit get(context) => BlocProvider.of(context);
 
   AuthModel? authModel;
@@ -25,8 +26,8 @@ class AuthCubit extends Cubit<AuthStates> {
   void userRegister(
       {required String name,
       required String email,
-      required String password,
-      required String confirmPassword,
+      String? password,
+      String? confirmPassword,
       required String phone}) {
     emit(AppRegisterLoadingStates());
 
@@ -65,7 +66,6 @@ class AuthCubit extends Cubit<AuthStates> {
 
       emit(ResetPasswordSuccessState());
     }).catchError((error) {
-      print(error.toString());
       emit(ResetPasswordErrorState());
     });
   }
@@ -88,6 +88,7 @@ class AuthCubit extends Cubit<AuthStates> {
 
   bool isPassword = true;
   IconData suffix = Icons.visibility_outlined;
+
   void changePasswordVisibility() {
     isPassword = !isPassword;
     suffix =
@@ -95,86 +96,26 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(AppChangePasswordStates());
   }
 
-
-
-
-  // void changePassword({
-  //   required String password,
-  //   required String confirmPassword,
-  // }) {
-  //   emit(ChangePasswordLoadingState());
-  //
-  //   DioHelper.postData(
-  //     path: changePass,
-  //     data: {
-  //       'new_password': password,
-  //       'new_password_confirmation': confirmPassword,
-  //     },
-  //   ).then((value) {
-  //     resetPasswordModel = ResetPasswordModel.fromJson(value.data);
-  //
-  //     emit(ChangePasswordSuccessState());
-  //   }).catchError((error) {
-  //     print(error.toString());
-  //     emit(ChangePasswordErrorState());
-  //   });
-  // }
-
-//   ChangePasswordModel ? enterCode;
-//
-//   void enterCodeVerification({
-//     required String code,
-//     required String password,
-//     required String confirmPassword,
-//     required String code,
-//   }) {
-//     emit(EnterPasswordLoadingState());
-// print('ppppppppppppppppppppppppppppppppp123');
-//     DioHelper.postData(
-//       token: token,
-//       path: changePass,
-//       data: {
-//         'code': code,
-//         'new_password': code,
-//         'new_password_confirmation': code,
-//         'code': code,
-//       },
-//     ).then((value) {
-//       print('ppppppppppppppppppppppppppppppppp456');
-//
-//       enterCode = ChangePasswordModel.fromJson(value.data);
-//       print('ppppppppppppppppppppppppppppppppp789');
-//
-//       emit(EnterPasswordSuccessState());
-//     }).catchError((error) {
-//       print(error.toString());
-//       emit(EnterPasswordErrorState());
-//     });
-//   }
-
-
-
   ChangePasswordModel? changePasswordModel;
 
   void changePassword({
-     String? email,
-     String ?code ,
-     String? newPassword,
-     String? newPasswordConfirmation,
-
+    String? email,
+    String? code,
+    String? newPassword,
+    String? newPasswordConfirmation,
   }) {
     emit(ChangePasswordLoadingState());
-    print('888888888888888');
     DioHelper.postData(
       path: changePass,
       data: {
         'email': email,
         'code': code,
-        'new_password':newPassword,
-        'new_password_confirmation':newPasswordConfirmation,
+        'new_password': newPassword,
+        'new_password_confirmation': newPasswordConfirmation,
       },
     ).then((value) {
-      print(value.data);
+      print(value);
+      print('dssss${value.toString()}');
       emit(ChangePasswordSuccessState());
     }).catchError((error) {
       print(error.toString());
@@ -182,16 +123,34 @@ class AuthCubit extends Cubit<AuthStates> {
     });
   }
 
+  CheckCodeModel? checkCodeModel;
 
-GoogleDataModel ?googleDataModel;
+  void checkCode({
+    String? email,
+    String? code,
+  }) {
+    emit(CheckCodeLoadingState());
+    DioHelper.postData(
+      path: check,
+      data: {
+        'email': email,
+        'code': code,
+      },
+    ).then((value) {
+      emit(CheckCodeSuccessState());
+    }).catchError((error) {
+      emit(CheckCodeErrorState());
+    });
+  }
 
-   googleSignIn()async{
-   final  googleSignInAccount = await GoogleSignIn().signIn();
-    final googleSignInAuthentication =  await googleSignInAccount!.authentication;
+  GoogleDataModel? googleDataModel;
 
-  final  accessToken = googleSignInAuthentication.accessToken;
+  googleSignIn() async {
+    final googleSignInAccount = await GoogleSignIn().signIn();
+    final googleSignInAuthentication =
+        await googleSignInAccount!.authentication;
 
-    print('${ googleSignInAuthentication.accessToken}');
+    final accessToken = googleSignInAuthentication.accessToken;
     emit(GoogleSignInLoadingState());
     DioHelper.postData(
       path: loginGoogle,
@@ -199,72 +158,115 @@ GoogleDataModel ?googleDataModel;
         'provider': 'google',
         'access_provider_token': accessToken,
       },
-    ).then((value) {
+    ).then((value) async{
       googleDataModel = GoogleDataModel.fromJson(value.data);
-      print(googleDataModel!.user!.name);
-      print(value.data);
-         print('1111111111');
+
       emit(GoogleSignInSuccessState(googleDataModel!));
     }).catchError((error) {
-      print(error.toString());
       emit(GoogleSignInErrorState());
     });
-   }
+  }
 
 
 
 
-  // Future<UserCredential> signInWithFacebook() async {
-  //   // Trigger the sign-in flow
-  //   final LoginResult loginResult = await FacebookAuth.instance.login();
-  //
-  //   // Create a credential from the access token
-  //   final OAuthCredential facebookAuthCredential =
-  //   FacebookAuthProvider.credential(loginResult.accessToken!.token);
-  //
-  //   // Once signed in, return the UserCredential
-  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  // }
-
-  // Future<void> _facebookSignIn() async {
-  //   try {
-  //     final result =
-  //     await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
-  //     if (result.status == LoginStatus.success) {
-  //       final userData = await FacebookAuth.i.getUserData();
-  //       print(userData);
-  //     }
-  //   } catch (error) {
-  //     print(error);
-  //   }
-  Future<void> facebookSignIn()async{
-          final result =
-          await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
-          print(result);
-            final userData = await FacebookAuth.i.getUserData();
-          final  accessToken = result.accessToken;
-            print(result.accessToken);
-
-
+  FaceLoginModel? faceLoginModel;
+  Future<void> facebookSignIn() async {
+    final result =
+    await FacebookAuth.i.login(permissions: ['public_profile', 'email']);
+    print(result);
+    final userData = await FacebookAuth.i.getUserData();
+    final  accessToken = result.accessToken;
+    print(result.accessToken);
     emit(FacebookSignInLoadingState());
-    print('lllllll');
-    DioHelper.postData(
-      path: loginGoogle,
-      data: {
-        'provider': 'facebook',
-        'access_provider_token':accessToken,
-      },
-    ).then((value) {
-      print('hhhhhhhhhhhhh${value.data.toString()}');
-      googleDataModel = GoogleDataModel.fromJson(value.data);
-      print('hhhhhhhhhhhhh${googleDataModel!.token}');
-      emit(FacebookSignInSuccessState(googleDataModel!));
-    }).catchError((error) {
-      print(error.toString());
-      emit(FacebookSignInErrorState());
-    });
-   }
+      DioHelper.postData(
+        path: loginGoogle,
+        data: {
+          'provider': 'facebook',
+          'access_provider_token': accessToken!.token,
+        },
+      ).then((value) {
+        faceLoginModel = FaceLoginModel.fromJson(value.data);
+        emit(FacebookSignInSuccessState(faceLoginModel!));
+      }).catchError((error) {
+        print(error.toString());
+        emit(FacebookSignInErrorState());
+      });
 
 
-}
 
+  }
+
+  // FaceLoginModel? faceLoginModel;
+  Future<void> appleSignIn() async {
+      final appleIdCredential =
+      await SignInWithApple.getAppleIDCredential(scopes:[
+          AppleIDAuthorizationScopes.fullName,
+          AppleIDAuthorizationScopes.fullName
+    ],
+          webAuthenticationOptions: WebAuthenticationOptions(
+          redirectUri: Uri.parse('https://api.dreamwod.app/auth/callbacks/apple-sign-in'),
+          clientId: 'com.dreamwod.app.login',
+    ),
+
+      );
+      print(appleIdCredential.authorizationCode);
+
+      emit(FacebookSignInLoadingState());
+        DioHelper.postData(
+          path: loginGoogle,
+          data: {
+            'provider': 'apple',
+            'access_provider_token':appleIdCredential.authorizationCode,
+          },
+        ).then((value) {
+          emit(FacebookSignInSuccessState(faceLoginModel!));
+        }).catchError((error) {
+          emit(FacebookSignInErrorState());
+        });
+      }
+
+  }
+
+//
+//
+// FaceLoginModel? faceLoginModel;
+// Future<void> facebookSignIn() async {
+//   final fb = FacebookLogin();
+//   // Log in
+//   final res = await fb.logIn(permissions: [
+//     FacebookPermission.publicProfile, // permission to get public profile
+//     FacebookPermission.email,// permission to get email address
+//   ]);
+//   // Check result status
+//   switch (res.status) {
+//     case FacebookLoginStatus.success:
+//       final FacebookAccessToken? accessToken = res.accessToken; // get accessToken for auth login
+//       final profile = await fb.getUserProfile(); // get profile of user
+//       final imageUrl = await fb.getProfileImageUrl(width: 100); // get user profile image
+//       final email = await fb.getUserEmail(); // get user's email address
+//
+//       print('Access token: ${accessToken?.token}');
+//       print('Hello, ${profile!.name}! You ID: ${profile.userId}');
+//       print('Your profile image: $imageUrl');
+//       if (email != null)
+//         print('And your email is $email');
+//
+//       //push to success page after successfully signed in
+//
+//
+//       break;
+//     case FacebookLoginStatus.cancel:
+//     // User cancel log in
+//       break;
+//     case FacebookLoginStatus.error:
+//     // Log in failed
+//       print('Error while log in: ${res.error}');
+//       break;
+//   }
+//
+// }
+// }
+//
+//
+//

@@ -29,6 +29,9 @@ class LoadingChooseServiceData extends HomeLayoutStates {}
 class GetChooseServiceLoadingData extends HomeLayoutStates {}
 class GetChooseServiceSuccessData extends HomeLayoutStates {}
 class GetChooseServiceErrorData extends HomeLayoutStates {}
+class GetNotifyLoadingData extends HomeLayoutStates {}
+class GetNotifySuccessData extends HomeLayoutStates {}
+class GetNotifyErrorData extends HomeLayoutStates {}
 
 class SuccessChooseServiceData extends HomeLayoutStates {}
 class ErrorChooseServiceData extends HomeLayoutStates {}

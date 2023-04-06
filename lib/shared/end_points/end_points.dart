@@ -23,4 +23,6 @@ const chooseServicesData ='https://www.salon.spider-te8.com/api/services';
 const showDataUser ='https://www.salon.spider-te8.com/api/show-data';
 const getChooseService ='https://www.salon.spider-te8.com/api/showservices';
 const loginGoogle ='https://www.salon.spider-te8.com/api/login/callback';
+const check ='https://www.salon.spider-te8.com/api/check-forget-password-code';
+const notify ='https://www.salon.spider-te8.com/api/notifications';
 

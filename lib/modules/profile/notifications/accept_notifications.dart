@@ -14,15 +14,16 @@ import '../../../shared/componants/fonts_manager.dart';
 import '../../../shared/componants/language_type.dart';
 
 class AcceptNotifications extends StatefulWidget {
-  const AcceptNotifications({Key? key}) : super(key: key);
-
+  const AcceptNotifications({Key? key,required this.index}) : super(key: key);
+final int index;
   @override
-  _State createState() => _State();
+  _State createState() => _State(index: index);
 }
 
 class _State extends State<AcceptNotifications> {
+  _State({required this.index});
   bool isPressed = false;
-
+final int index;
   @override
   Widget build(BuildContext context) {
     bool isRtl() {
@@ -93,7 +94,7 @@ class _State extends State<AcceptNotifications> {
                     iconColor: HexColor('#8281F8').withOpacity(0.20),
                     color: HexColor('#EC8E6C').withOpacity(0.02),
                     sColor: HexColor('#EC8E6C').withOpacity(0.02),
-                    title: AppStrings.makeup.tr(),
+                    title:  HomeLayoutCubit.get(context).getNotificationModel!.data![index].title!,
                     subtitle: AppStrings.cardNotText.tr(),
                   )
               ],

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <resources>
-        <string name="app_name">Salon App</string>
-        <string name="facebook_app_id">778963133317271</string>
-        <string name="fb_login_protocol_scheme">fbbd8b2ad1da6d89b6f695ba623f76e681</string>
-        <string name="facebook_client_token">0ddfee1abbd4039d77befed4eac9fb99</string>
+<resources>
+        <string name="app_name">salon app</string>
+        <string name="facebook_app_id">1413538196144139</string>
+        <string name="fb_login_protocol_scheme">fb1413538196144139</string>
+        <string name="facebook_client_token">8d201c6c6745c57449c1c090b4deca76</string>
     </resources>
 
 

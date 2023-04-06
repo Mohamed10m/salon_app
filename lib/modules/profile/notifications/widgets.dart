@@ -15,69 +15,70 @@ Widget buildUserDataItem({
   required FittedBox container,
   required String image,
 }) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Expanded(
-                child: Row(
-              children: [
-                container,
+    FittedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Row(
+                children: [
+              container,
 
-                SizedBox(
-                  width: 12.w,
-                ),
+              SizedBox(
+                width: 12.w,
+              ),
 
-                Container(
-                  height: 26.h,
-                  width: 27.w,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: HexColor('#8281F8'),
-                      image: const DecorationImage(
-                        image: AssetImage(ImageAssets.userImage),
-                      )),
+              Container(
+                height: 26.h,
+                width: 27.w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: HexColor('#8281F8'),
+                    image: const DecorationImage(
+                      image: AssetImage(ImageAssets.userImage),
+                    )),
+              ),
+              SizedBox(
+                width: 12.w,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 22.0.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: FontConstants.cairoFontFamily,
+                          fontSize: 18,
+                        )),
+                    SizedBox(
+                      width: 8.w,
+                    ),
+                    Text(subtitle,
+                        style: TextStyle(
+                          color: HexColor('#212121').withOpacity(0.5),
+                          fontWeight: FontWeightManager.medium,
+                          fontFamily: FontConstants.cairoFontFamily,
+                          fontSize: 11,
+                        )),
+                  ],
                 ),
-                SizedBox(
-                  width: 12.w,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 22.0.h),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontFamily: FontConstants.cairoFontFamily,
-                            fontSize: 18,
-                          )),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      Text(subtitle,
-                          style: TextStyle(
-                            color: HexColor('#212121').withOpacity(0.5),
-                            fontWeight: FontWeightManager.medium,
-                            fontFamily: FontConstants.cairoFontFamily,
-                            fontSize: 11,
-                          )),
-                    ],
-                  ),
-                ),
-              ],
-            )),
-            Text(trailing,
-                style: TextStyle(
-                  color: HexColor('#212121').withOpacity(0.5),
-                  fontWeight: FontWeightManager.medium,
-                  fontFamily: FontConstants.cairoFontFamily,
-                  fontSize: 14,
-                )),
-          ],
-        ),
-      ],
+              ),
+                ],
+              ),
+              Text(trailing,
+                  style: TextStyle(
+                    color: HexColor('#212121').withOpacity(0.5),
+                    fontWeight: FontWeightManager.medium,
+                    fontFamily: FontConstants.cairoFontFamily,
+                    fontSize: 14,
+                  )),
+            ],
+          ),
+        ],
+      ),
     );
 Widget buildNotificationsItem({
   required Color color,

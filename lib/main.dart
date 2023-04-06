@@ -16,7 +16,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'layout/cubut/home_layout_cubit.dart';
 import 'layout/cubut/home_layout_states.dart';
-import 'modules/auth/auth_cubit/auth_states.dart';
 import 'modules/chose_place/choose_place.dart';
 import 'modules/onboarding/onboarding_screen.dart';
 
@@ -63,8 +62,8 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  Widget startWidget;
-  MyApp({Key? key, required this.startWidget}) : super(key: key);
+ final Widget startWidget;
+ const MyApp({Key? key, required this.startWidget}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState(startWidget);

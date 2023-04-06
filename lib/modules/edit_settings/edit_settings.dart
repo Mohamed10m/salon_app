@@ -13,6 +13,7 @@ import '../../shared/componants/di.dart';
 import '../../shared/componants/fonts_manager.dart';
 import '../../shared/local_data_source/locale_data_source.dart';
 import '../password/create_new_password.dart';
+import '../password/forget_password.dart';
 
 class EditSettings extends StatefulWidget {
   const EditSettings({Key? key}) : super(key: key);
@@ -70,7 +71,7 @@ class _EditSettingsState extends State<EditSettings> {
               const SizedBox(height: 16),
               InkWell(
                 onTap: () {
-                  navigateTo(context, const CreateNewPassword());
+                  navigateTo(context,  const ForgetPasswordScreen());
                 },
                 child: Container(
                     padding: EdgeInsets.only(

@@ -17,7 +17,7 @@ import 'add_appointment_successfully.dart';
 
 class AddAppointmentScreen extends StatefulWidget {
   AddAppointmentScreen({Key? key, this.id}) : super(key: key);
-  int? id;
+ final int? id;
   @override
   State<AddAppointmentScreen> createState() => _AddAppointmentScreenState(id);
 }
@@ -502,7 +502,7 @@ class _AddAppointmentScreenState extends State<AddAppointmentScreen> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                              AppointmentResultScreen()),
+                                              AppointmentResultScreen(index: id,)),
                                           (route) => false);
                                   // }
                                 },

@@ -2,10 +2,12 @@ buildscript {
     ext.kotlin_version = '1.6.10'
     repositories {
         google()
+        maven { url 'https://maven.google.com' }
         mavenCentral()
     }
 
     dependencies {
+        classpath 'com.facebook.android:facebook-android-sdk:4.12.0'
         classpath 'com.android.tools.build:gradle:4.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -14,6 +16,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        maven { url 'https://maven.google.com' }
         mavenCentral()
     }
 }

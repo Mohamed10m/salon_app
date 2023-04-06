@@ -106,17 +106,13 @@ class _PasswordChangedSuccessfullyState
   }
 }
 
-
-class SplashController
-{
+class SplashController {
   void timer(context) {
-    Timer(const Duration(seconds: 3), () {
-
-
+    Timer(
+      const Duration(seconds: 3),
+      () {
         navigateAndFinish(context, const LoginScreen());
-
-
-    });
-
+      },
+    );
   }
 }

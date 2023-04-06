@@ -11,7 +11,7 @@ class ShowDataUser {
     id = json['id'];
     name = json['name'];
     type = json['type'];
-    phone = json['phone'];
+    phone = json['phone']??'';
     email = json['email'];
     image = json['image'];
   }

@@ -1,6 +1,7 @@
 import 'package:salon_app/models/auth_model.dart';
 import 'package:salon_app/models/google_auth_model_.dart';
 
+import '../../../models/facebook_auth_model.dart';
 import '../../../models/login_model.dart';
 
 abstract class AuthStates {}
@@ -28,7 +29,11 @@ class AppLoginSuccessStates extends AuthStates {
 
 class AppLoginLoadingStates extends AuthStates {}
 
-class AppLoginErrorStates extends AuthStates {}
+class AppLoginErrorStates extends AuthStates {
+  final LoginModel ?loginModel;
+  AppLoginErrorStates({this.loginModel});
+
+}
 
 
 class AppChangePasswordStates extends AuthStates {}
@@ -60,6 +65,7 @@ class EnterPasswordSuccessState extends AuthStates {}
 class EnterPasswordErrorState extends AuthStates {}
 class EnterCodeVerificationErrorState extends AuthStates {}
 class EnterCodeVerificationSuccessState extends AuthStates {}
+class EnterCodeVerificationLoadingState extends AuthStates {}
 
 // GoogleSignIn
 class GoogleSignInLoadingState extends AuthStates {}
@@ -71,8 +77,17 @@ class GoogleSignInSuccessState extends AuthStates {
 class GoogleSignInErrorState extends AuthStates {}
 class FacebookSignInLoadingState extends AuthStates {}
 class FacebookSignInSuccessState extends AuthStates {
-  final GoogleDataModel googleDataModel;
+  final FaceLoginModel faceLoginModel;
 
-  FacebookSignInSuccessState(this.googleDataModel);
+  FacebookSignInSuccessState(this.faceLoginModel);
 }
 class FacebookSignInErrorState extends AuthStates {}
+class CheckCodeLoadingState extends AuthStates {}
+
+class CheckCodeSuccessState extends AuthStates {}
+
+class CheckCodeErrorState extends AuthStates {}
+
+class AppleSignInLoadingState extends AuthStates {}
+class AppleSignInSuccessState extends AuthStates {}
+class AppleSignInErrorState extends AuthStates {}

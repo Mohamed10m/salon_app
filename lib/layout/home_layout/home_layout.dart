@@ -12,8 +12,8 @@ import '../cubut/home_layout_cubit.dart';
 import '../cubut/home_layout_states.dart';
 
 class HomeLayout extends StatefulWidget {
-    HomeLayout({Key? key,this.id}) : super(key: key);
-    int ?id;
+  const  HomeLayout({Key? key,required this.id}) : super(key: key);
+   final int id;
 
   @override
   State<HomeLayout> createState() => _HomeLayoutState(id);
@@ -25,21 +25,21 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> bottomScreens = [
-       const HomeScreen(),
-      const BookingScreen(),
-      const SettingsPage(),
-    ];
+
     return BlocProvider(
         create: (BuildContext context) => HomeLayoutCubit()
           ..getUserData()
           ..getChooseBarberData(id!)
-          ..getServices()..getAppointments()..getSpecificData(id!)..getShowDataUser()..getChooseServicesData(),
+          ..getServices()..getAppointments()..getSpecificData(id!)..getShowDataUser()..getChooseServicesData()..getNotifications(),
         child: BlocConsumer<HomeLayoutCubit, HomeLayoutStates>(
           listener: (context, state) {},
           builder: (context, state) {
             var cubit = HomeLayoutCubit.get(context);
-
+            List<Widget> bottomScreens = [
+              const HomeScreen(),
+              const BookingScreen(),
+              const SettingsPage(),
+            ];
             return Scaffold(
               body: background(
                 child: bottomScreens[cubit.currentIndex],

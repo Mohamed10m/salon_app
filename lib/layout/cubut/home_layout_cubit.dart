@@ -15,6 +15,7 @@ import 'package:salon_app/shared/end_points/end_points.dart';
 import '../../models/change_password.dart';
 import '../../models/choose_sevices_model.dart';
 import '../../models/get_appointments_model.dart';
+import '../../models/notifications_model.dart';
 import '../../models/user_data_model.dart';
 
 import '../../shared/componants/app_constane.dart';
@@ -38,6 +39,7 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
   void getUserData() async {
     await DioHelper.getData(path: profile, token: token).then((value) {
       userModel = UserDataModel.fromJson(value.data);
+
       emit(GetSuccessUserData(userData: userModel!));
     }).catchError((error) {
       emit(GetErrorUserData());
@@ -95,7 +97,6 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
 
   }) {
     emit(LoadingChooseServiceData());
-    print('888888888888888');
 
     DioHelper.postData(
       token: token,
@@ -112,7 +113,6 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
 
       emit(SuccessChooseServiceData());
     }).catchError((error) {
-      print(error.toString());
       emit(UpdateErrorStatusData());
     });
   }
@@ -174,14 +174,24 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
     await DioHelper.getData(
         path:getChooseService,
         token: token).then((value) {
-          // print(value.data.toString());
-          print('0000000000');
       getChooseServices = GetChooseServices.fromJson(value.data);
-      print('gggggggggg${value.data}');
 
       emit(GetChooseServiceSuccessData());
     }).catchError((error) {
       emit(GetChooseServiceErrorData());
+    });
+  }
+  NotificationModel ?getNotificationModel;
+ void getNotifications() async {
+   emit(GetNotifyLoadingData());
+    await DioHelper.getData(
+        path:notify,
+        token: token).then((value) {
+      getNotificationModel = NotificationModel.fromJson(value.data);
+
+      emit(GetNotifySuccessData());
+    }).catchError((error) {
+      emit(GetNotifyErrorData());
     });
   }
 
@@ -195,7 +205,6 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
 
   }) {
     emit(LoadingChooseServiceData());
-    print('888888888888888');
 
     DioHelper.postData(
       token: token,
@@ -209,10 +218,8 @@ class HomeLayoutCubit extends Cubit<HomeLayoutStates> {
 
     ).then((value) {
 
-print(value.data);
       emit(SuccessChooseServiceData());
     }).catchError((error) {
-      print(error.toString());
       emit(UpdateErrorStatusData());
     });
   }

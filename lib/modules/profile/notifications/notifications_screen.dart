@@ -29,7 +29,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       return Scaffold(
         body: background(
             child: Padding(
-              padding: EdgeInsets.only(top: 50.0.h, right: 20.w, left: 20.w),
+              padding: EdgeInsets.only(top: 40.0.h, right: 20.w, left: 20.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -72,12 +72,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                       fontFamily: FontConstants.cairoFontFamily,
                                       fontSize: 20,
                                     )),
+                                SizedBox(height: 12.h,),
                                 ListView.separated(
                                     shrinkWrap: true,
                                     physics: const NeverScrollableScrollPhysics(),
                                     itemBuilder: (_, int index) =>
                                     index == 0
-                                        ? const AcceptNotifications()
+                                        ?  AcceptNotifications(index: index,)
                                         : const RefuseNotifications2(),
                                     separatorBuilder: (_, __) =>
                                         SizedBox(height: 2.h),
@@ -85,7 +86,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                               ],
                             ),
                         separatorBuilder: (_, __) => SizedBox(height: 16.h),
-                        itemCount: 2),
+                        itemCount: HomeLayoutCubit.get(context).getNotificationModel!.data!.length),
                   )
                 ],
               ),

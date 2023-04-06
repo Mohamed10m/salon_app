@@ -1,26 +1,21 @@
 class GoogleDataModel {
-  String ?token;
-  User ?user;
-
-
+  String? token;
+  User? user;
 
   GoogleDataModel.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
-
-
 }
 
 class User {
-  int ?id;
+  int? id;
   String? name;
   String? email;
-  int ?type;
+  String? type;
   String? createdAt;
-  String ?updatedAt;
-  String ?phone;
-
+  String? updatedAt;
+  String? phone;
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -31,5 +26,4 @@ class User {
     updatedAt = json['updated_at'];
     phone = json['phone'];
   }
-
 }

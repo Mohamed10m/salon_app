@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/modules/auth/auth_cubit/auth_cubit.dart';
 import 'package:salon_app/modules/auth/auth_cubit/auth_states.dart';
+import 'package:salon_app/modules/password/password_changed_successfully.dart';
 import 'package:salon_app/shared/componants/app_strings.dart';
 import 'package:salon_app/shared/componants/language_type.dart';
 
@@ -15,13 +17,18 @@ import '../../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 
 class CreateNewPassword extends StatefulWidget {
-  const CreateNewPassword({Key? key}) : super(key: key);
+  const CreateNewPassword({Key? key,required this.emailController,required this.codeController}) : super(key: key);
 
+ final  String ?emailController;
+   final String ?codeController;
   @override
-  State<CreateNewPassword> createState() => _LoginScreenState();
+  State<CreateNewPassword> createState() => _LoginScreenState(emailController,codeController);
 }
 
 class _LoginScreenState extends State<CreateNewPassword> {
+  _LoginScreenState(this.emailController,this.codeController);
+  String ?emailController;
+  String ?codeController;
   var newPasswordController = TextEditingController();
   var verifyNewPasswordController = TextEditingController();
 
@@ -45,6 +52,11 @@ class _LoginScreenState extends State<CreateNewPassword> {
           child: BlocProvider(
         create: (BuildContext context) => AuthCubit(),
         child: BlocConsumer<AuthCubit, AuthStates>(
+            listener: ((context, state) {
+              if(state is ChangePasswordSuccessState){
+                navigateTo(context, const PasswordChangedSuccessfully());
+              }
+            }),
             builder: (context, state) {
               return Column(
                   crossAxisAlignment: isRtl()
@@ -52,7 +64,7 @@ class _LoginScreenState extends State<CreateNewPassword> {
                       : CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: 20.w, top: 37.h),
+                      padding: EdgeInsets.only(left: 20.w, top: 20.h),
                       child: IconButton(
                         onPressed: () {
                           Navigator.pop(context);
@@ -186,11 +198,17 @@ class _LoginScreenState extends State<CreateNewPassword> {
                             SizedBox(
                               height: 64,
                               width: double.infinity,
-                              child: elevatedButton(
-                                  text: AppStrings.changePassword.tr(),
-                                  onPress: () {
+                              child: ElevatedButton(
+                                  child:
+                              ConditionalBuilder(condition: state is! ChangePasswordSuccessState && state is! ChangePasswordLoadingState, builder: (context)=>Text(AppStrings.changePassword.tr()), fallback: (context)=>
+              const CircularProgressIndicator(color: Colors.white,)
+              ),
+
+                                  onPressed: () {
                                     if (formKey.currentState!.validate()) {
                                       AuthCubit.get(context).changePassword(
+                                        email: emailController,
+                                          code: codeController,
                                           newPassword: newPasswordController.text,
                                           newPasswordConfirmation: verifyNewPasswordController.text);
                                     }
@@ -200,10 +218,12 @@ class _LoginScreenState extends State<CreateNewPassword> {
                         ),
                       ),
                     )
-                  ]);
+                  ],
+              );
             },
-            listener: ((context, state) {})),
-      )),
+            ),
+      ),
+      ),
     );
   }
 }

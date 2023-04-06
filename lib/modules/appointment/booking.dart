@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,6 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen> {
   int currentStep = 0;
   List<DateTime> dates = <DateTime>[];
-int? ff;
   DateTime selectedDateTime = DateTime.now();
 
   @override
@@ -56,65 +56,27 @@ var cubit = HomeLayoutCubit.get(context).getChooseServices!.data;
             Padding(
                 padding: EdgeInsets.only(top: 60.h, right: 35.w, left: 35.w),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    Column(
+
                       children: [
-                        Column(
-                          children: [
-                            Text(
-                              AppStrings.today.tr(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 2.h,
-                            ),
-                            Text(
-                              'may 5, 2023',
-                              style: TextStyle(
-                                color: HexColor('#212121').withOpacity(0.5),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 11,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        Container(
-                          height: 32,
-                          width: 112,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: HexColor('#8281F8'),
+                        Text(
+                          AppStrings.today.tr(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
                           ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          AddAppointmentScreen()));
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(ImageAssets.addIcon),
-                                const SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  AppStrings.add.tr(),
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(
+                          'may 5, 2023',
+                          style: TextStyle(
+                            color: HexColor('#212121').withOpacity(0.5),
+                            fontWeight: FontWeight.w400,
+                            fontSize: 11,
                           ),
                         ),
                       ],

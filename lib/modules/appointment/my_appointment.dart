@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/shared/componants/app_strings.dart';
-
 import '../../layout/cubut/home_layout_cubit.dart';
 import '../../layout/cubut/home_layout_states.dart';
 import '../../shared/componants/color_manager.dart';
@@ -15,7 +14,6 @@ import 'booking_widget.dart';
 
 class MyAppointments extends StatefulWidget {
   const MyAppointments({Key? key}) : super(key: key);
-
   @override
   State<MyAppointments> createState() => _MyAppointmentsState();
 }
@@ -196,12 +194,15 @@ class _MyAppointmentsState extends State<MyAppointments> {
                                 fallback: (context) => const Center(
                                     child: CircularProgressIndicator()))
                           ],
-                        ))
-                  ]),
+                        ),
+                    ),
+                  ],
+                  ),
                 ],
               ),
             ),
           );
-        });
+        },
+    );
   }
 }

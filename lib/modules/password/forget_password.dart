@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,8 +44,8 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
       if (state is ResetPasswordSuccessState) {
         navigateTo(context,   Otp(emailController:emailController.text));
       }
-      else{
-        ScaffoldMessenger.of(context).showSnackBar( const SnackBar(content: Center(child: Text('envalid'))));
+      else if(state is ResetPasswordErrorState){
+        ScaffoldMessenger.of(context).showSnackBar( const SnackBar(backgroundColor:Colors.red,content: Center(child: Text('this email is not found'))));
 
       }
     }, builder: (context, state) {
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
         body: background(
             child: Padding(
           padding: EdgeInsets.only(
-              top: 38.h, bottom: 277.h, left: 20.h, right: 35.w),
+              top: 20.h, bottom: 277.h, left: 20.h, right: 35.w),
           child: Column(
               crossAxisAlignment:
                   isRtl() ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -162,13 +163,17 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                             SizedBox(
                               height: 64,
                               width: double.infinity,
-                              child: elevatedButton(
-                                  text: AppStrings.next.tr(),
+                              child: ElevatedButton(
+                                  child:ConditionalBuilder(condition: state is! ResetPasswordSuccessState && state is! ResetPasswordLoadingState, builder: (context)=>Text(AppStrings.next.tr()), fallback: (context)=>
+                                  const CircularProgressIndicator(color: Colors.white,)
+                                  )
 
-                                  onPress: () {
+                                  ,
+
+                                  onPressed: () {
                                     if(formKey.currentState!.validate()){
                                       AuthCubit.get(context)
-                                          .enterEmail(email: emailController.text.trim());
+                                          .enterEmail(email: emailController.text);
                                     }
 
                                   }),
@@ -179,9 +184,12 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                     ],
                   ),
                 )
-              ]),
-        )),
+              ],
+          ),
+        ),
+        ),
       );
-    });
+    },
+    );
   }
 }
