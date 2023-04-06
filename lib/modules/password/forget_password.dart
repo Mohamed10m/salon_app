@@ -164,7 +164,10 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                               height: 64,
                               width: double.infinity,
                               child: ElevatedButton(
-                                  child:ConditionalBuilder(condition: state is! ResetPasswordSuccessState && state is! ResetPasswordLoadingState, builder: (context)=>Text(AppStrings.next.tr()), fallback: (context)=>
+
+                                  child:ConditionalBuilder(condition: state is! ResetPasswordSuccessState && state is! ResetPasswordLoadingState, builder: (context)=>Text(AppStrings.next.tr(),
+
+                                  style: const TextStyle(fontWeight: FontWeightManager.semiBold,fontFamily: FontConstants.cairoFontFamily,fontSize: 20),), fallback: (context)=>
                                   const CircularProgressIndicator(color: Colors.white,)
                                   )
 
@@ -176,7 +179,13 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                                           .enterEmail(email: emailController.text);
                                     }
 
-                                  }),
+                                  },
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 0.0,
+                                    backgroundColor: HexColor('#8281F8'),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(14))),),
                             ),
                           ],
                         ),
