@@ -1,10 +1,12 @@
 class AppStrings {
-
   static const noRouteFound = "no_Route_Found";
   static const onBoardingTitle1 = "on_boarding_title1";
   static const onBoardingTitle2 = "on_boarding_title2";
   static const onBoardingTitle3 = "on_boarding_title3";
-  static const onBoardingSubTitle = "on_Boarding_SubTitle";
+  static const onBoardingSubTitle1 = "on_Boarding_SubTitle1";
+  static const onBoardingSubTitle2 = "on_Boarding_SubTitle2";
+  static const onBoardingSubTitle3 = "on_Boarding_SubTitle3";
+  static const onBoardingSubTitle4 = "on_Boarding_SubTitle4";
   static const skip = "skip";
   static const loginText = "login";
   static const registerText = "registerText";
@@ -88,6 +90,13 @@ class AppStrings {
   static const expiryDate = "expiryDate";
   static const done = "done";
   static const cardName = "cardName";
+  static const programIdea = "programIdea";
+  static const detailsProgramIdea = "detailsProgramIdea";
+  static const programGoal = "programGoal";
+  static const programVision = "programVision";
+
+  static const programVisionTitle = "ProgramIdeaTitle";
+  static const programGoalTitle = "programGoalTitle";
 
 
 }

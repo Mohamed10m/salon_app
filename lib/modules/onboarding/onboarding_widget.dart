@@ -24,7 +24,7 @@ List<BoardingModel> boarding = [
         ),
       ),
       title: AppStrings.onBoardingTitle1,
-      subTitle: AppStrings.onBoardingSubTitle),
+      subTitle: AppStrings.onBoardingSubTitle1),
   BoardingModel(
       container: Container(
         height: 240.h,
@@ -38,7 +38,7 @@ List<BoardingModel> boarding = [
         ),
       ),
       title: AppStrings.onBoardingTitle2,
-      subTitle: AppStrings.onBoardingSubTitle),
+      subTitle: AppStrings.onBoardingSubTitle2),
   BoardingModel(
       container: Container(
         height: 240.h,
@@ -52,7 +52,21 @@ List<BoardingModel> boarding = [
         ),
       ),
       title: AppStrings.onBoardingTitle3,
-      subTitle: AppStrings.onBoardingSubTitle)
+      subTitle: AppStrings.onBoardingSubTitle3),
+  BoardingModel(
+      container: Container(
+        height: 240.h,
+        width: 210.w,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(ImageAssets.backgroundLogoImage3),
+               )),
+        child:  const Image(
+          image: AssetImage(ImageAssets.onBoardingLogo1),
+        ),
+      ),
+      title: AppStrings.onBoardingTitle3,
+      subTitle: AppStrings.onBoardingSubTitle4)
 ];
 
 Widget buildBoardingImage(BoardingModel model) => Column(

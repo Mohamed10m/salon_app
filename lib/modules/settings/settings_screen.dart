@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:salon_app/modules/help_center/help_center.dart';
 import 'package:salon_app/modules/payment/payment_screen.dart';
+import 'package:salon_app/modules/program_idea/program_idea.dart';
 import 'package:salon_app/modules/settings/widgets.dart';
 import 'package:salon_app/shared/componants/app_strings.dart';
 import 'package:salon_app/shared/componants/assets_manager.dart';
@@ -146,6 +147,24 @@ class _SettingsPageState extends State<SettingsPage> {
                             context: context,
                             function: (){
                               navigateTo(context, const PaymentScreen());
+                            },
+                          )),
+                      SizedBox(
+                        height: 24.h,
+                      ),
+                      Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.rotationY(isRtl() ? 0 : 0),
+                          child: buildSettingsCardItem(
+                            leftWidth: isRtl() ? 27 : 10,
+                            rightWidth: isRtl() ? 10 : 27,
+                            color: HexColor("#8281F8").withOpacity(0.04),
+                            text: AppStrings.programIdea.tr(),
+                            iconColor: HexColor('#8281F8'),
+                            image: ImageAssets.helpIcon,
+                            context: context,
+                            function: (){
+                              navigateTo(context, const ProgramIdea());
                             },
                           )),
                       SizedBox(

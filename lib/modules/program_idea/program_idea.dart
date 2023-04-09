@@ -8,8 +8,8 @@ import '../../shared/componants/componants.dart';
 import '../../shared/componants/fonts_manager.dart';
 import '../../shared/componants/language_type.dart';
 
-class HelpCenterScreen extends StatelessWidget {
-  const HelpCenterScreen({Key? key}) : super(key: key);
+class ProgramIdea extends StatelessWidget {
+  const ProgramIdea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ class HelpCenterScreen extends StatelessWidget {
                       SizedBox(
                         width:isRtl()? 70.w:98.w,
                       ),
-                       Text(
-                        AppStrings.helpCenter.tr(),
+                      Text(
+                        AppStrings.programIdea.tr(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: FontConstants.cairoFontFamily,
@@ -43,11 +43,11 @@ class HelpCenterScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                   SizedBox(height: 44.h),
-                   Align(
+                  SizedBox(height: 44.h),
+                  Align(
                       alignment:isRtl()? Alignment.topRight:Alignment.topLeft,
                       child: Text(
-                        AppStrings.howHelp.tr(),
+                        AppStrings.programIdea.tr(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: FontConstants.cairoFontFamily,
@@ -57,39 +57,67 @@ class HelpCenterScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   Container(
                       padding:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           color: HexColor("#8281F8").withOpacity(0.20)),
                       child:  Text(
-                        AppStrings.helpText1.tr(),
+                        AppStrings.detailsProgramIdea.tr(),
                         style: const TextStyle(
                           fontWeight: FontWeightManager.medium,
                           fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 16,
                         ),
                       )),
-                   SizedBox(height: 24.h),
-                   Align(
+                  SizedBox(height: 24.h),
+                  Align(
                       alignment:isRtl()? Alignment.topRight:Alignment.topLeft,
                       child: Text(
-                        AppStrings.paymentMethods.tr(),
+                        AppStrings.programGoalTitle.tr(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: FontConstants.cairoFontFamily,
                           fontSize: 16,
                         ),
                       )),
-                   SizedBox(height: 16.h),
+                  SizedBox(height: 16.h),
 
                   Container(
                       padding:
-                          const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           color: HexColor("#8281F8").withOpacity(0.20)),
                       child:  Text(
-                        AppStrings.helpText2.tr(),
+                        AppStrings.programGoal.tr(),
+                        style: const TextStyle(
+                          fontWeight: FontWeightManager.medium,
+                          fontFamily: FontConstants.cairoFontFamily,
+                          fontSize: 16,
+                        ),
+                      )),
+                  const SizedBox(height: 24),
+                  SizedBox(height: 24.h),
+                  Align(
+                      alignment:isRtl()? Alignment.topRight:Alignment.topLeft,
+                      child: Text(
+                        AppStrings.programVisionTitle.tr(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: FontConstants.cairoFontFamily,
+                          fontSize: 16,
+                        ),
+                      )),
+                  SizedBox(height: 16.h),
+
+                  Container(
+                      padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: HexColor("#8281F8").withOpacity(0.20)),
+                      child:  Text(
+                        AppStrings.programVision.tr(),
                         style: const TextStyle(
                           fontWeight: FontWeightManager.medium,
                           fontFamily: FontConstants.cairoFontFamily,
